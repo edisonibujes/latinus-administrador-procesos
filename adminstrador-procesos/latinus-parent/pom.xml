@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.latinus.arcom</groupId>
+    <artifactId>latinus-parent</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>LATINUS :: PARENT</name>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <modules>
+        <module>latinus-comun</module>
+        <module>latinus-persistencia</module>
+    </modules>
+    <properties>
+        <alfresco-opencmis-extension.version>1.0</alfresco-opencmis-extension.version>
+        <alfresco-web-service-client.version>4.2.f</alfresco-web-service-client.version>
+        <aspectj.version>1.6.8</aspectj.version>
+        <axis.version>1.4</axis.version>
+        <bouncycastle.version>1.46</bouncycastle.version>
+        <commons-cli.version>1.2</commons-cli.version>  
+        <commons-collections.version>3.2.1</commons-collections.version>  
+        <commons-codec.version>1.9</commons-codec.version>
+        <commons-dbcp.version>1.4</commons-dbcp.version>
+        <commons-dbcp-smix.version>1.4_3</commons-dbcp-smix.version>
+        <commons-fileupload.version>1.3.1</commons-fileupload.version>  
+        <commons-io.version>2.4</commons-io.version>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <commons-logging.version>1.1.3</commons-logging.version>  
+        <com.googlecode.json-simple.version>1.1</com.googlecode.json-simple.version>
+        <com.google.code.gson.version>2.3</com.google.code.gson.version>
+        <com.googlecode.ehcache.version>1.2.0</com.googlecode.ehcache.version>
+        <com.google-oauth-client.version>1.16.0-rc</com.google-oauth-client.version>
+        <com.google-http-client-jackson.version>1.16.0-rc</com.google-http-client-jackson.version>
+        <com.sun.xml.ws.version>2.2.5</com.sun.xml.ws.version>
+        <com.thoughtworks.xstream.version>1.4.5</com.thoughtworks.xstream.version>
+        <cxf.version>2.7.7</cxf.version> 
+        <cxf-patched.version>2.2.2-patched</cxf-patched.version> 
+        <ehcache.version>2.7.1</ehcache.version> 
+        <hibernate.version>3.6.3.Final</hibernate.version>
+        <javax.version>6.0</javax.version>
+        <javax-webapi.version>6.0</javax-webapi.version>
+        <javax.el.version>1.0</javax.el.version>
+        <javax.jms.version>1.1</javax.jms.version>
+        <javax.mail.version>1.4.5</javax.mail.version>
+        <javax.portlet.version>2.0</javax.portlet.version>
+        <javax.servlet.jsp.version>2.1</javax.servlet.jsp.version>
+        <javax.servlet.version>2.5</javax.servlet.version>
+        <jcifs.version>1.3.17</jcifs.version>
+        <javassist.version>3.12.1.GA</javassist.version>
+        <jivesoftware.version>3.1.0</jivesoftware.version>
+        <jboss.el.version>2.0.1.GA</jboss.el.version>
+        <jboss.seam.version>2.0.0.GA</jboss.seam.version>
+        <json-lib.version>2.2.3</json-lib.version>
+        <jsr250.version>1.0</jsr250.version>
+        <junit.version>4.11</junit.version>
+        <liferay-faces.version>3.2.4-ga5</liferay-faces.version>
+        <liferay.maven.plugin.version>6.2.10.4</liferay.maven.plugin.version>
+        <liferay-portal.version>6.2.1</liferay-portal.version>
+        <liferay.version>6.2.1</liferay.version>
+        <log4j.version>1.2.17</log4j.version>
+        <opensaml.version>1.1</opensaml.version>
+        <org.apache.activemq.version>5.9.0</org.apache.activemq.version>
+        <org.apache.chemistry.opencmis.version>0.10.0</org.apache.chemistry.opencmis.version>
+        <org.apache.chemistry.opencmis.api.version>0.10.0</org.apache.chemistry.opencmis.api.version>
+        <org.apache.commons.version>1.6.0</org.apache.commons.version>
+        <org.apache.pdfbox.version>1.8.5</org.apache.pdfbox.version>
+        <org.apache.poi.version>3.9</org.apache.poi.version>
+        <org.apache.poi-schemas.version>1.0</org.apache.poi-schemas.version>
+        <org.apache.santuario.version>1.5.4</org.apache.santuario.version>
+        <org.docx4j.version>3.1.0</org.docx4j.version>
+        <org.omnifaces.version>1.8.1</org.omnifaces.version>
+        <org.openoffice.version>3.2.1</org.openoffice.version>
+        <org.jdom.version>2.0.5</org.jdom.version>
+        <org.dspace.version>6.2.5.02</org.dspace.version>
+        <org.reflections.version>0.9.9-RC1</org.reflections.version>
+        <org.springframework.version>3.2.5.RELEASE</org.springframework.version>
+        <org.springframework.data.version>1.5.3.RELEASE</org.springframework.data.version>
+        <org.springframework.ldap.version>1.3.1.RELEASE</org.springframework.ldap.version>
+        <org.springframework.spring.version>2.5.6</org.springframework.spring.version>
+        <postgresql.version>9.2-1002.jdbc4</postgresql.version>
+        <primefaces.version>5.0</primefaces.version>
+        <primefaces-extension.version>2.0.0</primefaces-extension.version>
+        <primefaces-theme.version>1.0.10</primefaces-theme.version>
+        <quartz.version>1.8.5</quartz.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <sunfaces.version>2.1.21</sunfaces.version>
+        <wss4j.version>1.1</wss4j.version>
+        <xmlsec.version>1.3.0</xmlsec.version>
+        <xom.version>1.2.5</xom.version>
+        <zk.version>6.5.2</zk.version>
+        <zk-bwcaptcha.version>1.0</zk-bwcaptcha.version>
+        <zkoss.version>3.6.0.0</zkoss.version>
+        <jasypt.version>1.9.2</jasypt.version>
+        <com.itextpdf.version>5.3.1</com.itextpdf.version>
+        <com.lowagie.text.version>5.4.0</com.lowagie.text.version>
+        <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+        <packname>-${project.version}-FL-${maven.build.timestamp}</packname>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            
+            <dependency>
+                <groupId>com.lowagie.text</groupId>
+                <artifactId>com.springsource.com.lowagie.text</artifactId>
+                <version>${com.lowagie.text.version}</version>
+                <type>jar</type>
+            </dependency>
+            
+            <dependency>
+                <groupId>com.itextpdf</groupId>
+                <artifactId>itextpdf</artifactId>    
+                <version>${com.itextpdf.version}</version>            
+            </dependency>
+            <!-- alfresco -->
+            <dependency>
+                <groupId>org.alfresco</groupId>
+                <artifactId>alfresco-web-service-client</artifactId>
+                <version>${alfresco-web-service-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.alfresco.cmis.client</groupId>
+                <artifactId>alfresco-opencmis-extension</artifactId>
+                <version>${alfresco-opencmis-extension.version}</version>
+            </dependency>
+            <!-- axis -->
+            <dependency>
+                <groupId>axis</groupId>
+                <artifactId>axis</artifactId>
+                <version>${axis.version}</version>
+            </dependency>
+            <!--bouncycastle-->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk16</artifactId>
+                <version>${bouncycastle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-ext-jdk16</artifactId>
+                <version>${bouncycastle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bctsp-jdk16</artifactId>
+                <version>${bouncycastle.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcmail-jdk16</artifactId>
+                <version>${bouncycastle.version}</version>
+            </dependency>
+            <!-- commons -->
+            <dependency>
+                <groupId>commons-cli</groupId>
+                <artifactId>commons-cli</artifactId>
+                <version>${commons-cli.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons-fileupload.version}</version>
+            </dependency> 
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version> 
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-logging</groupId>
+                <artifactId>commons-logging</artifactId>
+                <version>${commons-logging.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+            <!-- commons-dbcp  -->
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>${commons-dbcp.version}</version>
+            </dependency>       
+            <dependency>  <!-- servicemix -->
+                <groupId>org.apache.servicemix.bundles</groupId>
+                <artifactId>org.apache.servicemix.bundles.commons-dbcp</artifactId>
+                <version>${commons-dbcp-smix.version}</version>
+            </dependency>  
+            <!-- com.sun -->
+            <dependency>
+                <groupId>com.sun.xml.ws</groupId>
+                <artifactId>jaxws-rt</artifactId>
+                <version>${com.sun.xml.ws.version}</version>
+            </dependency>
+            <!-- cxf -->
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-frontend-jaxws</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>       
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf-rt-transports-http</artifactId>
+                <version>${cxf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.cxf</groupId>
+                <artifactId>cxf</artifactId>
+                <version>${cxf-patched.version}</version>
+            </dependency>
+            <!-- ehcache -->
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache-core</artifactId>
+                <version>${ehcache.version}</version>
+                <type>pom</type>
+            </dependency>
+            <!--
+            <dependency>
+                <groupId>net.sf.ehcache</groupId>
+                <artifactId>ehcache-core</artifactId>
+                <version>${ehcache.version}</version>
+                <type>pom</type>
+            </dependency>
+            -->
+            <!-- com.googlecode.ehcache -->
+            <dependency>
+                <groupId>com.googlecode.ehcache-spring-annotations</groupId>
+                <artifactId>ehcache-spring-annotations</artifactId>
+                <version>${com.googlecode.ehcache.version}</version>
+            </dependency>
+            <!-- thoughtworks -->
+            <dependency>  
+                <groupId>com.thoughtworks.xstream</groupId>  
+                <artifactId>xstream</artifactId>  
+                <version>${com.thoughtworks.xstream.version}</version>  
+            </dependency>
+            <!-- hibernate -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+            <!-- javassist -->
+            <dependency>
+                <groupId>javassist</groupId>
+                <artifactId>javassist</artifactId>
+                <version>${javassist.version}</version>
+            </dependency>
+            <!-- jsf -->
+            <dependency>
+                <groupId>com.sun.faces</groupId>
+                <artifactId>jsf-api</artifactId>
+                <version>${sunfaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sun.faces</groupId>
+                <artifactId>jsf-impl</artifactId>
+                <version>${sunfaces.version}</version>
+            </dependency>
+            <!-- Javax -->
+            <dependency>
+                <groupId>javax</groupId>
+                <artifactId>javaee-web-api</artifactId>
+                <version>${javax-webapi.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.jms</groupId>
+                <artifactId>jms</artifactId>
+                <version>${javax.jms.version}</version>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>javax.el</groupId>
+                <artifactId>el-api</artifactId>
+                <version>${javax.el.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>${javax.mail.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.portlet</groupId>
+                <artifactId>portlet-api</artifactId>
+                <version>${javax.portlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet</groupId>
+                <artifactId>servlet-api</artifactId>
+                <version>${javax.servlet.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>javax.servlet.jsp</groupId>
+                <artifactId>jsp-api</artifactId>
+                <version>${javax.servlet.jsp.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Jcfis-->
+            <dependency>
+                <groupId>jcifs</groupId>
+                <artifactId>jcifs</artifactId>
+                <version>${jcifs.version}</version>
+            </dependency>
+            <!-- -->
+            <dependency>
+                <groupId>jivesoftware</groupId>
+                <artifactId>smack</artifactId>
+                <version>${jivesoftware.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jivesoftware</groupId>
+                <artifactId>smackx</artifactId>
+                <version>${jivesoftware.version}</version>
+            </dependency>
+            <!-- json-lib -->
+            <dependency>
+                <groupId>net.sf.json-lib</groupId>
+                <artifactId>json-lib</artifactId>
+                <version>${json-lib.version}</version>
+            </dependency>
+            <!-- jsr250 -->
+            <dependency>
+                <groupId>javax.annotation</groupId>
+                <artifactId>jsr250-api</artifactId>
+                <version>${jsr250.version}</version>
+            </dependency>
+            <!-- Junit-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>   
+            <!-- liferay -->
+            <dependency>
+                <groupId>com.liferay.faces</groupId>
+                <artifactId>liferay-faces-bridge-impl</artifactId>
+                <version>${liferay-faces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liferay.faces</groupId>
+                <artifactId>liferay-faces-portal</artifactId>
+                <version>${liferay-faces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.liferay.portal</groupId>
+                <artifactId>portal-service</artifactId>
+                <version>${liferay-portal.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.liferay.portal</groupId>
+                <artifactId>util-java</artifactId>
+                <version>${liferay-portal.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.liferay.portal</groupId>
+                <artifactId>util-taglib</artifactId>
+                <version>${liferay-portal.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.liferay.portal</groupId>
+                <artifactId>util-bridges</artifactId>
+                <version>${liferay-portal.version}</version>
+                <scope>provided</scope>
+            </dependency> 
+            <!--log4j-->
+            <dependency>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <type>jar</type>
+                <version>${log4j.version}</version>
+                <exclusions>  
+                    <exclusion>  
+                        <groupId>javax.mail</groupId>  
+                        <artifactId>mail</artifactId>  
+                    </exclusion>  
+                    <exclusion>  
+                        <groupId>javax.jms</groupId>  
+                        <artifactId>jms</artifactId>  
+                    </exclusion>  
+                    <exclusion>  
+                        <groupId>com.sun.jdmk</groupId>  
+                        <artifactId>jmxtools</artifactId>  
+                    </exclusion>  
+                    <exclusion>  
+                        <groupId>com.sun.jmx</groupId>  
+                        <artifactId>jmxri</artifactId>  
+                    </exclusion>  
+                </exclusions>
+            </dependency>
+            <!-- opensaml -->
+            <dependency>
+                <groupId>org.opensaml</groupId>
+                <artifactId>opensaml</artifactId>
+                <version>${opensaml.version}</version>
+            </dependency>
+            <!-- org.apache.activemq-->
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-all</artifactId>
+                <version>${org.apache.activemq.version}</version>
+                <type>jar</type>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-client</artifactId>
+                <version>${org.apache.activemq.version}</version>
+                <type>jar</type>
+            </dependency>
+            <!-- org.apache.commons-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>com.springsource.org.apache.commons.codec</artifactId>
+                <version>${org.apache.commons.version}</version>
+                <type>jar</type>
+            </dependency>
+            <!-- org.apache.poi --> 
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${org.apache.poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${org.apache.poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>ooxml-schemas</artifactId>
+                <version>${org.apache.poi-schemas.version}</version>
+            </dependency>
+            <!-- org.apache.chemistry.opencmis --> 
+            <dependency>
+                <groupId>org.apache.chemistry.opencmis</groupId>
+                <artifactId>chemistry-opencmis-client-impl</artifactId>
+                <version>${org.apache.chemistry.opencmis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.chemistry.opencmis</groupId>
+                <artifactId>chemistry-opencmis-client-api</artifactId>
+                <version>${org.apache.chemistry.opencmis.api.version}</version>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.chemistry.opencmis</groupId>
+                <artifactId>chemistry-opencmis-client-bindings</artifactId>
+                <version>${org.apache.chemistry.opencmis.version}</version>
+                <type>jar</type>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.chemistry.opencmis</groupId>
+                <artifactId>chemistry-opencmis-commons-api</artifactId>
+                <version>${org.apache.chemistry.opencmis.version}</version>
+                <type>jar</type>
+            </dependency> 
+            <!-- org.apache.pdfbox--> 
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>${org.apache.pdfbox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>fontbox</artifactId>
+                <version>${org.apache.pdfbox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>jempbox</artifactId>
+                <version>${org.apache.pdfbox.version}</version>
+            </dependency>
+            <!-- org.apache.santuario --> 
+            <dependency>
+                <groupId>org.apache.santuario</groupId>
+                <artifactId>xmlsec</artifactId>
+                <version>${org.apache.santuario.version}</version>
+            </dependency>
+            <!-- org.reflections --> 
+            <dependency>
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>${org.reflections.version}</version>
+            </dependency>
+            <!-- org.aspectj -->
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjrt</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjtools</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+            <!--org.openoffice-->
+            <dependency> 
+                <groupId>org.openoffice</groupId>
+                <artifactId>juh</artifactId>
+                <version>${org.openoffice.version}</version>
+            </dependency>
+            <dependency> 
+                <groupId>org.openoffice</groupId>
+                <artifactId>jurt</artifactId>
+                <version>${org.openoffice.version}</version>
+            </dependency>
+            <dependency> 
+                <groupId>org.openoffice</groupId>
+                <artifactId>ridl</artifactId>
+                <version>${org.openoffice.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.openoffice</groupId>
+                <artifactId>unoil</artifactId>
+                <version>${org.openoffice.version}</version>
+            </dependency>
+            <!-- org.springframework -->
+            <!--
+                Core utilities used by other modules.
+                Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+	 
+            <!--
+                Expression Language (depends on spring-core)
+                Define this if you use Spring Expression APIs (org.springframework.expression.*)
+            -->
+    
+        
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-expression</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+	 
+            <!--
+                Bean Factory and JavaBeans utilities (depends on spring-core)
+                Define this if you use Spring Bean APIs (org.springframework.beans.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-beans</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+	 
+            <!--
+                Aspect Oriented Programming (AOP) Framework (depends on spring-core, spring-beans)
+                Define this if you use Spring AOP APIs (org.springframework.aop.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-aop</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <!--
+                Application Context (depends on spring-core, spring-expression, spring-aop, spring-beans)
+                This is the central artifact for Spring's Dependency Injection Container and is generally always defined
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <!--
+                Various Application Context utilities, including EhCache, JavaMail, Quartz, and Freemarker integration
+                Define this if you need any of these integrations
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context-support</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <!--
+                Transaction Management Abstraction (depends on spring-core, spring-beans, spring-aop, spring-context)
+                Define this if you use Spring Transactions or DAO Exception Hierarchy
+                (org.springframework.transaction.*/org.springframework.dao.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-tx</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <!--
+                JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, spring-tx)
+                Define this if you use Spring's JdbcTemplate API (org.springframework.jdbc.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-jdbc</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>	 
+            <!--
+                Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA, and iBatis.
+                (depends on spring-core, spring-beans, spring-context, spring-tx)
+                Define this if you need ORM (org.springframework.orm.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-orm</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <!--
+                Object-to-XML Mapping (OXM) abstraction and integration with JAXB, JiBX, Castor, XStream, and XML Beans.
+                (depends on spring-core, spring-beans, spring-context)
+                Define this if you need OXM (org.springframework.oxm.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-oxm</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <!--
+                <dependency>
+              <groupId>org.springframework</groupId>
+              <artifactId>spring-data-jpa</artifactId>
+              <version>${org.springframework.data.version}</version>
+            </dependency>
+            -->
+            <!--
+                Web application development utilities applicable to both Servlet and Portlet Environments
+                (depends on spring-core, spring-beans, spring-context)
+                Define this if you use Spring MVC, or wish to use Struts, JSF, or another web framework with Spring (org.springframework.web.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <!--
+                Spring MVC for Servlet Environments (depends on spring-core, spring-beans, spring-context, spring-web)
+                Define this if you use Spring MVC with a Servlet Container such as Apache Tomcat (org.springframework.web.servlet.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+	 
+
+            <!--
+                Spring MVC for Portlet Environments (depends on spring-core, spring-beans, spring-context, spring-web)
+                Define this if you use Spring MVC with a Portlet Container (org.springframework.web.portlet.*)
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc-portlet</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+        
+       
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-core</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-web</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-config</artifactId>
+                <version>${org.springframework.version}</version>
+            </dependency>
+
+          
+
+	 
+            <!--
+                Support for testing Spring applications with tools such as JUnit and TestNG
+                This artifact is generally always defined with a 'test' scope for the integration testing framework and unit testing stubs
+            -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${org.springframework.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap-core</artifactId>
+                <version>${org.springframework.ldap.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap-core-tiger</artifactId>
+                <version>${org.springframework.ldap.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap-odm</artifactId>
+                <version>${org.springframework.ldap.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap-ldif-core</artifactId>
+                <version>${org.springframework.ldap.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ldap</groupId>
+                <artifactId>spring-ldap-ldif-batch</artifactId>
+                <version>${org.springframework.ldap.version}</version>
+            </dependency>
+            <!-- Postgres -->
+            <dependency>
+                <groupId>postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.version}</version>
+            </dependency>
+            <!--primeFaces-->   
+            <dependency>
+                <groupId>org.primefaces</groupId>
+                <artifactId>primefaces</artifactId>
+                <version>${primefaces.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces.extensions</groupId>
+                <artifactId>primefaces-extensions</artifactId>
+                <version>${primefaces-extension.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.primefaces.themes</groupId>
+                <artifactId>redmond</artifactId>
+                <version>${primefaces-theme.version}</version>
+            </dependency>
+            <!-- slf4j -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>jcl-over-slf4j</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
+            <!-- wss4j -->
+            <dependency>
+                <groupId>xfire</groupId>
+                <artifactId>wss4j</artifactId>
+                <version>${wss4j.version}</version>
+            </dependency>
+            <!-- xmlsec -->
+            <dependency>
+                <groupId>xml-security</groupId>
+                <artifactId>xmlsec</artifactId>
+                <version>${xmlsec.version}</version>
+            </dependency>
+            <!-- xom -->
+            <dependency>
+                <groupId>xom</groupId>
+                <artifactId>xom</artifactId>
+                <version>${xom.version}</version>
+            </dependency> 
+           
+            <!--ZK -->
+            <dependency>
+                <groupId>org.zkoss.zk</groupId>
+                <artifactId>zkbind</artifactId>
+                <version>${zk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zkoss.zk</groupId>
+                <artifactId>zul</artifactId>
+                <version>${zk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zkoss.zk</groupId>
+                <artifactId>zkplus</artifactId>
+                <version>${zk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zkoss.zk</groupId>
+                <artifactId>zhtml</artifactId>
+                <version>${zk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zkoss.zkforge</groupId>
+                <artifactId>ckez</artifactId>
+                <version>${zkoss.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zkoss.theme</groupId>
+                <artifactId>silvertail</artifactId>
+                <version>${zk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zkoss.common</groupId>
+                <artifactId>zweb</artifactId>
+                <version>${zk.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.zkoss.zkforge</groupId>
+                <artifactId>bwcaptcha</artifactId>
+                <version>${zk-bwcaptcha.version}</version>
+            </dependency>
+            <!--creacion documentos-->
+            <dependency>
+                <groupId>org.docx4j</groupId>
+                <artifactId>docx4j</artifactId>
+                <version>${org.docx4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jdom</groupId>
+                <artifactId>jdom2</artifactId>
+                <version>${org.jdom.version}</version>
+            </dependency>
+            <!-- quartz -->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${quartz.version}</version>
+            </dependency>
+            <!-- intalio tareas-->
+            <dependency>
+                <groupId>org.jboss.seam</groupId>
+                <artifactId>jboss-el</artifactId>
+                <version>${jboss.seam.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.el</groupId>
+                <artifactId>jboss-el</artifactId>
+                <version>${jboss.el.version}</version>
+            </dependency>
+            <!-- omnifaces -->
+            <dependency>
+                <groupId>org.omnifaces</groupId>
+                <artifactId>omnifaces</artifactId>
+                <version>${org.omnifaces.version}</version> <!-- Or 2.0-SNAPSHOT or 1.10-SNAPSHOT -->
+            </dependency>
+            
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${com.google.code.gson.version}</version>
+            </dependency>
+            
+            <dependency>
+                <groupId>com.google.oauth-client</groupId>
+                <artifactId>google-oauth-client</artifactId>
+                <version>${com.google-oauth-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.http-client</groupId>
+                <artifactId>google-http-client-jackson</artifactId>
+                <version>${com.google-http-client-jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.googlecode.json-simple</groupId>
+                <artifactId>json-simple</artifactId>
+                <version>${com.googlecode.json-simple.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.dspace</groupId>
+                <artifactId>handle</artifactId>
+                <version>${org.dspace.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jasypt</groupId>
+                <artifactId>jasypt</artifactId>
+                <version>${jasypt.version}</version>
+            </dependency>
+            
+        </dependencies> 
+        
+        
+        
+    </dependencyManagement>
+  
+    <repositories>
+        <repository>
+            <id>google-releases</id>
+            <name>Google Releases</name>
+            <url>https://oss.sonatype.org/content/repositories/google-releases</url>
+        </repository>
+        
+        <!-- JBoss Repository used for hibernate-validator 4.0.0.GA and Java-ee 
+        spec -->
+        <repository>
+            <id>JBoss repository</id>
+            <url>http://repository.jboss.org/nexus/content/groups/public/</url>
+        </repository>
+        <repository>
+            <id>repository.jboss.org</id>
+            <name>JBoss Repository</name>
+            <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+        </repository>
+        <repository>
+            <url>http://repository.primefaces.org/</url>
+            <id>PrimeFaces-maven-lib</id>
+            <layout>default</layout>
+            <name>Repository for library PrimeFaces-maven-lib</name>
+        </repository>
+        
+        <repository>
+            <id>alfresco-public</id>
+            <url>https://artifacts.alfresco.com/nexus/content/groups/public</url>   
+        </repository>
+        <repository>
+            <id>alfresco-public-snapshots</id>
+            <url>https://artifacts.alfresco.com/nexus/content/groups/public-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>apache-public</id>
+            <url>https://repository.apache.org/content/groups/public</url>   
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>intalio-maven 1</id>
+            <name>Intalio maven 1 repository</name>
+            <url>http://www.intalio.org/public/maven1/</url>
+        </repository>
+        <repository>
+            <id>intalio-maven 2</id>
+            <name>Intalio maven 2 repository</name>
+            <url>http://www.intalio.org/public/maven2/</url>
+        </repository>
+        <repository>
+            <id>ZK CE</id>
+            <name>ZK CE Repository</name>
+            <url>http://mavensync.zkoss.org/maven2</url>
+        </repository>
+        <repository>
+            <id>ZK EVAL</id>
+            <name>ZK Evaluation Repository</name>
+            <url>http://mavensync.zkoss.org/eval</url>
+        </repository>
+    </repositories>      
+  
+    <pluginRepositories>
+        <pluginRepository>
+            <id>alfresco-public</id>
+            <url>https://artifacts.alfresco.com/nexus/content/groups/public</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>alfresco-public-snapshots</id>                       
+            <url>https://artifacts.alfresco.com/nexus/content/groups/public-snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+            </snapshots>
+        </pluginRepository>
+        <pluginRepository>
+            <id>zkmaven</id>
+            <name>ZK Maven Plugin Repository</name>
+            <url>http://mavensync.zkoss.org/maven2/</url>
+        </pluginRepository>
+    </pluginRepositories>
+                 
+</project>

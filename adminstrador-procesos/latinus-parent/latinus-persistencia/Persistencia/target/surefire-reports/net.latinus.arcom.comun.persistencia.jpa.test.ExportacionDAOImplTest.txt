@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: net.latinus.arcom.comun.persistencia.jpa.test.ExportacionDAOImplTest
+-------------------------------------------------------------------------------
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 8, Time elapsed: 0 sec

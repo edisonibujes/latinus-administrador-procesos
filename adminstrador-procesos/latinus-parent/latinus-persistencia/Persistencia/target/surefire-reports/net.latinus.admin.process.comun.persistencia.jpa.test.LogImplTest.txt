@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: net.latinus.admin.process.comun.persistencia.jpa.test.LogImplTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.162 sec

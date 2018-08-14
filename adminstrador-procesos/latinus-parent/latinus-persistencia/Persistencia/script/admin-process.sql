@@ -16,9 +16,8 @@ CREATE TABLE "proceso" (
 "descripcion" varchar(250) COLLATE "default"
 );
 
-INSERT INTO public.proceso(
-            id_proceso, nombre, descripcion)
-    VALUES (1, 'Certificado de ciudadanía', 'El documento valida la nacionalidad del individuo');
+INSERT INTO public.proceso(nombre, descripcion)
+    VALUES ('Certificado de ciudadanía', 'El documento valida la nacionalidad del individuo');
 	
 CREATE TABLE "variable" (
 "id_variable" bigserial Primary Key,
@@ -30,9 +29,8 @@ CONSTRAINT variable_id_proceso_fkey FOREIGN KEY (id_proceso)
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-INSERT INTO public.variable(
-            id_variable, id_proceso, nombre, valor)
-    VALUES (1, 1, 'a', '15');
+INSERT INTO public.variable(id_proceso, nombre, valor)
+    VALUES (1, 'a', '15');
 
 
 CREATE TABLE "formulario" (
@@ -45,29 +43,23 @@ CONSTRAINT id_proceso_fkey FOREIGN KEY (id_proceso)
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-INSERT INTO public.formulario(
-            id_formulario, id_proceso, nombre, descripcion)
-    VALUES (1, 1, 'A', 'Solicitud');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'A', 'Solicitud');
 
-INSERT INTO public.formulario(
-            id_formulario, id_proceso, nombre, descripcion)
-    VALUES (2, 1, 'B', 'Entrega de documentos');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'B', 'Entrega de documentos');
 
-INSERT INTO public.formulario(
-            id_formulario, id_proceso, nombre, descripcion)
-    VALUES (3, 1, 'C', 'Validacion de documentos');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'C', 'Validacion de documentos');
 
-INSERT INTO public.formulario(
-            id_formulario, id_proceso, nombre, descripcion)
-    VALUES (4, 1, 'D', 'Pago del trámite');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'D', 'Pago del trámite');
 
-INSERT INTO public.formulario(
-            id_formulario, id_proceso, nombre, descripcion)
-    VALUES (5, 1, 'E', 'Entrega de la certificación ');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'E', 'Entrega de la certificación ');
 
-INSERT INTO public.formulario(
-            id_formulario, id_proceso, nombre, descripcion)
-    VALUES (6, 1, 'F', 'Notificacion');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'F', 'Notificacion');
             
 CREATE TABLE "usuario" (
 "id_usuario" bigserial Primary Key,
@@ -76,17 +68,14 @@ CREATE TABLE "usuario" (
 "nombre" varchar(250) COLLATE "default"
 );
 
-INSERT INTO public.usuario(
-            id_usuario, identificacion, apellido, nombre)
-    VALUES (1, '1721889515', 'Pedro', 'Muñoz');
+INSERT INTO public.usuario(identificacion, apellido, nombre)
+    VALUES ('1721889515', 'Pedro', 'Muñoz');
     
-INSERT INTO public.usuario(
-            id_usuario, identificacion, apellido, nombre)
-    VALUES (2, '1721889517', 'Juan', 'Salazar');
+INSERT INTO public.usuario(identificacion, apellido, nombre)
+    VALUES ('1721889517', 'Juan', 'Salazar');
 
-INSERT INTO public.usuario(
-            id_usuario, identificacion, apellido, nombre)
-    VALUES (3, '1765489873', 'Esteban', 'Flores');
+INSERT INTO public.usuario(identificacion, apellido, nombre)
+    VALUES ('1765489873', 'Esteban', 'Flores');
     
 CREATE TABLE "log" (
 "id_log" bigserial Primary Key,
@@ -105,13 +94,11 @@ CREATE TABLE "tipo_evento" (
 "descripcion" varchar(500) COLLATE "default"
 );
 
-INSERT INTO public.tipo_evento(
-            id_tipo_evento, nemonico, descripcion)
-    VALUES (1, 'LOG', 'Registra un evento en el sistema ');
+INSERT INTO public.tipo_evento(nemonico, descripcion)
+    VALUES ('LOG', 'Registra un evento en el sistema ');
 
-INSERT INTO public.tipo_evento(
-            id_tipo_evento, nemonico, descripcion)
-    VALUES (2, 'MEN', 'Envía una notificación de correo electrónico a uno o varios ');
+INSERT INTO public.tipo_evento(nemonico, descripcion)
+    VALUES ('MEN', 'Envía una notificación de correo electrónico a uno o varios ');
     
 CREATE TABLE "grilla" (
 "id_grilla" bigserial Primary Key,
@@ -130,40 +117,34 @@ CONSTRAINT estado_siguiente_fkey FOREIGN KEY (estado_siguiente)
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-INSERT INTO public.grilla(
-            id_grilla, estado_actual, funcion_transferencia, 
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, 
             estado_siguiente)
-    VALUES (1, 1, '(Sin condicion)', 
+    VALUES (1, '(Sin condicion)', 
             2);
 
-INSERT INTO public.grilla(
-            id_grilla, estado_actual, estado_anterior, funcion_transferencia, 
+INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
             estado_siguiente)
-    VALUES (2, 2, 1, '(Sin condicion)', 
+    VALUES (2, 1, '(Sin condicion)', 
             3);
 
-INSERT INTO public.grilla(
-            id_grilla, estado_actual, estado_anterior, funcion_transferencia, 
+INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
             estado_siguiente)
-    VALUES (3, 3, 2, 'a>30', 
+    VALUES (3, 2, 'a>30', 
             4);
 
-INSERT INTO public.grilla(
-            id_grilla, estado_actual, estado_anterior, funcion_transferencia, 
+INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
             estado_siguiente)
-    VALUES (4, 3, 2, 'a<31', 
+    VALUES (3, 2, 'a<31', 
             5);
 
-INSERT INTO public.grilla(
-            id_grilla, estado_actual, estado_anterior, funcion_transferencia, 
+INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
             estado_siguiente)
-    VALUES (5, 5, 3, '(Sin condicion)', 
+    VALUES (5, 3, '(Sin condicion)', 
             6);
 
-INSERT INTO public.grilla(
-            id_grilla, estado_actual, estado_anterior, funcion_transferencia, 
+INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
             estado_siguiente)
-    VALUES (6, 4, 3, '(Sin condicion)', 
+    VALUES (4, 3, '(Sin condicion)', 
             6);
                                                
 CREATE TABLE "evento" (
@@ -178,13 +159,11 @@ CONSTRAINT id_grilla_fkey FOREIGN KEY (id_grilla)
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-INSERT INTO public.evento(
-            id_evento, id_tipo, id_grilla)
-    VALUES (1, 1, 1);
+INSERT INTO public.evento(id_tipo, id_grilla)
+    VALUES (1, 1);
 
-INSERT INTO public.evento(
-            id_evento, id_tipo, id_grilla)
-    VALUES (2, 2, 1);
+INSERT INTO public.evento(id_tipo, id_grilla)
+    VALUES (2, 1);
 
 ALTER SEQUENCE "evento_id_evento_seq" OWNED BY "evento"."id_evento";
 ALTER SEQUENCE "formulario_id_formulario_seq" OWNED BY "formulario"."id_formulario";

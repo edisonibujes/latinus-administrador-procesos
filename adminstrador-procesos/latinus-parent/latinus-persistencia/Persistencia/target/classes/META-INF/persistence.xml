@@ -4,6 +4,13 @@
     <provider>org.apache.openjpa.persistence.PersistenceProviderImpl</provider>
     <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Gad</class>
     <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento</class>
+    <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso</class>
+    <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Usuario</class>
+    <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable</class>
+    <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario</class>
+    <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Log</class>
+    <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Grilla</class>
+    <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Evento</class>
     <properties>
       <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
       <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)"/>

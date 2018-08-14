@@ -87,5 +87,12 @@
 
     <bean id="gadDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.GadDAOImpl"/>
     <bean id="tipoEventoDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.TipoEventoDAOImpl"/>
+    <bean id="procesoDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.ProcesoDAOImpl"/>
+    <bean id="usuarioDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.UsuarioDAOImpl"/>
+    <bean id="variableDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.VariableDAOImpl"/>
+    <bean id="formularioDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.FormularioDAOImpl"/>
+    <bean id="logDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.LogDAOImpl"/>
+    <bean id="grillaDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.GrillaDAOImpl"/>
+    <bean id="eventoDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.EventoDAOImpl"/>
     
 </beans>

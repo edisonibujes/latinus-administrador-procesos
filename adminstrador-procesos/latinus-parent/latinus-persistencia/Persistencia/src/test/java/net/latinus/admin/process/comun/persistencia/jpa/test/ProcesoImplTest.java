@@ -5,9 +5,10 @@ import java.io.FileWriter;
 import java.util.List;
 import javax.xml.bind.DatatypeConverter;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.GadDAO;
+import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.TipoEventoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Gad;
-import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,47 +20,47 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * Created by Latinus on 26/7/16.
  */
-public class TipoEventoDAOImplTest {
+public class ProcesoImplTest {
 
-    private static final Logger LOG = LoggerFactory.getLogger(TipoEventoDAOImplTest.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ProcesoImplTest.class);
     private static final String APP_CONTEXT_DEV[] = {"context-arcom-persistencia-test.xml"};
     private ApplicationContext appContext;
-    private TipoEventoDAO tipoEventoDAO;
+    private ProcesoDAO procesoDAO;
 
     @Before
     public void setUp() {
         appContext = (ApplicationContext) new ClassPathXmlApplicationContext(APP_CONTEXT_DEV);
-        tipoEventoDAO = (TipoEventoDAO) appContext.getBean(TipoEventoDAO.BEAN_NAME);
+        procesoDAO = (ProcesoDAO) appContext.getBean(ProcesoDAO.BEAN_NAME);
     }
 
     @Test
     @Ignore
-    public void crearTipoEvento() {
-        TipoEvento tipoEvento =  new TipoEvento();
-        tipoEvento.setNemonico("ERROR");
-        tipoEvento.setDescripcion("Error Grave del Sistema");
-        tipoEventoDAO.create(tipoEvento);
+    public void saveProceso() {
+        Proceso proceso = new Proceso();
+        proceso.setNombre("Nombre-Proceso");
+        proceso.setDescripcion("Descripcion-Proceso");
+        procesoDAO.create(proceso);
     }
 
     @Test
     @Ignore
-    public void leerTipoEvento() {
-        System.out.println("---> " + tipoEventoDAO.read(1).getNemonico());
+    public void getProcesoById() {
+        System.out.println("---> " + procesoDAO.read(1).getNombre());
     }
 
     @Test
     @Ignore
-    public void ActualizarTipoEvento() {
-        TipoEvento tipoEvento =  tipoEventoDAO.read(3);
-        tipoEvento.setDescripcion("Error grave del sistema no recuperable.");
-        tipoEventoDAO.update(tipoEvento);
+    public void updateProceso() {
+        Proceso proceso = procesoDAO.read(2);
+        proceso.setNombre("Proceso-Actualizado");
+        procesoDAO.update(proceso);
     }
 
     @Test
-    @Ignore
-    public void EliminarTipoEvento() {
-        TipoEvento tipoEvento =  tipoEventoDAO.read(3);
-        tipoEventoDAO.delete(tipoEvento);
+    //@Ignore
+    public void deleteProceso() {
+        Proceso proceso = procesoDAO.read(4);
+        procesoDAO.delete(proceso);
     }
-
+    
 }

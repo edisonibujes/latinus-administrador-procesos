@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pou="http://primefaces.org/ui">
+    <ui:composition template="/templates/page-template.xhtml">
+        <ui:define name="page-content">
+            <h:form>
+                <br/>
+                <br/>
+
+                <h:outputLabel value="NO TIENE PERMISOS " style="font-size: 26px; font-weight: bolder; color: black;"/>
+                <br/>
+                <br/>
+                <h:outputLabel value="Por favor comuniquese con el adminstrador del sistema" style="color: black; font-size: 18px;" />
+                <br/>
+                <br/>
+                <a href="javascript:history.go(-1)"> Regresar</a>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

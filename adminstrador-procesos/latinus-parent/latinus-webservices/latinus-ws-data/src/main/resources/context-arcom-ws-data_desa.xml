@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="windows-1252"?>           
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xmlns:jaxws="http://cxf.apache.org/jaxws" 
+       xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+                            http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+    
+    
+    <import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+      
+    <import resource="classpath*:context-arcom-persistencia.xml"/>
+    <!--import resource="file:${net.latinus.configDirectory}/context-arcom-persistencia.xml"/-->        
+    
+    <bean id="arcomWsData" class="net.latinus.arcom.ws.data.arcom.ws.data.ArcomServiciosDataImpl">                
+
+        <property name="tipoEventoDAO" ref="tipoEventoDAO"/>
+
+    </bean>
+   
+    <jaxws:endpoint id="arcomWsDataEndPoint" implementor="#arcomWsData" address="/arcom-ws-data-test"/>
+                
+</beans>

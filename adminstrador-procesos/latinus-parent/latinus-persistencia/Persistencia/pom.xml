@@ -10,7 +10,7 @@
         <version>1.0</version>
     </parent>
     
-    <groupId>net.latinus.arcom.comun</groupId>
+    <groupId>net.latinus.persistencia</groupId>
     <artifactId>Persistencia</artifactId>
     <packaging>jar</packaging>
     <name>LATINUS :: COMUN :: Persistencia</name>

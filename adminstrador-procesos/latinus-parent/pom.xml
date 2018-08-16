@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.latinus.arcom</groupId>
+    <groupId>net.latinus</groupId>
     <artifactId>latinus-parent</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
@@ -22,6 +22,8 @@
     <modules>
         <module>latinus-comun</module>
         <module>latinus-persistencia</module>
+        <module>latinus-webapp</module>
+        <module>latinus-webservices</module>
     </modules>
     <properties>
         <alfresco-opencmis-extension.version>1.0</alfresco-opencmis-extension.version>

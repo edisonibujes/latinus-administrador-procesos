@@ -35,7 +35,7 @@ public class LogImplTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void getAccesosById() {
         System.out.println("---> " + logDAO.read(1).getIdUsuario().getIdentificacion());
     }

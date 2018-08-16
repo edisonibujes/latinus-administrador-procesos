@@ -21,3 +21,10 @@ $RECYCLE.BIN/
 # =========================
 # Operating System Files
 # =========================
+/adminstrador-procesos/latinus-parent/latinus-persistencia - copia/Persistencia/target/
+/adminstrador-procesos/latinus-parent/latinus-webapp/Persistencia/target/
+/adminstrador-procesos/latinus-parent/latinus-webapp/Form-Adm-Procesos/target/
+/adminstrador-procesos/latinus-parent/latinus-webapp - copia/Form-Adm-Procesos/target/
+/adminstrador-procesos/latinus-parent/latinus-webservices/Form-Adm-Procesos/target/
+/adminstrador-procesos/latinus-parent/latinus-webservices/Adm-Procesos-Data/target/
+/adminstrador-procesos/latinus-parent/latinus-webservices/latinus-ws-data/target/

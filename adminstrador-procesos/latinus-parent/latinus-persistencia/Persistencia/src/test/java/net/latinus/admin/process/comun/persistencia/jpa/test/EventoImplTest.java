@@ -41,7 +41,7 @@ public class EventoImplTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void crearEvento() {
         Evento evento = new Evento();                
         evento.setIdTipo(tipoEventoDAO.read(2));

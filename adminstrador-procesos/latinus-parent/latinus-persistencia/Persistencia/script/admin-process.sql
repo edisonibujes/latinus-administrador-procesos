@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS "variable";
 DROP TABLE IF EXISTS "tipo_evento";
 DROP TABLE IF EXISTS "proceso";
 DROP TABLE IF EXISTS "usuario";
+DROP TABLE IF EXISTS "secuencia";
+DROP TABLE IF EXISTS "solicitud";
 
 -- ----------------------------
 -- Tables
@@ -164,6 +166,39 @@ INSERT INTO public.evento(id_tipo, id_grilla)
 
 INSERT INTO public.evento(id_tipo, id_grilla)
     VALUES (2, 1);
+
+CREATE TABLE "secuencia" (
+"id_secuencia" bigserial Primary Key,
+"id_proceso" int8,
+"valor" int8,
+CONSTRAINT id_proceso_fkey FOREIGN KEY (id_proceso)
+      REFERENCES public.proceso (id_proceso) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
+INSERT INTO public.secuencia(id_proceso, valor)
+    VALUES (1, 1);
+
+CREATE TABLE "solicitud" (
+"id_solicitud" bigserial Primary Key,
+"id_proceso" int8,
+"numero_tramite" int8,
+"id_grilla" int8,
+"usuario_creacion" int8,
+"usuario_modificacion" int8,
+CONSTRAINT id_proceso_fkey FOREIGN KEY (id_proceso)
+      REFERENCES public.proceso (id_proceso) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE,
+CONSTRAINT id_grilla_fkey FOREIGN KEY (id_grilla)
+      REFERENCES public.grilla (id_grilla) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE,
+CONSTRAINT usuario_creacion_fkey FOREIGN KEY (id_usuario)
+      REFERENCES public.usuario (id_usuario) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE,
+CONSTRAINT usuario_modificacion_fkey FOREIGN KEY (id_usuario)
+      REFERENCES public.usuario (id_usuario) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE
+);
 
 ALTER SEQUENCE "evento_id_evento_seq" OWNED BY "evento"."id_evento";
 ALTER SEQUENCE "formulario_id_formulario_seq" OWNED BY "formulario"."id_formulario";

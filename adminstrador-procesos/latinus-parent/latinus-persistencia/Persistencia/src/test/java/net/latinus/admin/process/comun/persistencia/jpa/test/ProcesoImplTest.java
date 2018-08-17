@@ -57,7 +57,7 @@ public class ProcesoImplTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void deleteProceso() {
         Proceso proceso = procesoDAO.read(4);
         procesoDAO.delete(proceso);

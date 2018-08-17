@@ -65,9 +65,9 @@ public class GrillaImplTest {
 
     @Test
     @Ignore
-    public void eliminarGrilla() {
-        Grilla grilla = grillaDAO.read(7);
-        grillaDAO.delete(grilla);
+    public void obtenerGrillasPorEstadoActual() {
+        List<Grilla> grillas = grillaDAO.obtenerGrillasPorEstadoActual(3);
+        System.out.println("Size: " + grillas.size());    
     }
     
 }

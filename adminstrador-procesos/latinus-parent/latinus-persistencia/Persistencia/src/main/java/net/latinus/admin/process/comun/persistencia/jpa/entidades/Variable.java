@@ -39,6 +39,8 @@ public class Variable implements Serializable {
     private String nombre;
     @Column(name = "valor")
     private Integer valor;
+    @Column(name = "numero_tramite")
+    private Integer numeroTramite;
     @JoinColumn(name = "id_proceso", referencedColumnName = "id_proceso")
     @ManyToOne
     private Proceso idProceso;
@@ -80,6 +82,14 @@ public class Variable implements Serializable {
 
     public void setIdProceso(Proceso idProceso) {
         this.idProceso = idProceso;
+    }
+
+    public Integer getNumeroTramite() {
+        return numeroTramite;
+    }
+
+    public void setNumeroTramite(Integer numeroTramite) {
+        this.numeroTramite = numeroTramite;
     }
 
     @Override

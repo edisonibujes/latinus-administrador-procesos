@@ -12,9 +12,9 @@ public interface OperacionesDAO {
 
     public Long obtenerSecuenciaPorIdProceso(Integer idProceso);
     
-    public Formulario obtenerEstadoSiguiente(List<Variable> variables, Integer estado_actual);
+    public Formulario enviarSolicitud(List<Variable> variables, Integer id_proceso, Integer numero_tramite);
     
-    public Boolean crearSolicitud(String nombreProceso, List<Variable> variables, String usuarioCreacion);
+    public Integer crearSolicitud(String nombreProceso, List<Variable> variables, String usuarioCreacion);
     
     public Grilla obtenerGrillaInicialPorIdProceso(Integer idProceso);
     

@@ -1,6 +1,7 @@
 package net.latinus.admin.process.comun.persistencia.jpa.test;
 
 import net.latinus.admin.process.comun.persistencia.jpa.dao.EventoDAO;
+import net.latinus.admin.process.comun.persistencia.jpa.dao.FormularioDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.GrillaDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.OperacionesDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
@@ -8,6 +9,7 @@ import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.TipoEventoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.UsuarioDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Evento;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -28,7 +30,7 @@ public class SolicitudImplTest {
     private SolicitudDAO solicitudDAO;
     private ProcesoDAO procesoDAO;
     private OperacionesDAO operacionesDAO;
-    private GrillaDAO grillaDAO;
+    private FormularioDAO formularioDAO;
     private UsuarioDAO usuarioDAO;
     
     @Before
@@ -37,7 +39,7 @@ public class SolicitudImplTest {
         solicitudDAO = (SolicitudDAO) appContext.getBean(SolicitudDAO.BEAN_NAME);
         procesoDAO = (ProcesoDAO) appContext.getBean(ProcesoDAO.BEAN_NAME);
         operacionesDAO = (OperacionesDAO) appContext.getBean(OperacionesDAO.BEAN_NAME);
-        grillaDAO = (GrillaDAO) appContext.getBean(GrillaDAO.BEAN_NAME);
+        formularioDAO = (FormularioDAO) appContext.getBean(FormularioDAO.BEAN_NAME);
         usuarioDAO = (UsuarioDAO) appContext.getBean(UsuarioDAO.BEAN_NAME);
     }
 
@@ -47,7 +49,7 @@ public class SolicitudImplTest {
         Solicitud solicitud = new Solicitud();                
         solicitud.setIdProceso(procesoDAO.read(1));
         solicitud.setNumeroTramite(operacionesDAO.obtenerSecuenciaPorIdProceso(1).intValue());
-        solicitud.setIdGrilla(grillaDAO.read(1));
+        solicitud.setIdFormulario(formularioDAO.read(1));
         solicitud.setUsuarioCreacion(usuarioDAO.read(1));
         solicitudDAO.create(solicitud);
     }

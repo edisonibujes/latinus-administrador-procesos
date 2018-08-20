@@ -1,13 +1,13 @@
+DROP TABLE IF EXISTS "solicitud";
 DROP TABLE IF EXISTS "evento";
 DROP TABLE IF EXISTS "log";
 DROP TABLE IF EXISTS "grilla";
 DROP TABLE IF EXISTS "formulario";
 DROP TABLE IF EXISTS "variable";
 DROP TABLE IF EXISTS "tipo_evento";
-DROP TABLE IF EXISTS "proceso";
 DROP TABLE IF EXISTS "usuario";
 DROP TABLE IF EXISTS "secuencia";
-DROP TABLE IF EXISTS "solicitud";
+DROP TABLE IF EXISTS "proceso";
 
 -- ----------------------------
 -- Tables
@@ -24,6 +24,7 @@ INSERT INTO public.proceso(nombre, descripcion)
 CREATE TABLE "variable" (
 "id_variable" bigserial Primary Key,
 "id_proceso" int8,
+"numero_tramite" int8,
 "nombre" varchar(250) COLLATE "default",
 "valor" int4,
 CONSTRAINT variable_id_proceso_fkey FOREIGN KEY (id_proceso)
@@ -104,10 +105,14 @@ INSERT INTO public.tipo_evento(nemonico, descripcion)
     
 CREATE TABLE "grilla" (
 "id_grilla" bigserial Primary Key,
+"id_proceso" int8,
 "estado_actual" int8,
 "estado_anterior" int8,
 "funcion_transferencia" varchar(500) COLLATE "default",
 "estado_siguiente" int8,
+CONSTRAINT id_proces_fkey FOREIGN KEY (id_proceso)
+      REFERENCES public.proceso (id_proceso) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE,
 CONSTRAINT estado_actual_fkey FOREIGN KEY (estado_actual)
       REFERENCES public.formulario (id_formulario) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE,
@@ -120,34 +125,34 @@ CONSTRAINT estado_siguiente_fkey FOREIGN KEY (estado_siguiente)
 );
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, 
-            estado_siguiente)
+            estado_siguiente, id_proceso)
     VALUES (1, '(Sin condicion)', 
-            2);
+            2, 1);
 
 INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente)
+            estado_siguiente, id_proceso)
     VALUES (2, 1, '(Sin condicion)', 
-            3);
+            3, 1);
 
 INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente)
+            estado_siguiente, id_proceso)
     VALUES (3, 2, 'a>30', 
-            4);
+            4, 1);
 
 INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente)
+            estado_siguiente, id_proceso)
     VALUES (3, 2, 'a<31', 
-            5);
+            5, 1);
 
 INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente)
+            estado_siguiente, id_proceso)
     VALUES (5, 3, '(Sin condicion)', 
-            6);
+            6, 1);
 
 INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente)
+            estado_siguiente, id_proceso)
     VALUES (4, 3, '(Sin condicion)', 
-            6);
+            6, 1);
                                                
 CREATE TABLE "evento" (
 "id_evento" bigserial Primary Key,
@@ -183,14 +188,14 @@ CREATE TABLE "solicitud" (
 "id_solicitud" bigserial Primary Key,
 "id_proceso" int8,
 "numero_tramite" int8,
-"id_grilla" int8,
+"id_formulario" int8,
 "usuario_creacion" int8,
 "usuario_modificacion" int8,
 CONSTRAINT id_proceso_fkey FOREIGN KEY (id_proceso)
       REFERENCES public.proceso (id_proceso) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE,
-CONSTRAINT id_grilla_fkey FOREIGN KEY (id_grilla)
-      REFERENCES public.grilla (id_grilla) MATCH SIMPLE
+CONSTRAINT id_formulario_fkey FOREIGN KEY (id_formulario)
+      REFERENCES public.formulario (id_formulario) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE,
 CONSTRAINT usuario_creacion_fkey FOREIGN KEY (usuario_creacion)
       REFERENCES public.usuario (id_usuario) MATCH SIMPLE

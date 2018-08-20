@@ -32,9 +32,9 @@ public class Solicitud implements Serializable {
     @Column(name = "numero_tramite")
     private Integer numeroTramite;
     
-    @JoinColumn(name = "id_grilla", referencedColumnName = "id_grilla")
+    @JoinColumn(name = "id_formulario", referencedColumnName = "id_formulario")
     @ManyToOne
-    private Grilla idGrilla;
+    private Formulario idFormulario;
     
     @JoinColumn(name = "usuario_creacion", referencedColumnName = "id_usuario")
     @ManyToOne
@@ -72,12 +72,12 @@ public class Solicitud implements Serializable {
         this.numeroTramite = numeroTramite;
     }
 
-    public Grilla getIdGrilla() {
-        return idGrilla;
+    public Formulario getIdFormulario() {
+        return idFormulario;
     }
 
-    public void setIdGrilla(Grilla idGrilla) {
-        this.idGrilla = idGrilla;
+    public void setIdFormulario(Formulario idFormulario) {
+        this.idFormulario = idFormulario;
     }
 
     public Usuario getUsuarioCreacion() {
@@ -98,7 +98,7 @@ public class Solicitud implements Serializable {
 
     @Override
     public String toString() {
-        return "Solicitud{" + "idSolicitud=" + idSolicitud + ", idProceso=" + idProceso + ", numeroTramite=" + numeroTramite + ", idGrilla=" + idGrilla + ", usuarioCreacion=" + usuarioCreacion + ", usuarioModificacion=" + usuarioModificacion + '}';
+        return "Solicitud{" + "idSolicitud=" + idSolicitud + ", idProceso=" + idProceso + ", numeroTramite=" + numeroTramite + ", idFormulario=" + idFormulario + ", usuarioCreacion=" + usuarioCreacion + ", usuarioModificacion=" + usuarioModificacion + '}';
     }
-    
+
 }

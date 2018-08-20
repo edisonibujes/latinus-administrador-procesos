@@ -103,12 +103,16 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         return valor;
     }
 
-    public Formulario obtenerEstadoSiguiente(List<Variable> variables, Integer estado_actual) {
+    public Formulario enviarSolicitud(List<Variable> variables, Integer id_proceso, Integer numero_tramite) {
+        Solicitud solicitud = solicitudDAO.obtenerSolicitudPorIdProcesoNumeroTramite(id_proceso, numero_tramite);
+        Integer estado_actual = solicitud.getIdFormulario().getIdFormulario().intValue();
         List<Grilla> grillas = grillaDAO.obtenerGrillasPorEstadoActual(estado_actual);
         String funcionTransferencia = "";
-        if (grillas.size() == 1) {
+        if (grillas != null && grillas.size() == 1) {
             if (grillas.get(0).getFuncionTransferencia().equals("(Sin condicion)")) {
-                return grillas.get(0).getEstadoSiguiente();
+                Formulario formularioSiguiente = grillas.get(0).getEstadoSiguiente();
+                guardarDatos(variables, formularioSiguiente, solicitud);
+                return formularioSiguiente;
             } else {
                 funcionTransferencia = grillas.get(0).getFuncionTransferencia();
                 for (Variable var : variables) {
@@ -117,10 +121,12 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                     }
                 }
                 if (Boolean.parseBoolean(funcionTransferencia)) {
-                    return grillas.get(0).getEstadoSiguiente();
+                    Formulario formularioSiguiente = grillas.get(0).getEstadoSiguiente();
+                    guardarDatos(variables, formularioSiguiente, solicitud);
+                    return formularioSiguiente;
                 }
             }
-        } else {
+        } else if (grillas != null && grillas.size() > 0) {
             for (Grilla grilla : grillas) {
                 funcionTransferencia = grilla.getFuncionTransferencia();
                 for (Variable var : variables) {
@@ -129,11 +135,25 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                     }
                 }
                 if (evaluarString(funcionTransferencia)) {
-                    return grilla.getEstadoSiguiente();
+                    Formulario formularioSiguiente = grilla.getEstadoSiguiente();
+                    guardarDatos(variables, formularioSiguiente, solicitud);
+                    return formularioSiguiente;
                 }
             }
         }
-        return null;
+        
+        Formulario formularioSiguiente = solicitud.getIdFormulario();
+        return formularioSiguiente;
+    }
+
+    private void guardarDatos(List<Variable> variables, Formulario formularioSiguiente, Solicitud solicitud) {
+        if (variables != null && variables.size() > 0) {
+            for (Variable var : variables) {
+                variableDAO.update(var);
+            }
+        }
+        solicitud.setIdFormulario(formularioSiguiente);
+        solicitudDAO.update(solicitud);
     }
 
     private boolean evaluarString(String expresssion) {
@@ -150,25 +170,29 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         return false;
     }
 
-    public Boolean crearSolicitud(String nombreProceso, List<Variable> variables, String usuarioCreacion) {
+    public Integer crearSolicitud(String nombreProceso, List<Variable> variables, String usuarioCreacion) {
+        Integer numeroTramite = -1;
         try {
             Solicitud solicitud = new Solicitud();
             Proceso proceso = procesoDAO.obtenerProcesoPorNombre(nombreProceso);
             solicitud.setIdProceso(proceso);
-            solicitud.setNumeroTramite(obtenerSecuenciaPorIdProceso(proceso.getIdProceso()).intValue());
-            solicitud.setIdGrilla(obtenerGrillaInicialPorIdProceso(proceso.getIdProceso()));
+            numeroTramite = obtenerSecuenciaPorIdProceso(proceso.getIdProceso()).intValue();
+            solicitud.setNumeroTramite(numeroTramite);
+            solicitud.setIdFormulario(formularioDAO.obtenerFormulariosPorIdProceso(proceso.getIdProceso()).get(0));
             solicitud.setUsuarioCreacion(usuarioDAO.obtenerUsuarioPorIdentificacion(usuarioCreacion));
             solicitudDAO.create(solicitud);
             if (variables != null && variables.size() > 0) {
                 for (Variable var : variables) {
+                    var.setNumeroTramite(numeroTramite);
+                    var.setIdProceso(proceso);
                     variableDAO.create(var);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
-        return true;
+        return numeroTramite;
     }
 
     public Grilla obtenerGrillaInicialPorIdProceso(Integer idProceso) {

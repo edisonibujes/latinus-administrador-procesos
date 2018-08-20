@@ -42,12 +42,8 @@ public class OperacionesImplTest {
     @Test
     @Ignore
     public void obtenerEstadoSiguiente() {
-        List<Variable> variables = new ArrayList();
-        Variable var = new Variable();
-        var.setNombre("a");
-        var.setValor(50);
-        variables.add(var);
-        Formulario formulario= operacionesDAO.obtenerEstadoSiguiente(variables, 5);
+        List<Variable> vars = variableDAO.obtenerVariablesPorIdProcesoNumeroTramite(1, 3);
+        Formulario formulario= operacionesDAO.enviarSolicitud(vars, 1, 3);
         System.out.println("FormularioSiguiente: " + formulario.getIdFormulario());
     }
     
@@ -57,10 +53,10 @@ public class OperacionesImplTest {
         List<Variable> variables = new ArrayList();
         Variable var = new Variable();
         var.setNombre("a");
-        var.setValor(50);
+        var.setValor(30);
         variables.add(var);
-        Boolean b = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
-        System.out.println(b);
-    }
+        Integer numTramite  = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
+        System.out.println(numTramite);
+        }
     
 }

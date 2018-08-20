@@ -1,5 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.test;
 
+import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.VariableDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
@@ -58,6 +59,13 @@ public class VaribaleImplTest {
     public void eliminarVariableById() {
         Variable var = variableDAO.read(2);
         variableDAO.delete(var);
+    }
+    
+    @Test
+    @Ignore
+    public void obtenerVariablesPorIdProcesoNumeroTramite() {
+        List<Variable> vars = variableDAO.obtenerVariablesPorIdProcesoNumeroTramite(1, 1);
+        System.out.println("Lista:" + vars.size());
     }
     
 }

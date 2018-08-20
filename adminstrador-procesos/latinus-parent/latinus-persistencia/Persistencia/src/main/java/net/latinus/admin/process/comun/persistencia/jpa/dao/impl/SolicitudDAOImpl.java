@@ -1,5 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.dao.impl;
 
+import javax.persistence.Query;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 
@@ -10,6 +11,20 @@ public class SolicitudDAOImpl extends GenericoDAOImpl<Solicitud, Integer> implem
 
     public SolicitudDAOImpl() {
         super(Solicitud.class);
+    }
+
+    public Solicitud obtenerSolicitudPorIdProcesoNumeroTramite(Integer id_proceso, Integer numero_tramite) {
+        Solicitud solicitud;
+        try {
+            Query query = this.em.createQuery("SELECT s FROM Solicitud s WHERE s.idProceso.idProceso = :id_proceso and s.numeroTramite = :numero_tramite");
+            query.setParameter("id_proceso", id_proceso);
+            query.setParameter("numero_tramite", numero_tramite);
+            solicitud = (Solicitud) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            solicitud = null;
+        }
+        return solicitud;
     }
 
 }

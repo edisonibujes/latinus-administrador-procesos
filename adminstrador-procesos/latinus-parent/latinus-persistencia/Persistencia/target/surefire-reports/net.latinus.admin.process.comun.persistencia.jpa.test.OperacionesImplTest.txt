@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 1.95 sec
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 2.371 sec

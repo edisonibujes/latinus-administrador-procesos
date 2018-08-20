@@ -192,10 +192,10 @@ CONSTRAINT id_proceso_fkey FOREIGN KEY (id_proceso)
 CONSTRAINT id_grilla_fkey FOREIGN KEY (id_grilla)
       REFERENCES public.grilla (id_grilla) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE,
-CONSTRAINT usuario_creacion_fkey FOREIGN KEY (id_usuario)
+CONSTRAINT usuario_creacion_fkey FOREIGN KEY (usuario_creacion)
       REFERENCES public.usuario (id_usuario) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE,
-CONSTRAINT usuario_modificacion_fkey FOREIGN KEY (id_usuario)
+CONSTRAINT usuario_modificacion_fkey FOREIGN KEY (usuario_modificacion)
       REFERENCES public.usuario (id_usuario) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE
 );

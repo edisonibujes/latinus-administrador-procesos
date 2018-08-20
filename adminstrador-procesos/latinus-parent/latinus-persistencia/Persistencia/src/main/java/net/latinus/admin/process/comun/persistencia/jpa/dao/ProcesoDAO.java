@@ -7,4 +7,7 @@ import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
  */
 public interface ProcesoDAO extends GenericoDAO<Proceso,Integer>{
     public static String BEAN_NAME = "procesoDAO";   
+    
+    public Proceso obtenerProcesoPorNombre(String nombreProceso);
+    
 }

@@ -83,7 +83,7 @@
         </property>
     </bean>
     
-    <bean id="gadDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.GadDAOImpl"/>
+    
     <bean id="tipoEventoDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.TipoEventoDAOImpl"/>
     <bean id="procesoDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.ProcesoDAOImpl"/>
     <bean id="usuarioDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.UsuarioDAOImpl"/>
@@ -97,6 +97,11 @@
     <bean id="operacionesDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.OperacionesDAOImpl">
         <property name="secuenciaDAO" ref="secuenciaDAO"/>
         <property name="grillaDAO" ref="grillaDAO"/>
+        <property name="solicitudDAO" ref="solicitudDAO"/>
+        <property name="procesoDAO" ref="procesoDAO"/>
+        <property name="variableDAO" ref="variableDAO"/>
+        <property name="usuarioDAO" ref="usuarioDAO"/>
+        <property name="formularioDAO" ref="formularioDAO"/>
     </bean>
     
 </beans>

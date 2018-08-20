@@ -1,12 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.test;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.util.List;
-import javax.xml.bind.DatatypeConverter;
-import net.latinus.admin.process.comun.persistencia.jpa.dao.GadDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.TipoEventoDAO;
-import net.latinus.admin.process.comun.persistencia.jpa.entidades.Gad;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
 import org.junit.Before;
 import org.junit.Ignore;

@@ -8,4 +8,7 @@ import net.latinus.admin.process.comun.persistencia.jpa.entidades.Usuario;
  */
 public interface UsuarioDAO extends GenericoDAO<Usuario,Integer>{
     public static String BEAN_NAME = "usuarioDAO";   
+    
+    public Usuario obtenerUsuarioPorIdentificacion(String identificacion);
+    
 }

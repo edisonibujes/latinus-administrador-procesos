@@ -40,13 +40,27 @@ public class OperacionesImplTest {
     }
     
     @Test
-    //@Ignore
+    @Ignore
     public void obtenerEstadoSiguiente() {
         List<Variable> variables = new ArrayList();
-        Variable var = variableDAO.read(1);
+        Variable var = new Variable();
+        var.setNombre("a");
+        var.setValor(50);
         variables.add(var);
-        Formulario formulario= operacionesDAO.obtenerEstadoSiguiente(variables, 1);
-        System.out.println("FormularioSiguiente: " + formulario.getNombre());
+        Formulario formulario= operacionesDAO.obtenerEstadoSiguiente(variables, 5);
+        System.out.println("FormularioSiguiente: " + formulario.getIdFormulario());
+    }
+    
+    @Test
+    @Ignore
+    public void crearSolicitud() {
+        List<Variable> variables = new ArrayList();
+        Variable var = new Variable();
+        var.setNombre("a");
+        var.setValor(50);
+        variables.add(var);
+        Boolean b = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
+        System.out.println(b);
     }
     
 }

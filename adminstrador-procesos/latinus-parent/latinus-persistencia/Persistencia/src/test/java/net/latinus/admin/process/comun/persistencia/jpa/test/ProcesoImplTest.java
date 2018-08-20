@@ -1,13 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.test;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.util.List;
-import javax.xml.bind.DatatypeConverter;
-import net.latinus.admin.process.comun.persistencia.jpa.dao.GadDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
-import net.latinus.admin.process.comun.persistencia.jpa.dao.TipoEventoDAO;
-import net.latinus.admin.process.comun.persistencia.jpa.entidades.Gad;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -61,6 +54,13 @@ public class ProcesoImplTest {
     public void deleteProceso() {
         Proceso proceso = procesoDAO.read(4);
         procesoDAO.delete(proceso);
+    }
+    
+    @Test
+    @Ignore
+    public void obtenerProcesoPorNombre() {
+        Proceso proceso = procesoDAO.obtenerProcesoPorNombre("Certificado de ciudadanía");
+        System.out.println("proceso: " + proceso.getIdProceso());
     }
     
 }

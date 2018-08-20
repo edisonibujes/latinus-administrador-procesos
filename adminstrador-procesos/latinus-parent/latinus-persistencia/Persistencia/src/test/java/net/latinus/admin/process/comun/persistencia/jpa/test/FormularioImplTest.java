@@ -1,5 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.test;
 
+import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.FormularioDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
@@ -58,6 +59,13 @@ public class FormularioImplTest {
     public void eliminarFormulario() {
         Formulario formulario = formularioDAO.read(7);
         formularioDAO.delete(formulario);
+    }
+    
+    @Test
+    @Ignore
+    public void obtenerFormularioPorIdProceso() {
+        List<Formulario> formularios = formularioDAO.obtenerFormulariosPorIdProceso(1);
+        System.out.println("Formularios: " + formularios.get(0).getIdFormulario());
     }
     
 }

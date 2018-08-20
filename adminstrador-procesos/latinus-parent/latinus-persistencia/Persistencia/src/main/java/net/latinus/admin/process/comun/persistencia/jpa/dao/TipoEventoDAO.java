@@ -1,7 +1,5 @@
 package net.latinus.admin.process.comun.persistencia.jpa.dao;
 
-import java.util.List;
-import net.latinus.admin.process.comun.persistencia.jpa.entidades.Gad;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
 
 /**

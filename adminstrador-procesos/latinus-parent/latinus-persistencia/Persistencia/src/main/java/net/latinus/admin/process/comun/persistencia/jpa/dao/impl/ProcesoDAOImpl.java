@@ -1,5 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.dao.impl;
 
+import java.util.List;
 import javax.persistence.Query;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
@@ -24,6 +25,18 @@ public class ProcesoDAOImpl extends GenericoDAOImpl<Proceso, Integer> implements
             proceso = null;
         }
         return proceso;
+    }
+
+    public List<Proceso> obtenerProcesos() {
+        List<Proceso> procesos;
+        try {
+            Query query = this.em.createQuery("SELECT p FROM Proceso p");
+            procesos = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            procesos = null;
+        }
+        return procesos;
     }
 
 }

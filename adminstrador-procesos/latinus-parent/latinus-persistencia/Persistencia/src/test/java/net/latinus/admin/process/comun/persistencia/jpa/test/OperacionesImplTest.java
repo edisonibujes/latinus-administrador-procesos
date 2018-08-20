@@ -24,7 +24,7 @@ public class OperacionesImplTest {
     private ApplicationContext appContext;
     private OperacionesDAO operacionesDAO;
     private VariableDAO variableDAO;
-    
+
     @Before
     public void setUp() {
         appContext = (ApplicationContext) new ClassPathXmlApplicationContext(APP_CONTEXT_DEV);
@@ -38,15 +38,15 @@ public class OperacionesImplTest {
         Long valor = operacionesDAO.obtenerSecuenciaPorIdProceso(1);
         System.out.println("Valor: " + valor);
     }
-    
+
     @Test
     @Ignore
     public void obtenerEstadoSiguiente() {
         List<Variable> vars = variableDAO.obtenerVariablesPorIdProcesoNumeroTramite(1, 3);
-        Formulario formulario= operacionesDAO.enviarSolicitud(vars, 1, 3);
+        Formulario formulario = operacionesDAO.enviarSolicitud(vars, 1, 3);
         System.out.println("FormularioSiguiente: " + formulario.getIdFormulario());
     }
-    
+
     @Test
     @Ignore
     public void crearSolicitud() {
@@ -55,8 +55,8 @@ public class OperacionesImplTest {
         var.setNombre("a");
         var.setValor(30);
         variables.add(var);
-        Integer numTramite  = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
+        Integer numTramite = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
         System.out.println(numTramite);
-        }
-    
+    }
+
 }

@@ -32,53 +32,6 @@
         <component-type>org.primefaces.component.FileUpload</component-type>
         <component-class>net.latinus.arcom.comun.intalio.wrapper.controller.base.NonTransientFileUpload</component-class>
     </component>
-    <converter>
-        <converter-id>localidadConverter</converter-id>
-        <converter-for-class>net.latinus.arcom.comun.persistencia.entidades.Localidad</converter-for-class>
-        <converter-class>net.latinus.arcom.comun.intalio.wrapper.converter.LocalidadConverter</converter-class>
-    </converter>
-   
-    <converter>
-        <converter-id>proyectoMejoraConverter</converter-id>
-        <converter-for-class>net.latinus.arcom.comun.persistencia.entidades.ProyectoMejora</converter-for-class>
-        <converter-class>net.latinus.arcom.comun.intalio.wrapper.converter.ProyectoMejoraConverter</converter-class>
-    </converter>
-    
-    <converter>
-        <converter-id>concesionMineraConverter</converter-id>
-        <converter-for-class>net.latinus.arcom.comun.persistencia.entidades.ConcesionMinera</converter-for-class>
-        <converter-class>net.latinus.arcom.comun.intalio.wrapper.converter.ConcesionMineraConverter</converter-class>
-    </converter>
-    
-    <converter>
-        <converter-id>periodoConverter</converter-id>
-        <converter-for-class>net.latinus.arcom.comun.persistencia.entidades.Periodo</converter-for-class>
-        <converter-class>net.latinus.arcom.comun.intalio.wrapper.converter.PeriodoConverter</converter-class>
-    </converter>
-    
-    <converter>
-        <converter-id>plantaBeneficioConverter</converter-id>
-        <converter-for-class>net.latinus.arcom.comun.persistencia.entidades.PlantaBeneficio</converter-for-class>
-        <converter-class>net.latinus.arcom.comun.intalio.wrapper.converter.PlantaBeneficioConverter</converter-class>
-    </converter>
-    
-    <converter>
-        <converter-id>licenciaComercializacionConverter</converter-id>
-        <converter-for-class>net.latinus.arcom.comun.persistencia.entidades.LicenciaComercializacion</converter-for-class>
-        <converter-class>net.latinus.arcom.comun.intalio.wrapper.converter.LicenciaComercializacionConverter</converter-class>
-    </converter>
-    
-    <converter>
-        <converter-id>areaMineraConverter</converter-id>
-        <converter-for-class>net.latinus.arcom.comun.persistencia.entidades.AreaMinera</converter-for-class>
-        <converter-class>net.latinus.arcom.comun.intalio.wrapper.converter.AreaMineraConverter</converter-class>
-    </converter>
-    
-    <converter>
-        <converter-id>localidadConverterJPA</converter-id>
-        <converter-for-class>net.latinus.arcom.ws.data.api.Localidad</converter-for-class>
-        <converter-class>net.latinus.arcom.comun.intalio.wrapper.converter.LocalidadConverterJPA</converter-class>
-    </converter>
     
     <validator>
         <validator-id>caracteresEspeciales</validator-id>
@@ -99,7 +52,6 @@
         <validator-id>rucValidator</validator-id>
         <validator-class>net.latinus.arcom.comun.intalio.wrapper.util.validator.RucValidator</validator-class>
     </validator>
-    
     
     <validator>
         <validator-id>numeroDocumentoValidator</validator-id>

@@ -1,5 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.dao.impl;
 
+import java.util.List;
 import javax.persistence.Query;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
@@ -25,6 +26,19 @@ public class SolicitudDAOImpl extends GenericoDAOImpl<Solicitud, Integer> implem
             solicitud = null;
         }
         return solicitud;
+    }
+
+    public List<Solicitud> obtenerSolicitudesPorUsuario(String identificacion) {
+        List<Solicitud> solicitudes;
+        try {
+            Query query = this.em.createQuery("SELECT s FROM Solicitud s WHERE s.usuarioCreacion.identificacion = :identificacion ");
+            query.setParameter("identificacion", identificacion);
+            solicitudes = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            solicitudes = null;
+        }
+        return solicitudes;
     }
 
 }

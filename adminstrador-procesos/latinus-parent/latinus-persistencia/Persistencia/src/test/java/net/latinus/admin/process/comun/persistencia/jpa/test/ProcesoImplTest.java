@@ -1,5 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.test;
 
+import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
 import org.junit.Before;
@@ -61,6 +62,13 @@ public class ProcesoImplTest {
     public void obtenerProcesoPorNombre() {
         Proceso proceso = procesoDAO.obtenerProcesoPorNombre("Certificado de ciudadanía");
         System.out.println("proceso: " + proceso.getIdProceso());
+    }
+    
+    @Test
+    @Ignore
+    public void obtenerProcesos() {
+        List<Proceso> procesos = procesoDAO.obtenerProcesos();
+        System.out.println("proceso: " + procesos.size());
     }
     
 }

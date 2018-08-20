@@ -1,15 +1,11 @@
 package net.latinus.admin.process.comun.persistencia.jpa.test;
 
-import net.latinus.admin.process.comun.persistencia.jpa.dao.EventoDAO;
+import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.FormularioDAO;
-import net.latinus.admin.process.comun.persistencia.jpa.dao.GrillaDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.OperacionesDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
-import net.latinus.admin.process.comun.persistencia.jpa.dao.TipoEventoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.UsuarioDAO;
-import net.latinus.admin.process.comun.persistencia.jpa.entidades.Evento;
-import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -53,7 +49,14 @@ public class SolicitudImplTest {
         solicitud.setUsuarioCreacion(usuarioDAO.read(1));
         solicitudDAO.create(solicitud);
     }
-
+    
+    @Test
+    @Ignore
+    public void obtenerSolicitudesPorUsuario() {
+        List<Solicitud> solicitudes = solicitudDAO.obtenerSolicitudesPorUsuario("1721889515");
+        System.out.println("Lista: " + solicitudes.size());
+    }
+    
 //    @Test
 //    @Ignore
 //    public void leerEvento() {

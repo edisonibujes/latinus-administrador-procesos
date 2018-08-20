@@ -12,6 +12,7 @@
     <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Evento</class>
     <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Secuencia</class>
     <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud</class>
+    <class>net.latinus.admin.process.comun.persistencia.jpa.entidades.Catalogo</class>
     <properties>
       <property name="openjpa.RuntimeUnenhancedClasses" value="supported"/>
       <property name="openjpa.jdbc.SchemaFactory" value="native(ForeignKeys=true)"/>

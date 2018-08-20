@@ -1,7 +1,218 @@
 <wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://data.ws.arcom.data.ws.arcom.latinus.net/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ArcomServiciosDataImplService" targetNamespace="http://data.ws.arcom.data.ws.arcom.latinus.net/">
-<wsdl:types><xs:schema elementFormDefault="unqualified" targetNamespace="http://data.ws.arcom.data.ws.arcom.latinus.net/" version="1.0"><xs:element name="obtenerTipoEventoPorId" type="tns:obtenerTipoEventoPorId"/><xs:element name="obtenerTipoEventoPorIdResponse" type="tns:obtenerTipoEventoPorIdResponse"/><xs:complexType name="obtenerTipoEventoPorId"><xs:sequence><xs:element minOccurs="0" name="id" type="xs:int"/></xs:sequence></xs:complexType><xs:complexType name="obtenerTipoEventoPorIdResponse"><xs:sequence><xs:element minOccurs="0" name="return" type="tns:tipoEvento"/></xs:sequence></xs:complexType><xs:complexType name="tipoEvento"><xs:sequence><xs:element minOccurs="0" name="descripcion" type="xs:string"/><xs:element minOccurs="0" name="idTipoEvento" type="xs:int"/><xs:element minOccurs="0" name="nemonico" type="xs:string"/></xs:sequence></xs:complexType></xs:schema></wsdl:types><wsdl:message name="obtenerTipoEventoPorIdResponse"><wsdl:part element="tns:obtenerTipoEventoPorIdResponse" name="parameters">
-    </wsdl:part></wsdl:message><wsdl:message name="obtenerTipoEventoPorId"><wsdl:part element="tns:obtenerTipoEventoPorId" name="parameters">
-    </wsdl:part></wsdl:message><wsdl:portType name="ArcomServiciosData"><wsdl:operation name="obtenerTipoEventoPorId"><wsdl:input message="tns:obtenerTipoEventoPorId" name="obtenerTipoEventoPorId">
-    </wsdl:input><wsdl:output message="tns:obtenerTipoEventoPorIdResponse" name="obtenerTipoEventoPorIdResponse">
-    </wsdl:output></wsdl:operation></wsdl:portType><wsdl:binding name="ArcomServiciosDataImplServiceSoapBinding" type="tns:ArcomServiciosData"><soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/><wsdl:operation name="obtenerTipoEventoPorId"><soap:operation soapAction="" style="document"/><wsdl:input name="obtenerTipoEventoPorId"><soap:body use="literal"/></wsdl:input><wsdl:output name="obtenerTipoEventoPorIdResponse"><soap:body use="literal"/></wsdl:output></wsdl:operation></wsdl:binding><wsdl:service name="ArcomServiciosDataImplService"><wsdl:port binding="tns:ArcomServiciosDataImplServiceSoapBinding" name="ArcomServiciosDataImplPort"><soap:address location="http://localhost:8080/latinus-ws-data/arcom-ws-data"/></wsdl:port></wsdl:service>
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://data.ws.arcom.data.ws.arcom.latinus.net/" elementFormDefault="unqualified" targetNamespace="http://data.ws.arcom.data.ws.arcom.latinus.net/" version="1.0">
+            <xs:element name="catalogo" type="tns:catalogo"/>
+            <xs:element name="crearSolicitud" type="tns:crearSolicitud"/>
+            <xs:element name="crearSolicitudResponse" type="tns:crearSolicitudResponse"/>
+            <xs:element name="enviarSolicitud" type="tns:enviarSolicitud"/>
+            <xs:element name="enviarSolicitudResponse" type="tns:enviarSolicitudResponse"/>
+            <xs:element name="formulario" type="tns:formulario"/>
+            <xs:element name="obtenerProcesos" type="tns:obtenerProcesos"/>
+            <xs:element name="obtenerProcesosResponse" type="tns:obtenerProcesosResponse"/>
+            <xs:element name="obtenerTipoEventoPorId" type="tns:obtenerTipoEventoPorId"/>
+            <xs:element name="obtenerTipoEventoPorIdResponse" type="tns:obtenerTipoEventoPorIdResponse"/>
+            <xs:element name="obtenerVariablesPorIdProcesoNumeroTramite" type="tns:obtenerVariablesPorIdProcesoNumeroTramite"/>
+            <xs:element name="obtenerVariablesPorIdProcesoNumeroTramiteResponse" type="tns:obtenerVariablesPorIdProcesoNumeroTramiteResponse"/>
+            <xs:element name="variable" type="tns:variable"/>
+            <xs:complexType name="enviarSolicitud">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="variables" type="tns:variable"/>
+                    <xs:element minOccurs="0" name="id_proceso" type="xs:int"/>
+                    <xs:element minOccurs="0" name="numero_tramite" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="variable">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="idProceso" type="tns:proceso"/>
+                    <xs:element minOccurs="0" name="idVariable" type="xs:long"/>
+                    <xs:element minOccurs="0" name="nombre" type="xs:string"/>
+                    <xs:element minOccurs="0" name="numeroTramite" type="xs:int"/>
+                    <xs:element minOccurs="0" name="valor" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="proceso">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idProceso" type="xs:int"/>
+                    <xs:element minOccurs="0" name="nombre" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="enviarSolicitudResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:formulario"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="formulario">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+                    <xs:element minOccurs="0" name="estadoSolicitud" type="tns:catalogo"/>
+                    <xs:element minOccurs="0" name="idFormulario" type="xs:long"/>
+                    <xs:element minOccurs="0" name="idProceso" type="tns:proceso"/>
+                    <xs:element minOccurs="0" name="nombre" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="catalogo">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="catalogoPadre" type="tns:catalogo"/>
+                    <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idCatalogo" type="xs:long"/>
+                    <xs:element minOccurs="0" name="nemonico" type="xs:string"/>
+                    <xs:element minOccurs="0" name="nombre" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="obtenerProcesos">
+                <xs:sequence/>
+            </xs:complexType>
+            <xs:complexType name="obtenerProcesosResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:proceso"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="obtenerTipoEventoPorId">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="id" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="obtenerTipoEventoPorIdResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="tns:tipoEvento"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="tipoEvento">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
+                    <xs:element minOccurs="0" name="idTipoEvento" type="xs:int"/>
+                    <xs:element minOccurs="0" name="nemonico" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="crearSolicitud">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="nombreProceso" type="xs:string"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="variables" type="tns:variable"/>
+                    <xs:element minOccurs="0" name="identificacion" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="crearSolicitudResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="obtenerVariablesPorIdProcesoNumeroTramite">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="idProceso" type="xs:int"/>
+                    <xs:element minOccurs="0" name="numeroTramite" type="xs:int"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="obtenerVariablesPorIdProcesoNumeroTramiteResponse">
+                <xs:sequence>
+                    <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:variable"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="obtenerProcesosResponse">
+        <wsdl:part element="tns:obtenerProcesosResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="obtenerTipoEventoPorIdResponse">
+        <wsdl:part element="tns:obtenerTipoEventoPorIdResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="enviarSolicitudResponse">
+        <wsdl:part element="tns:enviarSolicitudResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="obtenerTipoEventoPorId">
+        <wsdl:part element="tns:obtenerTipoEventoPorId" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="crearSolicitud">
+        <wsdl:part element="tns:crearSolicitud" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="obtenerVariablesPorIdProcesoNumeroTramiteResponse">
+        <wsdl:part element="tns:obtenerVariablesPorIdProcesoNumeroTramiteResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="crearSolicitudResponse">
+        <wsdl:part element="tns:crearSolicitudResponse" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="obtenerVariablesPorIdProcesoNumeroTramite">
+        <wsdl:part element="tns:obtenerVariablesPorIdProcesoNumeroTramite" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="enviarSolicitud">
+        <wsdl:part element="tns:enviarSolicitud" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="obtenerProcesos">
+        <wsdl:part element="tns:obtenerProcesos" name="parameters"> </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="ArcomServiciosData">
+        <wsdl:operation name="enviarSolicitud">
+            <wsdl:input message="tns:enviarSolicitud" name="enviarSolicitud"> </wsdl:input>
+            <wsdl:output message="tns:enviarSolicitudResponse" name="enviarSolicitudResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerProcesos">
+            <wsdl:input message="tns:obtenerProcesos" name="obtenerProcesos"> </wsdl:input>
+            <wsdl:output message="tns:obtenerProcesosResponse" name="obtenerProcesosResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerTipoEventoPorId">
+            <wsdl:input message="tns:obtenerTipoEventoPorId" name="obtenerTipoEventoPorId"> </wsdl:input>
+            <wsdl:output message="tns:obtenerTipoEventoPorIdResponse" name="obtenerTipoEventoPorIdResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="crearSolicitud">
+            <wsdl:input message="tns:crearSolicitud" name="crearSolicitud"> </wsdl:input>
+            <wsdl:output message="tns:crearSolicitudResponse" name="crearSolicitudResponse"> </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerVariablesPorIdProcesoNumeroTramite">
+            <wsdl:input message="tns:obtenerVariablesPorIdProcesoNumeroTramite" name="obtenerVariablesPorIdProcesoNumeroTramite"> </wsdl:input>
+            <wsdl:output message="tns:obtenerVariablesPorIdProcesoNumeroTramiteResponse" name="obtenerVariablesPorIdProcesoNumeroTramiteResponse"> </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="ArcomServiciosDataImplServiceSoapBinding" type="tns:ArcomServiciosData">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="enviarSolicitud">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="enviarSolicitud">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="enviarSolicitudResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerProcesos">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="obtenerProcesos">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerProcesosResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerTipoEventoPorId">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="obtenerTipoEventoPorId">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerTipoEventoPorIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="crearSolicitud">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="crearSolicitud">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="crearSolicitudResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="obtenerVariablesPorIdProcesoNumeroTramite">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="obtenerVariablesPorIdProcesoNumeroTramite">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="obtenerVariablesPorIdProcesoNumeroTramiteResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ArcomServiciosDataImplService">
+        <wsdl:port binding="tns:ArcomServiciosDataImplServiceSoapBinding" name="ArcomServiciosDataImplPort">
+            <soap:address location="http://localhost:8080/latinus-ws-data/arcom-ws-data"/>
+        </wsdl:port>
+    </wsdl:service>
 </wsdl:definitions>

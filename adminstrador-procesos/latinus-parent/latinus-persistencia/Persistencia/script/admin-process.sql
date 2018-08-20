@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS "tipo_evento";
 DROP TABLE IF EXISTS "usuario";
 DROP TABLE IF EXISTS "secuencia";
 DROP TABLE IF EXISTS "proceso";
+DROP TABLE IF EXISTS "catalogo";
 
 -- ----------------------------
 -- Tables
@@ -35,34 +36,60 @@ CONSTRAINT variable_id_proceso_fkey FOREIGN KEY (id_proceso)
 INSERT INTO public.variable(id_proceso, nombre, valor)
     VALUES (1, 'a', '15');
 
+CREATE TABLE "catalogo" (
+"id_catalogo" bigserial Primary Key,
+"nombre" varchar(500) COLLATE "default",
+"descripcion" varchar(500) COLLATE "default",
+"nemonico" varchar(100) COLLATE "default",
+"catalogo_padre" int8,
+CONSTRAINT catalogo_padre_fkey FOREIGN KEY (catalogo_padre)
+      REFERENCES public.catalogo (id_catalogo) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
+INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
+VALUES('Estado Solicitud', 'Indican el estado de la solicitud', 'ESTSOL', NULL);
+
+INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
+VALUES('Creado', 'Creado', 'CRE', 1);
+
+INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
+VALUES('Tramite', 'Tramite', 'TRA', 1);
+    
+INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
+VALUES('Finalizado', 'Finalizado', 'FIN', 1);
 
 CREATE TABLE "formulario" (
 "id_formulario" bigserial Primary Key,
 "id_proceso" int8,
 "nombre" varchar(250) COLLATE "default",
 "descripcion" varchar(500) COLLATE "default",
+"estado_solicitud" int8,
 CONSTRAINT id_proceso_fkey FOREIGN KEY (id_proceso)
       REFERENCES public.proceso (id_proceso) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE,
+CONSTRAINT estado_solicitud_fkey FOREIGN KEY (estado_solicitud)
+      REFERENCES public.catalogo (id_catalogo) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion)
-    VALUES (1, 'A', 'Solicitud');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (1, 'A', 'Solicitud', 2);
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion)
-    VALUES (1, 'B', 'Entrega de documentos');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (1, 'B', 'Entrega de documentos', 3);
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion)
-    VALUES (1, 'C', 'Validacion de documentos');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (1, 'C', 'Validacion de documentos', 3);
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion)
-    VALUES (1, 'D', 'Pago del trámite');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (1, 'D', 'Pago del trámite', 3);
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion)
-    VALUES (1, 'E', 'Entrega de la certificación ');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (1, 'E', 'Entrega de la certificación ', 3);
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion)
-    VALUES (1, 'F', 'Notificacion');
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (1, 'F', 'Notificacion', 4);
             
 CREATE TABLE "usuario" (
 "id_usuario" bigserial Primary Key,
@@ -204,7 +231,7 @@ CONSTRAINT usuario_modificacion_fkey FOREIGN KEY (usuario_modificacion)
       REFERENCES public.usuario (id_usuario) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
-
+              
 ALTER SEQUENCE "evento_id_evento_seq" OWNED BY "evento"."id_evento";
 ALTER SEQUENCE "formulario_id_formulario_seq" OWNED BY "formulario"."id_formulario";
 ALTER SEQUENCE "grilla_id_grilla_seq" OWNED BY "grilla"."id_grilla";

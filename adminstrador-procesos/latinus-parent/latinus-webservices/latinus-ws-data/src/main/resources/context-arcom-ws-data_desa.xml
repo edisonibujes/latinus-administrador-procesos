@@ -15,7 +15,10 @@
     <bean id="arcomWsData" class="net.latinus.arcom.ws.data.arcom.ws.data.ArcomServiciosDataImpl">                
 
         <property name="tipoEventoDAO" ref="tipoEventoDAO"/>
-
+        <property name="variableDAO" ref="variableDAO"/>
+        <property name="operacionesDAO" ref="operacionesDAO"/>
+        <property name="procesoDAO" ref="procesoDAO"/>
+        
     </bean>
    
     <jaxws:endpoint id="arcomWsDataEndPoint" implementor="#arcomWsData" address="/arcom-ws-data-test"/>

@@ -35,6 +35,9 @@
                             <p:column headerText="Formulario">
                                 <h:outputText value="#{solicitud.idFormulario.descripcion}" />
                             </p:column>
+                            <p:column headerText="Formulario ID">
+                                <h:outputText value="#{solicitud.idFormulario.nombre}" />
+                            </p:column>
                             <p:column headerText="Número Trámite">
                                 <h:outputText value="#{solicitud.numeroTramite}" />
                             </p:column>
@@ -42,7 +45,7 @@
                                 <h:outputText value="#{solicitud.idFormulario.estadoSolicitud.nombre}" />
                             </p:column>
                             <f:facet name="footer">
-                                <p:commandButton process="@form" update=":form:solicitudDetail" icon="ui-icon-play" value="Seleccionar" oncomplete="PF('solicitudDialog').show()" />
+                                <p:commandButton actionListener="#{listadoSolicitudBean.cargarDatosSeleccion()}" process="@form" update=":form:solicitudDetail" icon="ui-icon-play" value="Seleccionar" oncomplete="PF('solicitudDialog').show()" />
                             </f:facet>
                         </p:dataTable>
 
@@ -50,30 +53,53 @@
                             <p:outputPanel id="solicitudDetail" style="text-align:center;">
                                 <p:outputLabel value="--- INFORMACIÓN DEL FORMULARIO ---"  style="width: 500px;">
                                 </p:outputLabel>
-                                <p:panelGrid columns="2" style="text-align:left;">
-                                    <p:outputLabel value="Id:"/>
-                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idSolicitud}"/>
-                                    
-                                    <p:outputLabel value="Nombre del Proceso:"/>
-                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idProceso.nombre}"/>
-                                    
-                                    <p:outputLabel value="Formulario:"/>
-                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.descripcion}"/>
-                                    
-                                    <p:outputLabel value="Formulario Código:"/>
-                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.nombre}"/>
-                                    
-                                    <p:outputLabel value="Número de Trámite:"/>
-                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.numeroTramite}"/>
-                                    
-                                    <p:outputLabel value="Usuario Creación:"/>
-                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.usuarioCreacion.identificacion}"/>
-                                    
-                                    <p:outputLabel value="Estado Solicitud:"/>
-                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.estadoSolicitud.nombre}"/>
-                                </p:panelGrid>
-                                
-                                <p:commandButton process="@form" update="@form" icon="ui-icon-play" value="Siguiente..." actionListener="#{listadoSolicitudBean.siguiente()}"/>
+                                <center>
+                                    <p:panelGrid columns="2" style="text-align:left;">
+                                        <p:outputLabel value="Id:"/>
+                                        <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idSolicitud}"/>
+
+                                        <p:outputLabel value="Nombre del Proceso:"/>
+                                        <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idProceso.nombre}"/>
+
+                                        <p:outputLabel value="Formulario:"/>
+                                        <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.descripcion}"/>
+
+                                        <p:outputLabel value="Formulario Código:"/>
+                                        <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.nombre}"/>
+
+                                        <p:outputLabel value="Número de Trámite:"/>
+                                        <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.numeroTramite}"/>
+
+                                        <p:outputLabel value="Usuario Creación:"/>
+                                        <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.usuarioCreacion.identificacion}"/>
+
+                                        <p:outputLabel value="Estado Solicitud:"/>
+                                        <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.estadoSolicitud.nombre}"/>
+                                    </p:panelGrid>
+
+                                    <p:dataTable id="idVariables" var="variable" value="#{listadoSolicitudBean.variables}" editable="true" style="margin-bottom:20px; width:500px;" >
+                                        <f:facet name="header">
+                                            Variables del Proceso
+                                        </f:facet>
+
+                                        <p:column headerText="Nombre">
+                                            <h:outputText value="#{variable.nombre}" />
+                                        </p:column>
+
+                                        <p:column headerText="Valor">
+                                            <p:cellEditor>
+                                                <f:facet name="output"><h:outputText value="#{variable.valor}" /></f:facet>
+                                                <f:facet name="input"><p:inputText value="#{variable.valor}" style="width:100%" label="Valor"/></f:facet>
+                                            </p:cellEditor>
+                                        </p:column>
+
+                                        <p:column style="width:32px">
+                                            <p:rowEditor />
+                                        </p:column>
+                                    </p:dataTable>
+
+                                    <p:commandButton process="@form" update=":form" icon="ui-icon-play" value="Siguiente..." actionListener="#{listadoSolicitudBean.siguiente()}" oncomplete="PF('solicitudDialog').hide()" />
+                                </center>
                             </p:outputPanel>
                         </p:dialog>
                     </p:panel>

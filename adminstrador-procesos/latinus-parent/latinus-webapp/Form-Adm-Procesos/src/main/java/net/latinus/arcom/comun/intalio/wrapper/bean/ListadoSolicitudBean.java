@@ -27,11 +27,13 @@ public class ListadoSolicitudBean implements Serializable {
     private String identificacionUsuario;
     private Integer numeroTramite;
     private List<Solicitud> solicitudes;
+    private List<Variable> variables;
     private Solicitud solicitudSeleccionado;
-    
+
     public ListadoSolicitudBean() {
         procesos = new ArrayList();
         solicitudes = new ArrayList();
+        variables = new ArrayList();
     }
 
     @PostConstruct
@@ -46,15 +48,20 @@ public class ListadoSolicitudBean implements Serializable {
     private void obtenerDatos() {
         procesos.addAll(controladorBase.getArcomServiciosData().obtenerProcesos());
     }
-    
-    public void listarSolicitudes(){
+
+    public void cargarDatosSeleccion() {
+        variables.clear();
+        variables = controladorBase.getArcomServiciosData().obtenerVariablesPorIdProcesoNumeroTramite(solicitudSeleccionado.getIdProceso().getIdProceso(), solicitudSeleccionado.getNumeroTramite());
+        
+    }
+
+    public void listarSolicitudes() {
         solicitudes.clear();
         solicitudes = controladorBase.getArcomServiciosData().obtenerSolicitudesPorUsuario(identificacionUsuario);
     }
-            
+
     public void siguiente() {
-        System.out.println("Enviar");
-        List<Variable> variables = controladorBase.getArcomServiciosData().obtenerVariablesPorIdProcesoNumeroTramite(solicitudSeleccionado.getIdProceso().getIdProceso(), solicitudSeleccionado.getNumeroTramite());
+        System.out.println("variables: " + variables.get(0).getNombre() + " - "+ variables.get(0).getValor());
         controladorBase.getArcomServiciosData().enviarSolicitud(variables, solicitudSeleccionado.getIdProceso().getIdProceso(), solicitudSeleccionado.getNumeroTramite());
         listarSolicitudes();
         solicitudSeleccionado = null;
@@ -92,7 +99,7 @@ public class ListadoSolicitudBean implements Serializable {
     public void setSolicitudes(List<Solicitud> solicitudes) {
         this.solicitudes = solicitudes;
     }
-    
+
     public Integer getNumeroTramite() {
         return numeroTramite;
     }
@@ -108,5 +115,13 @@ public class ListadoSolicitudBean implements Serializable {
     public void setSolicitudSeleccionado(Solicitud solicitudSeleccionado) {
         this.solicitudSeleccionado = solicitudSeleccionado;
     }
-    
+
+    public List<Variable> getVariables() {
+        return variables;
+    }
+
+    public void setVariables(List<Variable> variables) {
+        this.variables = variables;
+    }
+
 }

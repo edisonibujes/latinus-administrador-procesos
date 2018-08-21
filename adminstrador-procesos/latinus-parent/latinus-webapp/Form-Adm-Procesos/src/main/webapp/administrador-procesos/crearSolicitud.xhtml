@@ -11,14 +11,49 @@
 
     <ui:composition template="/templates/page-template_pf.xhtml">
         <ui:define name="page-content">
-            <h:form>
-                <p:panel id="panelContainer" header="Crear Solicitud">
-                    <p:inputText value="--- CREAR SOLICITUD ---"  style="width: 500px;">
-                    </p:inputText>
+            <h:form id="form">
+                <center>
+                    <p:panel id="panelContainer" header="--- FORMULARIO PARA CREAR SOLICITUD ---" >
+                        <p:panelGrid columns="2" style="text-align:left;">
+                            <p:outputLabel for="idUsuario" value="Ciudadano: "/>
+                            <p:inputText id="idUsuario" value="#{certificadoCiudadaniaBean.usuarioLogeado}" maxlength="200" styleClass="jsx30textbox"
+                                         required="true" requiredMessage="El campo ciudadano es requerido.">
+                            </p:inputText>
+                        </p:panelGrid>
+                        <BR></BR>
+                        <BR></BR>
 
-                    <p:commandButton value="Enviar" 
-                                     action='#{certificadoCiudadaniaBean.enviar()}' />
-                </p:panel>
+                        <p:dataTable id="procesoDT" var="proceso" value="#{certificadoCiudadaniaBean.procesos}" selection="#{certificadoCiudadaniaBean.procesoSeleccionado}" rowKey="#{proceso.idProceso}">
+                            <f:facet name="header">
+                                Procesos 
+                            </f:facet>
+                            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                            <p:column headerText="Id">
+                                <h:outputText value="#{proceso.idProceso}" />
+                            </p:column>
+                            <p:column headerText="nombre">
+                                <h:outputText value="#{proceso.nombre}" />
+                            </p:column>
+                            <p:column headerText="descripcion">
+                                <h:outputText value="#{proceso.descripcion}" />
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton process="@form" update=":form:procesoDetail" icon="ui-icon-search" value="Enviar" actionListener="#{certificadoCiudadaniaBean.enviar()}" oncomplete="PF('solicitudDialog').show()" />
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:dialog header="Solicitud Info" widgetVar="solicitudDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="procesoDetail" style="text-align:center;">
+                                <p:outputLabel value="--- SOLICITUD CREADA EXITOSAMENTE ---"  style="width: 500px;">
+                                </p:outputLabel>
+                                <BR></BR>
+                                <BR></BR>
+                                <p:outputLabel value="NÚMERO DE TRÁMITE: #{certificadoCiudadaniaBean.numeroTramite}" style="width: 500px;">
+                                </p:outputLabel>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </p:panel>
+                </center>
             </h:form>
         </ui:define>
     </ui:composition>

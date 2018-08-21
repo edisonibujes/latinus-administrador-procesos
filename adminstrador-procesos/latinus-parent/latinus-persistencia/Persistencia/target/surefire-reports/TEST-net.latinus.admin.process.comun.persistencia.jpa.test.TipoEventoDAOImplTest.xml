@@ -63,16 +63,16 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.023" classname="net.latinus.admin.process.comun.persistencia.jpa.test.TipoEventoDAOImplTest" name="leerTipoEvento">
+  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.TipoEventoDAOImplTest" name="leerTipoEvento">
     <skipped/>
   </testcase>
-  <testcase time="0.023" classname="net.latinus.admin.process.comun.persistencia.jpa.test.TipoEventoDAOImplTest" name="EliminarTipoEvento">
+  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.TipoEventoDAOImplTest" name="EliminarTipoEvento">
     <skipped/>
   </testcase>
-  <testcase time="0.023" classname="net.latinus.admin.process.comun.persistencia.jpa.test.TipoEventoDAOImplTest" name="ActualizarTipoEvento">
+  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.TipoEventoDAOImplTest" name="ActualizarTipoEvento">
     <skipped/>
   </testcase>
-  <testcase time="0.023" classname="net.latinus.admin.process.comun.persistencia.jpa.test.TipoEventoDAOImplTest" name="crearTipoEvento">
+  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.TipoEventoDAOImplTest" name="crearTipoEvento">
     <skipped/>
   </testcase>
 </testsuite>

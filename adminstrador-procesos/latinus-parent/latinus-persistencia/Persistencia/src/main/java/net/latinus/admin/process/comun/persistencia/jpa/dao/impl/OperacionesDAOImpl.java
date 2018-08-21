@@ -141,7 +141,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                 }
             }
         }
-        
+
         Formulario formularioSiguiente = solicitud.getIdFormulario();
         return formularioSiguiente;
     }
@@ -172,25 +172,20 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
 
     public Integer crearSolicitud(String nombreProceso, List<Variable> variables, String usuarioCreacion) {
         Integer numeroTramite = -1;
-        try {
-            Solicitud solicitud = new Solicitud();
-            Proceso proceso = procesoDAO.obtenerProcesoPorNombre(nombreProceso);
-            solicitud.setIdProceso(proceso);
-            numeroTramite = obtenerSecuenciaPorIdProceso(proceso.getIdProceso()).intValue();
-            solicitud.setNumeroTramite(numeroTramite);
-            solicitud.setIdFormulario(formularioDAO.obtenerFormulariosPorIdProceso(proceso.getIdProceso()).get(0));
-            solicitud.setUsuarioCreacion(usuarioDAO.obtenerUsuarioPorIdentificacion(usuarioCreacion));
-            solicitudDAO.create(solicitud);
-            if (variables != null && variables.size() > 0) {
-                for (Variable var : variables) {
-                    var.setNumeroTramite(numeroTramite);
-                    var.setIdProceso(proceso);
-                    variableDAO.create(var);
-                }
+        Solicitud solicitud = new Solicitud();
+        Proceso proceso = procesoDAO.obtenerProcesoPorNombre(nombreProceso);
+        solicitud.setIdProceso(proceso);
+        numeroTramite = obtenerSecuenciaPorIdProceso(proceso.getIdProceso()).intValue();
+        solicitud.setNumeroTramite(numeroTramite);
+        solicitud.setIdFormulario(formularioDAO.obtenerFormulariosPorIdProceso(proceso.getIdProceso()).get(0));
+        solicitud.setUsuarioCreacion(usuarioDAO.obtenerUsuarioPorIdentificacion(usuarioCreacion));
+        solicitudDAO.create(solicitud);
+        if (variables != null && variables.size() > 0) {
+            for (Variable var : variables) {
+                var.setNumeroTramite(numeroTramite);
+                var.setIdProceso(proceso);
+                variableDAO.create(var);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
         }
         return numeroTramite;
     }

@@ -5,10 +5,12 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.OperacionesDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
+import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.TipoEventoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.VariableDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
 
@@ -23,9 +25,18 @@ public class ArcomServiciosDataImpl implements ArcomServiciosData {
     private OperacionesDAO operacionesDAO;
     private VariableDAO variableDAO;
     private ProcesoDAO procesoDAO;
+    private SolicitudDAO solicitudDAO;
     
     // Getters Setters DAOs
 
+    public SolicitudDAO getSolicitudDAO() {
+        return solicitudDAO;
+    }
+
+    public void setSolicitudDAO(SolicitudDAO solicitudDAO) {
+        this.solicitudDAO = solicitudDAO;
+    }
+    
     public TipoEventoDAO getTipoEventoDAO() {
         return tipoEventoDAO;
     }
@@ -83,6 +94,11 @@ public class ArcomServiciosDataImpl implements ArcomServiciosData {
     @Override
     public List<Proceso> obtenerProcesos() {
         return procesoDAO.obtenerProcesos();
+    }
+
+    @Override
+    public List<Solicitud> obtenerSolicitudesPorUsuario(String identificacion) {
+        return solicitudDAO.obtenerSolicitudesPorUsuario(identificacion);
     }
     
 }

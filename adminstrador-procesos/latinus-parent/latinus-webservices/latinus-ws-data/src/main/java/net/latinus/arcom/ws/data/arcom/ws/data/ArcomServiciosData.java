@@ -5,6 +5,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
 
@@ -30,5 +31,9 @@ public interface ArcomServiciosData {
             @WebParam(name = "variables") List<Variable> listaVariables,
             @WebParam(name = "id_proceso") Integer id_proceso,
             @WebParam(name = "numero_tramite") Integer numero_tramite);
+    
+    public List<Solicitud> obtenerSolicitudesPorUsuario(
+            @WebParam(name = "identificacion") String identificacion
+            );
     
 }

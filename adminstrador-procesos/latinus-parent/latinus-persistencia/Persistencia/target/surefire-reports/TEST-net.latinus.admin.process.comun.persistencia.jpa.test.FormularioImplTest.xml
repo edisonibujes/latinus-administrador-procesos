@@ -63,19 +63,19 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.007" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="actualizarFormulario">
+  <testcase time="0.008" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="actualizarFormulario">
     <skipped/>
   </testcase>
-  <testcase time="0.007" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="crearFormulario">
+  <testcase time="0.008" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="crearFormulario">
     <skipped/>
   </testcase>
-  <testcase time="0.007" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="obtenerFormularioPorIdProceso">
+  <testcase time="0.008" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="obtenerFormularioPorIdProceso">
     <skipped/>
   </testcase>
-  <testcase time="0.007" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="eliminarFormulario">
+  <testcase time="0.008" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="eliminarFormulario">
     <skipped/>
   </testcase>
-  <testcase time="0.007" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="leerFormulario">
+  <testcase time="0.009" classname="net.latinus.admin.process.comun.persistencia.jpa.test.FormularioImplTest" name="leerFormulario">
     <skipped/>
   </testcase>
 </testsuite>

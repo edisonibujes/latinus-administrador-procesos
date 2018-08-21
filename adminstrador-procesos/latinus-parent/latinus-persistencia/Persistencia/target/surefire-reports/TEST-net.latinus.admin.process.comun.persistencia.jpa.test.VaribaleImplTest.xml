@@ -63,19 +63,19 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="crearVariable">
+  <testcase time="0.029" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="crearVariable">
     <skipped/>
   </testcase>
-  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="leerVariableById">
+  <testcase time="0.029" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="leerVariableById">
     <skipped/>
   </testcase>
-  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="eliminarVariableById">
+  <testcase time="0.029" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="eliminarVariableById">
     <skipped/>
   </testcase>
-  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="obtenerVariablesPorIdProcesoNumeroTramite">
+  <testcase time="0.029" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="obtenerVariablesPorIdProcesoNumeroTramite">
     <skipped/>
   </testcase>
-  <testcase time="0.026" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="actualizarVariableById">
+  <testcase time="0.029" classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="actualizarVariableById">
     <skipped/>
   </testcase>
 </testsuite>

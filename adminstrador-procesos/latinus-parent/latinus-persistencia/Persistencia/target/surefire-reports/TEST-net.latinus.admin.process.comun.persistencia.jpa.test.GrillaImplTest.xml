@@ -63,16 +63,16 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.01" classname="net.latinus.admin.process.comun.persistencia.jpa.test.GrillaImplTest" name="actualizarGrilla">
+  <testcase time="0.011" classname="net.latinus.admin.process.comun.persistencia.jpa.test.GrillaImplTest" name="actualizarGrilla">
     <skipped/>
   </testcase>
-  <testcase time="0.01" classname="net.latinus.admin.process.comun.persistencia.jpa.test.GrillaImplTest" name="obtenerGrillasPorEstadoActual">
+  <testcase time="0.012" classname="net.latinus.admin.process.comun.persistencia.jpa.test.GrillaImplTest" name="obtenerGrillasPorEstadoActual">
     <skipped/>
   </testcase>
-  <testcase time="0.01" classname="net.latinus.admin.process.comun.persistencia.jpa.test.GrillaImplTest" name="leerGrillaPorId">
+  <testcase time="0.012" classname="net.latinus.admin.process.comun.persistencia.jpa.test.GrillaImplTest" name="leerGrillaPorId">
     <skipped/>
   </testcase>
-  <testcase time="0.01" classname="net.latinus.admin.process.comun.persistencia.jpa.test.GrillaImplTest" name="crearGrilla">
+  <testcase time="0.012" classname="net.latinus.admin.process.comun.persistencia.jpa.test.GrillaImplTest" name="crearGrilla">
     <skipped/>
   </testcase>
 </testsuite>

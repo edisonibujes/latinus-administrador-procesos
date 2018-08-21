@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:of="http://omnifaces.org/functions">
+
+    <ui:composition template="/templates/page-template_pf.xhtml">
+        <ui:define name="page-content">
+            <h:form id="form">
+                <center>
+                    <p:panel id="panelContainer" header="--- LISTAR SOLICITUDES POR USUARIO ---" >
+                        <p:panelGrid columns="3" style="text-align:left;">
+                            <p:outputLabel for="idUsuario" value="Ciudadano: "/>
+                            <p:inputText id="idUsuario" value="#{listadoSolicitudBean.identificacionUsuario}" maxlength="200" styleClass="jsx30textbox"
+                                         required="true" requiredMessage="El campo ciudadano es requerido.">
+                            </p:inputText>
+                            <p:commandButton process="@form" update="@form" icon="ui-icon-search" value="Buscar" actionListener="#{listadoSolicitudBean.listarSolicitudes()}" />
+                        </p:panelGrid>
+                        <BR></BR>
+                        <BR></BR>
+
+                        <p:dataTable id="solicitudDT" var="solicitud" value="#{listadoSolicitudBean.solicitudes}" selection="#{listadoSolicitudBean.solicitudSeleccionado}" rowKey="#{solicitud.idSolicitud}">
+                            <f:facet name="header">
+                                Solicitudes 
+                            </f:facet>
+                            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+                            <p:column headerText="Proceso">
+                                <h:outputText value="#{solicitud.idProceso.nombre}" />
+                            </p:column>
+                            <p:column headerText="Formulario">
+                                <h:outputText value="#{solicitud.idFormulario.descripcion}" />
+                            </p:column>
+                            <p:column headerText="Número Trámite">
+                                <h:outputText value="#{solicitud.numeroTramite}" />
+                            </p:column>
+                            <p:column headerText="Estado">
+                                <h:outputText value="#{solicitud.idFormulario.estadoSolicitud.nombre}" />
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton process="@form" update=":form:solicitudDetail" icon="ui-icon-play" value="Seleccionar" oncomplete="PF('solicitudDialog').show()" />
+                            </f:facet>
+                        </p:dataTable>
+
+                        <p:dialog header="Información" widgetVar="solicitudDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+                            <p:outputPanel id="solicitudDetail" style="text-align:center;">
+                                <p:outputLabel value="--- INFORMACIÓN DEL FORMULARIO ---"  style="width: 500px;">
+                                </p:outputLabel>
+                                <p:panelGrid columns="2" style="text-align:left;">
+                                    <p:outputLabel value="Id:"/>
+                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idSolicitud}"/>
+                                    
+                                    <p:outputLabel value="Nombre del Proceso:"/>
+                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idProceso.nombre}"/>
+                                    
+                                    <p:outputLabel value="Formulario:"/>
+                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.descripcion}"/>
+                                    
+                                    <p:outputLabel value="Formulario Código:"/>
+                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.nombre}"/>
+                                    
+                                    <p:outputLabel value="Número de Trámite:"/>
+                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.numeroTramite}"/>
+                                    
+                                    <p:outputLabel value="Usuario Creación:"/>
+                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.usuarioCreacion.identificacion}"/>
+                                    
+                                    <p:outputLabel value="Estado Solicitud:"/>
+                                    <p:outputLabel value="#{listadoSolicitudBean.solicitudSeleccionado.idFormulario.estadoSolicitud.nombre}"/>
+                                </p:panelGrid>
+                                
+                                <p:commandButton process="@form" update="@form" icon="ui-icon-play" value="Siguiente..." actionListener="#{listadoSolicitudBean.siguiente()}"/>
+                            </p:outputPanel>
+                        </p:dialog>
+                    </p:panel>
+                </center>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

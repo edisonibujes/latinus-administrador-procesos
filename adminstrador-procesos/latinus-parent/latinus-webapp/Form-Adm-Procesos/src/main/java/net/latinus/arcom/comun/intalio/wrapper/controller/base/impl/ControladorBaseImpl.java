@@ -12,6 +12,7 @@ import java.util.Properties;
 import net.latinus.arcom.comun.intalio.wrapper.controller.base.ControladorBase;
 import net.latinus.arcom.ws.data.api.ArcomServiciosData;
 import net.latinus.arcom.ws.data.api.Proceso;
+
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 
 public class ControladorBaseImpl implements ControladorBase {
@@ -26,7 +27,7 @@ public class ControladorBaseImpl implements ControladorBase {
         System.setProperties(properties);
         factory = new JaxWsProxyFactoryBean();
         factory.setServiceClass(ArcomServiciosData.class);
-        factory.setAddress(Configuracion.getInstance().getProperty(Configuracion.APACHE_HOST) + "/arcom-ws-data/arcom-ws-data");
+        factory.setAddress(Configuracion.getInstance().getProperty(Configuracion.APACHE_HOST) + "/latinus-ws-data/arcom-ws-data");
         System.out.println("-----------------------------------------------");
         System.out.println("factory.getAddress : " + factory.getAddress());
         System.out.println("-----------------------------------------------");

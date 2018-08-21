@@ -63,22 +63,22 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.014" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="updateProceso">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="updateProceso">
     <skipped/>
   </testcase>
-  <testcase time="0.014" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="obtenerProcesoPorNombre">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="obtenerProcesoPorNombre">
     <skipped/>
   </testcase>
-  <testcase time="0.014" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="obtenerProcesos">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="obtenerProcesos">
     <skipped/>
   </testcase>
-  <testcase time="0.014" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="deleteProceso">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="deleteProceso">
     <skipped/>
   </testcase>
-  <testcase time="0.014" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="getProcesoById">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="getProcesoById">
     <skipped/>
   </testcase>
-  <testcase time="0.014" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="saveProceso">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="saveProceso">
     <skipped/>
   </testcase>
 </testsuite>

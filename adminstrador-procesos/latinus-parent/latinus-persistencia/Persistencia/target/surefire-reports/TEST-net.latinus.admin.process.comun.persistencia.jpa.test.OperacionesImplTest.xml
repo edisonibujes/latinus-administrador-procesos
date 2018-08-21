@@ -63,13 +63,13 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.013" classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="obtenerEstadoSiguiente">
+  <testcase time="0.016" classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="obtenerEstadoSiguiente">
     <skipped/>
   </testcase>
-  <testcase time="0.013" classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="crearSolicitud">
+  <testcase time="0.016" classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="crearSolicitud">
     <skipped/>
   </testcase>
-  <testcase time="0.013" classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="obtenerSecuenciaPorIdProceso">
+  <testcase time="0.016" classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="obtenerSecuenciaPorIdProceso">
     <skipped/>
   </testcase>
 </testsuite>

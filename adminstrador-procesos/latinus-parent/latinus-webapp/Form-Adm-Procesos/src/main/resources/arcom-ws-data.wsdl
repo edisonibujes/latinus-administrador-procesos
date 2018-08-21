@@ -1,4 +1,4 @@
-<wsdl:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://data.ws.arcom.data.ws.arcom.latinus.net/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ArcomServiciosDataImplService" targetNamespace="http://data.ws.arcom.data.ws.arcom.latinus.net/">
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://data.ws.arcom.data.ws.arcom.latinus.net/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ArcomServiciosDataImplService" targetNamespace="http://data.ws.arcom.data.ws.arcom.latinus.net/">
     <wsdl:types>
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://data.ws.arcom.data.ws.arcom.latinus.net/" elementFormDefault="unqualified" targetNamespace="http://data.ws.arcom.data.ws.arcom.latinus.net/" version="1.0">
             <xs:element name="catalogo" type="tns:catalogo"/>

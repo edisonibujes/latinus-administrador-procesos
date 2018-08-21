@@ -3,11 +3,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>net.latinus.arcom.comun</groupId>
+    <groupId>net.latinus.comun</groupId>
     <artifactId>latinus-comun</artifactId>
     <version>1.0</version>
   </parent>
-  <groupId>net.latinus.arcom.comun</groupId>
+  
+  <groupId>net.latinus.comun.configuration</groupId>
   <artifactId>latinus-configuracion</artifactId>
   <version>1.0</version>
   <name>LATINUS :: COMUN :: Configuracion</name>

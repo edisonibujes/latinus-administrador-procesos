@@ -12,7 +12,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import net.latinus.arcom.comun.intalio.wrapper.controller.base.impl.ControladorBaseImpl;
 import net.latinus.arcom.ws.data.api.Proceso;
-import net.latinus.arcom.ws.data.api.TipoEvento;
+
 
 @ManagedBean
 @ViewScoped
@@ -38,8 +38,8 @@ public class CertificadoCiudadaniaBean implements Serializable {
     }   
     
     public void enviar(){
-        TipoEvento tipo = controladorBase.getArcomServiciosData().obtenerTipoEventoPorId(1);
-        System.out.println("Tipo: " + tipo.getDescripcion());
+        //TipoEvento tipo = controladorBase.getArcomServiciosData().obtenerTipoEventoPorId(1);
+        //System.out.println("Tipo: " + tipo.getDescripcion());
         List<Proceso> procesos = controladorBase.getArcomServiciosData().obtenerProcesos();
         System.out.println("Procesos" + procesos.size());
     }

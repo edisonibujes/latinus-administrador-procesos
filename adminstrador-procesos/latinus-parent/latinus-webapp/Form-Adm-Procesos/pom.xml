@@ -20,16 +20,7 @@
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>org.apache.axis2</groupId>
-            <artifactId>axis2</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.neethi</groupId>
-            <artifactId>neethi</artifactId>
-            <version>3.0.2</version>
-        </dependency>
+            
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
@@ -147,43 +138,13 @@
             <version>R8</version>
         </dependency>
             
+            
+        <!-- Latinus -->
         <dependency>
-            <groupId>net.latinus.arcom.comun</groupId>
-            <artifactId>latinus-exception</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.latinus.arcom.comun</groupId>
-            <artifactId>latinus-mail-sender</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.latinus.arcom.comun</groupId>
+            <groupId>net.latinus.comun.configuration</groupId>
             <artifactId>latinus-configuracion</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>net.latinus.arcom.comun</groupId>
-            <artifactId>latinus-openldap</artifactId>
-            <version>1.0</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>net.latinus.arcom.alfresco</groupId>
-            <artifactId>Alfresco-Bridge</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.latinus.arcom.comun</groupId>
-            <artifactId>arcom-dto</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.latinus.arcom.comun</groupId>
-            <artifactId>arcom-ws-client-jar</artifactId>
-            <version>1.0</version>
-            <type>jar</type>  
-        </dependency>  
 
         <!-- cxf -->
         <dependency>

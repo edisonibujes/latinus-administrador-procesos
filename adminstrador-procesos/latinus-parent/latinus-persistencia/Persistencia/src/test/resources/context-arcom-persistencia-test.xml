@@ -103,6 +103,7 @@
         <property name="variableDAO" ref="variableDAO"/>
         <property name="usuarioDAO" ref="usuarioDAO"/>
         <property name="formularioDAO" ref="formularioDAO"/>
+        <property name="catalogoDAO" ref="catalogoDAO"/>
     </bean>
     
 </beans>

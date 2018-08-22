@@ -5,6 +5,7 @@ import javax.persistence.Query;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+import net.latinus.admin.process.comun.persistencia.jpa.dao.CatalogoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.FormularioDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.GrillaDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.OperacionesDAO;
@@ -35,8 +36,17 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
     VariableDAO variableDAO;
     UsuarioDAO usuarioDAO;
     FormularioDAO formularioDAO;
+    CatalogoDAO catalogoDAO;
 
     // Getters y Setters de los DAOs
+    public CatalogoDAO getCatalogoDAO() {
+        return catalogoDAO;
+    }
+
+    public void setCatalogoDAO(CatalogoDAO catalogoDAO) {
+        this.catalogoDAO = catalogoDAO;
+    }
+
     public void setSecuenciaDAO(SecuenciaDAO secuenciaDAO) {
         this.secuenciaDAO = secuenciaDAO;
     }
@@ -103,8 +113,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         return valor;
     }
 
-    public Formulario enviarSolicitud(List<Variable> variables, Integer id_proceso, Integer numero_tramite) {
-        Solicitud solicitud = solicitudDAO.obtenerSolicitudPorIdProcesoNumeroTramite(id_proceso, numero_tramite);
+    public Formulario enviarSolicitud(List<Variable> variables, Solicitud solicitud) {
         Integer estado_actual = solicitud.getIdFormulario().getIdFormulario().intValue();
         List<Grilla> grillas = grillaDAO.obtenerGrillasPorEstadoActual(estado_actual);
         String funcionTransferencia = "";
@@ -127,19 +136,39 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                 }
             }
         } else if (grillas != null && grillas.size() > 0) {
-            for (Grilla grilla : grillas) {
-                funcionTransferencia = grilla.getFuncionTransferencia();
-                for (Variable var : variables) {
-                    if (funcionTransferencia.contains(var.getNombre())) {
-                        funcionTransferencia = funcionTransferencia.replace(var.getNombre(), var.getValor().toString());
+            if (grillas.get(0).getFuncionTransferencia().equals("(Paralelo)")) {
+                for (Grilla grilla : grillas) {
+                    if (grilla.getIdGrilla() != grillas.get(0).getIdGrilla()) {
+                        Solicitud solicitudNueva = new Solicitud();
+                        solicitudNueva.setIdProceso(solicitud.getIdProceso());
+                        solicitudNueva.setNumeroTramite(solicitud.getNumeroTramite());
+                        solicitudNueva.setIdFormulario(grilla.getEstadoSiguiente());
+                        solicitudNueva.setEstadoSolicitud(solicitud.getEstadoSolicitud());
+                        solicitudNueva.setUsuarioCreacion(solicitud.getUsuarioCreacion());
+                        solicitudDAO.create(solicitudNueva);
                     }
                 }
-                if (evaluarString(funcionTransferencia)) {
-                    Formulario formularioSiguiente = grilla.getEstadoSiguiente();
-                    guardarDatos(variables, formularioSiguiente, solicitud);
-                    return formularioSiguiente;
+                Formulario formularioSiguiente = grillas.get(0).getEstadoSiguiente();
+                guardarDatos(variables, formularioSiguiente, solicitud);
+                return formularioSiguiente;
+            }
+            
+            if (grillas.get(0).getFuncionTransferencia().equals("(Sin condicion)")) {
+                for (Grilla grilla : grillas) {
+                    funcionTransferencia = grilla.getFuncionTransferencia();
+                    for (Variable var : variables) {
+                        if (funcionTransferencia.contains(var.getNombre())) {
+                            funcionTransferencia = funcionTransferencia.replace(var.getNombre(), var.getValor().toString());
+                        }
+                    }
+                    if (evaluarString(funcionTransferencia)) {
+                        Formulario formularioSiguiente = grilla.getEstadoSiguiente();
+                        guardarDatos(variables, formularioSiguiente, solicitud);
+                        return formularioSiguiente;
+                    }
                 }
             }
+
         }
 
         Formulario formularioSiguiente = solicitud.getIdFormulario();
@@ -179,6 +208,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         solicitud.setNumeroTramite(numeroTramite);
         solicitud.setIdFormulario(formularioDAO.obtenerFormulariosPorIdProceso(proceso.getIdProceso()).get(0));
         solicitud.setUsuarioCreacion(usuarioDAO.obtenerUsuarioPorIdentificacion(usuarioCreacion));
+        solicitud.setEstadoSolicitud(catalogoDAO.obtenerCatalogoPorNemonico("SOLACT"));
         solicitudDAO.create(solicitud);
         if (variables != null && variables.size() > 0) {
             for (Variable var : variables) {

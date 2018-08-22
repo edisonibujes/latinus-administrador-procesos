@@ -3,6 +3,7 @@ package net.latinus.admin.process.comun.persistencia.jpa.dao;
 import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Grilla;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Usuario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
 
@@ -12,7 +13,7 @@ public interface OperacionesDAO {
 
     public Long obtenerSecuenciaPorIdProceso(Integer idProceso);
     
-    public Formulario enviarSolicitud(List<Variable> variables, Integer id_proceso, Integer numero_tramite);
+    public Formulario enviarSolicitud(List<Variable> variables, Solicitud solicitud);
     
     public Integer crearSolicitud(String nombreProceso, List<Variable> variables, String usuarioCreacion);
     

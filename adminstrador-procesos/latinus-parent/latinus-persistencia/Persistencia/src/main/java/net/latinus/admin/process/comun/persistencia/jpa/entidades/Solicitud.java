@@ -36,6 +36,10 @@ public class Solicitud implements Serializable {
     @ManyToOne
     private Formulario idFormulario;
     
+    @JoinColumn(name = "estado_solicitud", referencedColumnName = "id_catalogo")
+    @ManyToOne
+    private Catalogo estadoSolicitud;
+    
     @JoinColumn(name = "usuario_creacion", referencedColumnName = "id_usuario")
     @ManyToOne
     private Usuario usuarioCreacion;
@@ -96,6 +100,14 @@ public class Solicitud implements Serializable {
         this.usuarioModificacion = usuarioModificacion;
     }
 
+    public Catalogo getEstadoSolicitud() {
+        return estadoSolicitud;
+    }
+
+    public void setEstadoSolicitud(Catalogo estadoSolicitud) {
+        this.estadoSolicitud = estadoSolicitud;
+    }
+  
     @Override
     public String toString() {
         return "Solicitud{" + "idSolicitud=" + idSolicitud + ", idProceso=" + idProceso + ", numeroTramite=" + numeroTramite + ", idFormulario=" + idFormulario + ", usuarioCreacion=" + usuarioCreacion + ", usuarioModificacion=" + usuarioModificacion + '}';

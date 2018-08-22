@@ -14,8 +14,8 @@ public class FuncionTransferencia implements Serializable {
 
     List<CondicionalDto> condicionales = new ArrayList();
     Boolean evaluarCondicional;
-
-    Boolean sinCondicion;
+    
+    Boolean evaluarParalelo;
 
     public FuncionTransferencia() {
         //cargarDatosA();
@@ -30,7 +30,7 @@ public class FuncionTransferencia implements Serializable {
         var.setNombre("a");
         var.setValor(10);
         variables.add(var);
-        
+
         Solicitud solicitud = new Solicitud();
         FuncionTransferencia funcionTransferencia = new FuncionTransferencia();
         RespuestaFuncionDto resultado = funcionTransferencia.evaluar(variables, solicitud);
@@ -142,8 +142,8 @@ public class FuncionTransferencia implements Serializable {
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
-    
-public void cargarDatosE() {
+
+    public void cargarDatosE() {
         CondicionalDto condicional = new CondicionalDto();
         condicional.setNombre("a");
         condicional.setOperacion("true");
@@ -152,7 +152,7 @@ public void cargarDatosE() {
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
-
+        
     @Override
     public String toString() {
         return "FuncionTransferencia{" + "condicionales=" + condicionales + ", evaluarCondicional=" + evaluarCondicional + '}';

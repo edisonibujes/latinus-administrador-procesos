@@ -50,6 +50,10 @@ public class Formulario implements Serializable {
     public Formulario() {
     }
 
+    public Formulario(Long idFormulario) {
+        this.idFormulario = idFormulario;
+    }
+
     public Catalogo getEstadoSolicitud() {
         return estadoSolicitud;
     }

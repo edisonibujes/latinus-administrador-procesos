@@ -165,7 +165,7 @@ CREATE TABLE "grilla" (
 "id_proceso" int8,
 "estado_actual" int8,
 "estado_anterior" int8,
-"funcion_transferencia" varchar(500) COLLATE "default",
+"funcion_transferencia" varchar(3000) COLLATE "default",
 "estado_siguiente" int8,
 CONSTRAINT id_proces_fkey FOREIGN KEY (id_proceso)
       REFERENCES public.proceso (id_proceso) MATCH SIMPLE
@@ -181,65 +181,35 @@ CONSTRAINT estado_siguiente_fkey FOREIGN KEY (estado_siguiente)
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-INSERT INTO public.grilla(estado_actual, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (1, '(Sin condicion)', 
-            2, 1);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (1, 'FuncionTransferencia{condicionales=[CondicionalDto{nombre=a, valor=-1, operacion=true, idFormulario=2}], evaluarCondicional=true, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=false, union=UnionDto{idFormularioSiguiente=null, formulariosUnidos=null}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 1);
 
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (2, 1, '(Sin condicion)', 
-            3, 1);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (2, 'FuncionTransferencia{condicionales=[CondicionalDto{nombre=a, valor=-1, operacion=true, idFormulario=3}], evaluarCondicional=true, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=false, union=UnionDto{idFormularioSiguiente=null, formulariosUnidos=null}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 1);
 
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (3, 2, 'a>30', 
-            4, 1);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (3, 'FuncionTransferencia{condicionales=[CondicionalDto{nombre=a, valor=30, operacion=>, idFormulario=4}, CondicionalDto{nombre=a, valor=31, operacion=<, idFormulario=5}], evaluarCondicional=true, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=false, union=UnionDto{idFormularioSiguiente=null, formulariosUnidos=null}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 1);
 
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (3, 2, 'a<31', 
-            5, 1);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (4, 'FuncionTransferencia{condicionales=[CondicionalDto{nombre=a, valor=-1, operacion=true, idFormulario=6}], evaluarCondicional=true, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=false, union=UnionDto{idFormularioSiguiente=null, formulariosUnidos=null}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 1);
 
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (5, 3, '(Sin condicion)', 
-            6, 1);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (5, 'FuncionTransferencia{condicionales=[CondicionalDto{nombre=a, valor=-1, operacion=true, idFormulario=6}], evaluarCondicional=true, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=false, union=UnionDto{idFormularioSiguiente=null, formulariosUnidos=null}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 1);
 
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (4, 3, '(Sin condicion)', 
-            6, 1);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (7, 'FuncionTransferencia{condicionales=[CondicionalDto{nombre=a, valor=-1, operacion=true, idFormulario=8}], evaluarCondicional=true, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=false, union=UnionDto{idFormularioSiguiente=null, formulariosUnidos=null}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 2);
 
-INSERT INTO public.grilla(estado_actual, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (7, '(Sin condicion)', 
-            8, 2);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (8, 'FuncionTransferencia{condicionales=[CondicionalDto{nombre=a, valor=-1, operacion=true, idFormulario=9}], evaluarCondicional=true, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=false, union=UnionDto{idFormularioSiguiente=null, formulariosUnidos=null}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 2);
 
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (8, 7, '(Sin condicion)', 
-            9, 2);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (9, 'FuncionTransferencia{condicionales=[], evaluarCondicional=false, evaluarParalelo=true, paralelo=ParaleloDto{idFormularioSiguiente=10, hijosDto=[HijosDto{idFormulario=11}]}, evaluarUnion=false, union=UnionDto{idFormularioSiguiente=null, formulariosUnidos=null}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 2);
 
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (9, 8, '(Paralelo)', 
-            10, 2);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (10, 'FuncionTransferencia{condicionales=[], evaluarCondicional=false, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=true, union=UnionDto{idFormularioSiguiente=12, formulariosUnidos=[10, 11]}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 2);
 
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (9, 8, '(Paralelo)', 
-            11, 2);
-
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (10, 8, '(Sin condicion)', 
-            12, 2);
-
-INSERT INTO public.grilla(estado_actual, estado_anterior, funcion_transferencia, 
-            estado_siguiente, id_proceso)
-    VALUES (11, 8, '(Sin condicion)', 
-            12, 2);
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (11, 'FuncionTransferencia{condicionales=[], evaluarCondicional=false, evaluarParalelo=false, paralelo=ParaleloDto{idFormularioSiguiente=null, hijosDto=[]}, evaluarUnion=true, union=UnionDto{idFormularioSiguiente=12, formulariosUnidos=[10, 11]}, SolicitudActiva=Catalogo{idCatalogo=6, nombre=Activo, descripcion=Activo, nemonico=SOLACT, catalogoPadre=null}, SolicitudAtentidad=Catalogo{idCatalogo=8, nombre=Atendido, descripcion=Atendido, nemonico=SOLATE, catalogoPadre=null}}', 2);
                                                
 CREATE TABLE "evento" (
 "id_evento" bigserial Primary Key,

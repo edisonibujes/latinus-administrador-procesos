@@ -44,26 +44,23 @@ public class OperacionesImplTest {
     }
 
     @Test
-    //@Ignore
+    @Ignore
     public void obtenerEstadoSiguiente() {
-        
-        Solicitud solicitud = solicitudDAO.read(Integer.SIZE);
-        Formulario formulario = operacionesDAO.enviarSolicitud(null, solicitud);
-        System.out.println("FormularioSiguiente: " + formulario.getIdFormulario());
+        Solicitud solicitud = solicitudDAO.read(3);
+        List<Variable> variables = variableDAO.obtenerVariablesPorIdProcesoNumeroTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite());
+        variables.get(0).setValor(5);
+        System.out.println(operacionesDAO.enviarSolicitud(variables, solicitud));
     }
 
     @Test
     @Ignore
     public void crearSolicitud() {
-//        List<Variable> variables = new ArrayList();
-//        Variable var = new Variable();
-//        var.setNombre("a");
-//        var.setValor(30);
-//        variables.add(var);
-//        Integer numTramite = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
-//        System.out.println(numTramite);
-        
-        Integer numTramite = operacionesDAO.crearSolicitud("Certificado bancario", null, "1721889515");
+        List<Variable> variables = new ArrayList();
+        Variable var = new Variable();
+        var.setNombre("a");
+        var.setValor(30);
+        variables.add(var);
+        Integer numTramite = operacionesDAO.crearSolicitud("Certificado bancario", variables, "1721889515");
         System.out.println(numTramite);
     }
 

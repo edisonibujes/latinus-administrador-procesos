@@ -53,7 +53,7 @@ public class SolicitudImplTest {
     @Test
     @Ignore
     public void obtenerSolicitudesPorUsuario() {
-        List<Solicitud> solicitudes = solicitudDAO.obtenerSolicitudesPorUsuario("1721889515");
+        List<Solicitud> solicitudes = solicitudDAO.obtenerSolicitudesPorUsuarioNemonico("1721889515", "SOLACT");
         System.out.println("Lista: " + solicitudes.size());
     }
     

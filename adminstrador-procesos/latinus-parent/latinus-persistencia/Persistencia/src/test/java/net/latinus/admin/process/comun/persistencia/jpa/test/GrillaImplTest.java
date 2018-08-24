@@ -62,4 +62,12 @@ public class GrillaImplTest {
         System.out.println("Size: " + grillas.size());    
     }
     
+    @Test
+    @Ignore
+    public void obtenerGrillaPorEstadoActualIdProceso() {
+        
+        Grilla grilla = grillaDAO.obtenerGrillaPorEstadoActualIdProceso(1, 1);
+        System.out.println("Size: " + grilla);    
+    }
+    
 }

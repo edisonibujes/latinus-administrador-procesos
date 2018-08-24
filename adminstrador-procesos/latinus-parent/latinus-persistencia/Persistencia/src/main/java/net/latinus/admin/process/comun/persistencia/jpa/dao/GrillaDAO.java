@@ -12,5 +12,6 @@ public interface GrillaDAO extends GenericoDAO<Grilla, Integer> {
     public static String BEAN_NAME = "grillaDAO";
 
     public List<Grilla> obtenerGrillasPorEstadoActual(Integer estadoActual);
-
+    
+    public Grilla obtenerGrillaPorEstadoActualIdProceso(Integer estadoActual, Integer idProceso);
 }

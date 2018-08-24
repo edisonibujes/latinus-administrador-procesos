@@ -9,7 +9,6 @@ import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
 
-
 @WebService(targetNamespace = "http://data.ws.arcom.data.ws.arcom.latinus.net/")
 public interface ArcomServiciosData {
 
@@ -17,23 +16,23 @@ public interface ArcomServiciosData {
             @WebParam(name = "id") Integer id);
 
     public List<Proceso> obtenerProcesos();
-    
+
     public Integer crearSolicitud(
             @WebParam(name = "nombreProceso") String nombreProceso,
             @WebParam(name = "variables") List<Variable> listaVariables,
-            @WebParam(name = "identificacion") String identificacion );
-    
+            @WebParam(name = "identificacion") String identificacion);
+
     public List<Variable> obtenerVariablesPorIdProcesoNumeroTramite(
             @WebParam(name = "idProceso") Integer idProceso,
-            @WebParam(name = "numeroTramite") Integer numeroTramite );
-    
-    public Formulario enviarSolicitud(
+            @WebParam(name = "numeroTramite") Integer numeroTramite);
+
+    public Boolean enviarSolicitud(
             @WebParam(name = "variables") List<Variable> listaVariables,
-            @WebParam(name = "id_proceso") Integer id_proceso,
-            @WebParam(name = "numero_tramite") Integer numero_tramite);
-    
-    public List<Solicitud> obtenerSolicitudesPorUsuario(
-            @WebParam(name = "identificacion") String identificacion
-            );
-    
+            @WebParam(name = "solicitud") Solicitud solicitud);
+
+    public List<Solicitud> obtenerSolicitudesPorUsuarioNemonico(
+            @WebParam(name = "identificacion") String identificacion,
+            @WebParam(name = "nemonico") String nemonico
+    );
+
 }

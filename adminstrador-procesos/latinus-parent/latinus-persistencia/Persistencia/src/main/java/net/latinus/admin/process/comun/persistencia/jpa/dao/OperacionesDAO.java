@@ -13,7 +13,7 @@ public interface OperacionesDAO {
 
     public Long obtenerSecuenciaPorIdProceso(Integer idProceso);
     
-    public Formulario enviarSolicitud(List<Variable> variables, Solicitud solicitud);
+    public Boolean enviarSolicitud(List<Variable> variables, Solicitud solicitud);
     
     public Integer crearSolicitud(String nombreProceso, List<Variable> variables, String usuarioCreacion);
     

@@ -1,31 +1,45 @@
-package net.latinus.admin.process.comun.persistencia.jpa.util;
+package net.latinus.admin.process.comun.persistencia.jpa.json;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import com.google.gson.Gson;
 import java.util.List;
-import net.latinus.admin.process.comun.persistencia.jpa.dto.CondicionalDto;
-import net.latinus.admin.process.comun.persistencia.jpa.dto.HijosDto;
-import net.latinus.admin.process.comun.persistencia.jpa.dto.ParaleloDto;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+import java.util.ArrayList;
 import net.latinus.admin.process.comun.persistencia.jpa.dto.RespuestaFuncionDto;
-import net.latinus.admin.process.comun.persistencia.jpa.dto.UnionDto;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Catalogo;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
+import org.apache.commons.lang.builder.ToStringBuilder;
 
-public class FuncionTransferencia implements Serializable {
+public class FuncionTransferencia {
 
-    List<CondicionalDto> condicionales = new ArrayList();
-    Boolean evaluarCondicional = false;
+    private Catalogo SolicitudActiva;
+    private Catalogo SolicitudAtentidad;
 
-    Boolean evaluarParalelo = false;
-    ParaleloDto paralelo = new ParaleloDto();
+    @SerializedName("condicionales")
+    @Expose
+    private List<Condicionale> condicionales = null;
 
-    Boolean evaluarUnion = false;
-    UnionDto union = new UnionDto();
+    @SerializedName("evaluarCondicional")
+    @Expose
+    private Boolean evaluarCondicional = false;
 
-    Catalogo SolicitudActiva;
-    Catalogo SolicitudAtentidad;
+    @SerializedName("evaluarParalelo")
+    @Expose
+    private Boolean evaluarParalelo = false;
+
+    @SerializedName("paralelo")
+    @Expose
+    private Paralelo paralelo;
+
+    @SerializedName("evaluarUnion")
+    @Expose
+    private Boolean evaluarUnion = false;
+
+    @SerializedName("union")
+    @Expose
+    private Union union;
 
     public FuncionTransferencia() {
         cargarEstados();
@@ -38,7 +52,9 @@ public class FuncionTransferencia implements Serializable {
 
     public static void main(String[] args) {
         FuncionTransferencia ft = new FuncionTransferencia();
-        System.out.println(ft);
+        Gson g = new Gson();
+        String str = g.toJson(ft);
+        System.out.println(str);
     }
 
     public RespuestaFuncionDto evaluar(List<Variable> variables, List<Solicitud> solicitudes) {
@@ -46,7 +62,7 @@ public class FuncionTransferencia implements Serializable {
         if (evaluarCondicional) {
             Solicitud solicitud = solicitudes.get(0);
             for (Variable var : variables) {
-                for (CondicionalDto condicionalDto : condicionales) {
+                for (Condicionale condicionalDto : condicionales) {
                     if (condicionalDto.getNombre().equals(var.getNombre())) {
                         boolean b = compararValor(var.getValor(), condicionalDto);
                         if (b) {
@@ -67,7 +83,7 @@ public class FuncionTransferencia implements Serializable {
             solicitud.setIdFormulario(new Formulario(paralelo.getIdFormularioSiguiente().longValue()));
             respuestaFuncionDto.getSolicitudes().add(solicitud);
             // Hilos Secundarios
-            for (HijosDto hijo : paralelo.getHijosDto()) {
+            for (Hijo hijo : paralelo.getHijosDto()) {
                 Solicitud solicitudNueva = new Solicitud();
                 solicitudNueva.setIdProceso(solicitud.getIdProceso());
                 solicitudNueva.setNumeroTramite(solicitud.getNumeroTramite());
@@ -79,18 +95,19 @@ public class FuncionTransferencia implements Serializable {
         }
 
         if (evaluarUnion) {
-            Boolean continuar = false;
+            Boolean continuar = true;
             solicitudes.get(0).setEstadoSolicitud(SolicitudAtentidad);
             for (Solicitud sol : solicitudes) {
-                for (Integer idForm : union.getFormulariosUnidos()) {
-                    if (sol.getEstadoSolicitud().getNemonico().equals(SolicitudAtentidad) && sol.getIdFormulario().getIdFormulario() == idForm.longValue()) {
-                        continuar = true;
-                    }
+                if (sol.getEstadoSolicitud().getNemonico().equals("SOLATE") && solicitudContenidaLista(sol, union.getFormulariosUnidos())) {
+                }else{
+                    continuar = false;
                 }
             }
             if (continuar) {
                 solicitudes.get(0).setEstadoSolicitud(SolicitudActiva);
                 solicitudes.get(0).setIdFormulario(new Formulario(union.getIdFormularioSiguiente().longValue()));
+                respuestaFuncionDto.getSolicitudes().add(solicitudes.get(0));
+            } else {
                 respuestaFuncionDto.getSolicitudes().add(solicitudes.get(0));
             }
         }
@@ -98,7 +115,17 @@ public class FuncionTransferencia implements Serializable {
         return respuestaFuncionDto;
     }
 
-    private boolean compararValor(Integer valorComparar, CondicionalDto condicional) {
+    private boolean solicitudContenidaLista(Solicitud solicitud, List<Integer> idFormularios) {
+        Boolean pertenece = false;
+        for (Integer id : idFormularios) {
+            if (solicitud.getIdFormulario().getIdFormulario().longValue() == id) {
+                return true;
+            }
+        }
+        return pertenece;
+    }
+
+    private boolean compararValor(Integer valorComparar, Condicionale condicional) {
         String operacion = condicional.getOperacion();
 
         if (operacion.equals(">")) {
@@ -135,23 +162,24 @@ public class FuncionTransferencia implements Serializable {
 
         return false;
     }
-    
-    public void cargarEstados(){
+
+    public void cargarEstados() {
         SolicitudActiva = new Catalogo();
         SolicitudActiva.setIdCatalogo(6L);
         SolicitudActiva.setNombre("Activo");
         SolicitudActiva.setDescripcion("Activo");
         SolicitudActiva.setNemonico("SOLACT");
-        
+
         SolicitudAtentidad = new Catalogo();
         SolicitudAtentidad.setIdCatalogo(8L);
         SolicitudAtentidad.setNombre("Atendido");
         SolicitudAtentidad.setDescripcion("Atendido");
         SolicitudAtentidad.setNemonico("SOLATE");
     }
-            
+
     public void cargarDatosA() {
-        CondicionalDto condicional = new CondicionalDto();
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
         condicional.setNombre("a");
         condicional.setOperacion("true");
         condicional.setValor(-1);
@@ -161,7 +189,8 @@ public class FuncionTransferencia implements Serializable {
     }
 
     public void cargarDatosB() {
-        CondicionalDto condicional = new CondicionalDto();
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
         condicional.setNombre("a");
         condicional.setOperacion("true");
         condicional.setValor(-1);
@@ -171,14 +200,15 @@ public class FuncionTransferencia implements Serializable {
     }
 
     public void cargarDatosC() {
-        CondicionalDto condicional = new CondicionalDto();
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
         condicional.setNombre("a");
         condicional.setOperacion(">");
         condicional.setValor(30);
         condicional.setIdFormulario(4);
         condicionales.add(condicional);
 
-        condicional = new CondicionalDto();
+        condicional = new Condicionale();
         condicional.setNombre("a");
         condicional.setOperacion("<");
         condicional.setValor(31);
@@ -188,7 +218,8 @@ public class FuncionTransferencia implements Serializable {
     }
 
     public void cargarDatosD() {
-        CondicionalDto condicional = new CondicionalDto();
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
         condicional.setNombre("a");
         condicional.setOperacion("true");
         condicional.setValor(-1);
@@ -198,7 +229,8 @@ public class FuncionTransferencia implements Serializable {
     }
 
     public void cargarDatosE() {
-        CondicionalDto condicional = new CondicionalDto();
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
         condicional.setNombre("a");
         condicional.setOperacion("true");
         condicional.setValor(-1);
@@ -208,7 +240,8 @@ public class FuncionTransferencia implements Serializable {
     }
 
     public void cargarDatosA2() {
-        CondicionalDto condicional = new CondicionalDto();
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
         condicional.setNombre("a");
         condicional.setOperacion("true");
         condicional.setValor(-1);
@@ -218,7 +251,8 @@ public class FuncionTransferencia implements Serializable {
     }
 
     public void cargarDatosB2() {
-        CondicionalDto condicional = new CondicionalDto();
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
         condicional.setNombre("a");
         condicional.setOperacion("true");
         condicional.setValor(-1);
@@ -228,16 +262,16 @@ public class FuncionTransferencia implements Serializable {
     }
 
     public void cargarDatosC2() {
-        paralelo = new ParaleloDto();
+        paralelo = new Paralelo();
         paralelo.setIdFormularioSiguiente(10);
-        HijosDto hijo = new HijosDto();
+        Hijo hijo = new Hijo();
         hijo.setIdFormulario(11);
         paralelo.getHijosDto().add(hijo);
         evaluarParalelo = true;
     }
 
     public void cargarDatosD2() {
-        union = new UnionDto();
+        union = new Union();
         union.setIdFormularioSiguiente(12);
         union.getFormulariosUnidos().add(10);
         union.getFormulariosUnidos().add(11);
@@ -245,16 +279,80 @@ public class FuncionTransferencia implements Serializable {
     }
 
     public void cargarDatosE2() {
-        union = new UnionDto();
+        union = new Union();
         union.setIdFormularioSiguiente(12);
         union.getFormulariosUnidos().add(10);
         union.getFormulariosUnidos().add(11);
         evaluarUnion = true;
     }
 
+    public List<Condicionale> getCondicionales() {
+        return condicionales;
+    }
+
+    public void setCondicionales(List<Condicionale> condicionales) {
+        this.condicionales = condicionales;
+    }
+
+    public Boolean getEvaluarCondicional() {
+        return evaluarCondicional;
+    }
+
+    public void setEvaluarCondicional(Boolean evaluarCondicional) {
+        this.evaluarCondicional = evaluarCondicional;
+    }
+
+    public Boolean getEvaluarParalelo() {
+        return evaluarParalelo;
+    }
+
+    public void setEvaluarParalelo(Boolean evaluarParalelo) {
+        this.evaluarParalelo = evaluarParalelo;
+    }
+
+    public Paralelo getParalelo() {
+        return paralelo;
+    }
+
+    public void setParalelo(Paralelo paralelo) {
+        this.paralelo = paralelo;
+    }
+
+    public Boolean getEvaluarUnion() {
+        return evaluarUnion;
+    }
+
+    public void setEvaluarUnion(Boolean evaluarUnion) {
+        this.evaluarUnion = evaluarUnion;
+    }
+
+    public Union getUnion() {
+        return union;
+    }
+
+    public void setUnion(Union union) {
+        this.union = union;
+    }
+
+    public Catalogo getSolicitudActiva() {
+        return SolicitudActiva;
+    }
+
+    public void setSolicitudActiva(Catalogo SolicitudActiva) {
+        this.SolicitudActiva = SolicitudActiva;
+    }
+
+    public Catalogo getSolicitudAtentidad() {
+        return SolicitudAtentidad;
+    }
+
+    public void setSolicitudAtentidad(Catalogo SolicitudAtentidad) {
+        this.SolicitudAtentidad = SolicitudAtentidad;
+    }
+
     @Override
     public String toString() {
-        return "FuncionTransferencia{" + "condicionales=" + condicionales + ", evaluarCondicional=" + evaluarCondicional + ", evaluarParalelo=" + evaluarParalelo + ", paralelo=" + paralelo + ", evaluarUnion=" + evaluarUnion + ", union=" + union + ", SolicitudActiva=" + SolicitudActiva + ", SolicitudAtentidad=" + SolicitudAtentidad + '}';
+        return "FuncionTransferencia{" + "condicionales=" + condicionales + ", evaluarCondicional=" + evaluarCondicional + ", evaluarParalelo=" + evaluarParalelo + ", paralelo=" + paralelo + ", evaluarUnion=" + evaluarUnion + ", union=" + union + '}';
     }
 
 }

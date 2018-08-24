@@ -29,4 +29,18 @@ public class GrillaDAOImpl extends GenericoDAOImpl<Grilla, Integer> implements G
         return grillas;
     }
 
+    public Grilla obtenerGrillaPorEstadoActualIdProceso(Integer estadoActual, Integer idProceso) {
+        Grilla grilla;
+        try {
+            Query query = this.em.createQuery("SELECT g FROM Grilla g WHERE g.estadoActual.idFormulario = :estadoActual and g.idProceso.idProceso = :idProceso");
+            query.setParameter("estadoActual", estadoActual);
+            query.setParameter("idProceso", idProceso);
+            grilla = (Grilla) query.getSingleResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            grilla = null;
+        }
+        return grilla;
+    }
+
 }

@@ -14,25 +14,27 @@ public class SolicitudDAOImpl extends GenericoDAOImpl<Solicitud, Integer> implem
         super(Solicitud.class);
     }
 
-    public Solicitud obtenerSolicitudPorIdProcesoNumeroTramite(Integer id_proceso, Integer numero_tramite) {
-        Solicitud solicitud;
-        try {
-            Query query = this.em.createQuery("SELECT s FROM Solicitud s WHERE s.idProceso.idProceso = :id_proceso and s.numeroTramite = :numero_tramite");
-            query.setParameter("id_proceso", id_proceso);
-            query.setParameter("numero_tramite", numero_tramite);
-            solicitud = (Solicitud) query.getSingleResult();
-        } catch (Exception e) {
-            e.printStackTrace();
-            solicitud = null;
-        }
-        return solicitud;
-    }
-
-    public List<Solicitud> obtenerSolicitudesPorUsuario(String identificacion) {
+    public List<Solicitud> obtenerSolicitudesPorIdProcesoNumeroTramite(Integer id_proceso, Integer numero_tramite, Integer id_solicitud_omitida) {
         List<Solicitud> solicitudes;
         try {
-            Query query = this.em.createQuery("SELECT s FROM Solicitud s WHERE s.usuarioCreacion.identificacion = :identificacion ");
+            Query query = this.em.createQuery("SELECT s FROM Solicitud s WHERE s.idProceso.idProceso = :id_proceso and s.numeroTramite = :numero_tramite and s.idSolicitud <> :id_solicitud_omitida");
+            query.setParameter("id_proceso", id_proceso);
+            query.setParameter("numero_tramite", numero_tramite);
+            query.setParameter("id_solicitud_omitida", id_solicitud_omitida);
+            solicitudes = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            solicitudes = null;
+        }
+        return solicitudes;
+    }
+
+    public List<Solicitud> obtenerSolicitudesPorUsuarioNemonico(String identificacion, String nemonico) {
+        List<Solicitud> solicitudes;
+        try {
+            Query query = this.em.createQuery("SELECT s FROM Solicitud s WHERE s.usuarioCreacion.identificacion = :identificacion and s.estadoSolicitud.nemonico = :nemonico");
             query.setParameter("identificacion", identificacion);
+            query.setParameter("nemonico", nemonico);
             solicitudes = query.getResultList();
         } catch (Exception e) {
             e.printStackTrace();

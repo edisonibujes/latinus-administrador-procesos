@@ -9,8 +9,8 @@ import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 public interface SolicitudDAO extends GenericoDAO<Solicitud,Integer>{
     public static String BEAN_NAME = "solicitudDAO";
     
-    public Solicitud obtenerSolicitudPorIdProcesoNumeroTramite(Integer id_proceso, Integer numero_tramite);
+    public List<Solicitud> obtenerSolicitudesPorIdProcesoNumeroTramite(Integer id_proceso, Integer numero_tramite, Integer id_solicitud_omitida);
     
-    public List<Solicitud> obtenerSolicitudesPorUsuario(String identificacion);
+    public List<Solicitud> obtenerSolicitudesPorUsuarioNemonico(String identificacion, String nemonico);
     
 }

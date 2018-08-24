@@ -87,18 +87,18 @@ public class ArcomServiciosDataImpl implements ArcomServiciosData {
     }
 
     @Override
-    public Formulario enviarSolicitud(List<Variable> listaVariables, Integer id_proceso, Integer numero_tramite) {
-        return operacionesDAO.enviarSolicitud(listaVariables, id_proceso, numero_tramite);
-    }
-
-    @Override
     public List<Proceso> obtenerProcesos() {
         return procesoDAO.obtenerProcesos();
     }
 
     @Override
-    public List<Solicitud> obtenerSolicitudesPorUsuario(String identificacion) {
-        return solicitudDAO.obtenerSolicitudesPorUsuario(identificacion);
+    public Boolean enviarSolicitud(List<Variable> listaVariables, Solicitud solicitud) {
+        return operacionesDAO.enviarSolicitud(listaVariables, solicitud);
+    }
+
+    @Override
+    public List<Solicitud> obtenerSolicitudesPorUsuarioNemonico(String identificacion, String nemonico) {
+        return solicitudDAO.obtenerSolicitudesPorUsuarioNemonico(identificacion, nemonico);
     }
     
 }

@@ -1,5 +1,7 @@
 package net.latinus.admin.process.comun.persistencia.jpa.dao.impl;
 
+import com.google.gson.Gson;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Query;
 import javax.script.ScriptEngine;
@@ -14,6 +16,7 @@ import net.latinus.admin.process.comun.persistencia.jpa.dao.SecuenciaDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.UsuarioDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.VariableDAO;
+import net.latinus.admin.process.comun.persistencia.jpa.dto.RespuestaFuncionDto;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Grilla;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
@@ -22,6 +25,7 @@ import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Usuario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
 import net.latinus.admin.process.comun.persistencia.jpa.jpadao.AbstractJPADAO;
+import net.latinus.admin.process.comun.persistencia.jpa.json.FuncionTransferencia;
 import org.springframework.web.util.ExpressionEvaluationUtils;
 
 /**
@@ -113,66 +117,34 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         return valor;
     }
 
-    public Formulario enviarSolicitud(List<Variable> variables, Solicitud solicitud) {
-        Integer estado_actual = solicitud.getIdFormulario().getIdFormulario().intValue();
-        List<Grilla> grillas = grillaDAO.obtenerGrillasPorEstadoActual(estado_actual);
-        String funcionTransferencia = "";
-        if (grillas != null && grillas.size() == 1) {
-            if (grillas.get(0).getFuncionTransferencia().equals("(Sin condicion)")) {
-                Formulario formularioSiguiente = grillas.get(0).getEstadoSiguiente();
-                guardarDatos(variables, formularioSiguiente, solicitud);
-                return formularioSiguiente;
-            } else {
-                funcionTransferencia = grillas.get(0).getFuncionTransferencia();
-                for (Variable var : variables) {
-                    if (funcionTransferencia.contains(var.getNombre())) {
-                        funcionTransferencia = funcionTransferencia.replace(var.getNombre(), var.getValor().toString());
-                    }
-                }
-                if (Boolean.parseBoolean(funcionTransferencia)) {
-                    Formulario formularioSiguiente = grillas.get(0).getEstadoSiguiente();
-                    guardarDatos(variables, formularioSiguiente, solicitud);
-                    return formularioSiguiente;
-                }
+    public Boolean enviarSolicitud(List<Variable> variables, Solicitud solicitud) {
+        try {
+            Grilla grilla = grillaDAO.obtenerGrillaPorEstadoActualIdProceso(solicitud.getIdFormulario().getIdFormulario().intValue(), solicitud.getIdProceso().getIdProceso());
+            String funcionTransferencia = grilla.getFuncionTransferencia();
+            Gson g = new Gson();
+            FuncionTransferencia ft = g.fromJson(funcionTransferencia, FuncionTransferencia.class);
+
+            List<Solicitud> solicitudes = new ArrayList<Solicitud>();
+            solicitudes.add(solicitud);
+            List<Solicitud> sol = solicitudDAO.obtenerSolicitudesPorIdProcesoNumeroTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite(), solicitud.getIdSolicitud());
+            if (sol != null && sol.size() > 0 ){
+                solicitudes.addAll(sol);
             }
-        } else if (grillas != null && grillas.size() > 0) {
-            if (grillas.get(0).getFuncionTransferencia().equals("(Paralelo)")) {
-                for (Grilla grilla : grillas) {
-                    if (grilla.getIdGrilla() != grillas.get(0).getIdGrilla()) {
-                        Solicitud solicitudNueva = new Solicitud();
-                        solicitudNueva.setIdProceso(solicitud.getIdProceso());
-                        solicitudNueva.setNumeroTramite(solicitud.getNumeroTramite());
-                        solicitudNueva.setIdFormulario(grilla.getEstadoSiguiente());
-                        solicitudNueva.setEstadoSolicitud(solicitud.getEstadoSolicitud());
-                        solicitudNueva.setUsuarioCreacion(solicitud.getUsuarioCreacion());
-                        solicitudDAO.create(solicitudNueva);
-                    }
-                }
-                Formulario formularioSiguiente = grillas.get(0).getEstadoSiguiente();
-                guardarDatos(variables, formularioSiguiente, solicitud);
-                return formularioSiguiente;
+           
+            RespuestaFuncionDto respuesta = ft.evaluar(variables, solicitudes);
+            for (Variable var : respuesta.getVariables()) {
+                variableDAO.update(var);
+            }
+
+            for (Solicitud solUpdate : respuesta.getSolicitudes()) {
+                solicitudDAO.update(solUpdate);
             }
             
-            if (grillas.get(0).getFuncionTransferencia().equals("(Sin condicion)")) {
-                for (Grilla grilla : grillas) {
-                    funcionTransferencia = grilla.getFuncionTransferencia();
-                    for (Variable var : variables) {
-                        if (funcionTransferencia.contains(var.getNombre())) {
-                            funcionTransferencia = funcionTransferencia.replace(var.getNombre(), var.getValor().toString());
-                        }
-                    }
-                    if (evaluarString(funcionTransferencia)) {
-                        Formulario formularioSiguiente = grilla.getEstadoSiguiente();
-                        guardarDatos(variables, formularioSiguiente, solicitud);
-                        return formularioSiguiente;
-                    }
-                }
-            }
-
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-
-        Formulario formularioSiguiente = solicitud.getIdFormulario();
-        return formularioSiguiente;
     }
 
     private void guardarDatos(List<Variable> variables, Formulario formularioSiguiente, Solicitud solicitud) {

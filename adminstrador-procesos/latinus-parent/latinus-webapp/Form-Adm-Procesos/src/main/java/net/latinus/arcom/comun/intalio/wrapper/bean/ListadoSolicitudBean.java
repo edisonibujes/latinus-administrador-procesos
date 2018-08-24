@@ -57,12 +57,12 @@ public class ListadoSolicitudBean implements Serializable {
 
     public void listarSolicitudes() {
         solicitudes.clear();
-        solicitudes = controladorBase.getArcomServiciosData().obtenerSolicitudesPorUsuario(identificacionUsuario);
+        solicitudes = controladorBase.getArcomServiciosData().obtenerSolicitudesPorUsuarioNemonico(identificacionUsuario, "SOLACT");
     }
 
     public void siguiente() {
         System.out.println("variables: " + variables.get(0).getNombre() + " - "+ variables.get(0).getValor());
-        controladorBase.getArcomServiciosData().enviarSolicitud(variables, solicitudSeleccionado.getIdProceso().getIdProceso(), solicitudSeleccionado.getNumeroTramite());
+        controladorBase.getArcomServiciosData().enviarSolicitud(variables, solicitudSeleccionado);
         listarSolicitudes();
         solicitudSeleccionado = null;
     }

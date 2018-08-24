@@ -127,10 +127,10 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
             List<Solicitud> solicitudes = new ArrayList<Solicitud>();
             solicitudes.add(solicitud);
             List<Solicitud> sol = solicitudDAO.obtenerSolicitudesPorIdProcesoNumeroTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite(), solicitud.getIdSolicitud());
-            if (sol != null && sol.size() > 0 ){
+            if (sol != null && sol.size() > 0) {
                 solicitudes.addAll(sol);
             }
-           
+
             RespuestaFuncionDto respuesta = ft.evaluar(variables, solicitudes);
             for (Variable var : respuesta.getVariables()) {
                 variableDAO.update(var);
@@ -139,7 +139,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
             for (Solicitud solUpdate : respuesta.getSolicitudes()) {
                 solicitudDAO.update(solUpdate);
             }
-            
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();

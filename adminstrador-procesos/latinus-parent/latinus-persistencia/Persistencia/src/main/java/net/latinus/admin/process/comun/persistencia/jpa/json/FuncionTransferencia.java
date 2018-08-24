@@ -43,11 +43,7 @@ public class FuncionTransferencia {
 
     public FuncionTransferencia() {
         cargarEstados();
-        //cargarDatosA2();
-        //cargarDatosB2();
-        //cargarDatosC2();
-        //cargarDatosD2();
-        //cargarDatosE2();
+        //cargarDatosF3();
     }
 
     public static void main(String[] args) {
@@ -99,7 +95,7 @@ public class FuncionTransferencia {
             solicitudes.get(0).setEstadoSolicitud(SolicitudAtentidad);
             for (Solicitud sol : solicitudes) {
                 if (sol.getEstadoSolicitud().getNemonico().equals("SOLATE") && solicitudContenidaLista(sol, union.getFormulariosUnidos())) {
-                }else{
+                } else {
                     continuar = false;
                 }
             }
@@ -284,6 +280,86 @@ public class FuncionTransferencia {
         union.getFormulariosUnidos().add(10);
         union.getFormulariosUnidos().add(11);
         evaluarUnion = true;
+    }
+
+    public void cargarDatosA3() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("a");
+        condicional.setOperacion("true");
+        condicional.setValor(-1);
+        condicional.setIdFormulario(14);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+
+    public void cargarDatosB3() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("a");
+        condicional.setOperacion("true");
+        condicional.setValor(-1);
+        condicional.setIdFormulario(15);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+
+    public void cargarDatosC3() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("a");
+        condicional.setOperacion(">");
+        condicional.setValor(30);
+        condicional.setIdFormulario(16);
+        condicionales.add(condicional);
+
+        condicional = new Condicionale();
+        condicional.setNombre("a");
+        condicional.setOperacion("<");
+        condicional.setValor(31);
+        condicional.setIdFormulario(17);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+
+    public void cargarDatosD3() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("a");
+        condicional.setOperacion("true");
+        condicional.setValor(-1);
+        condicional.setIdFormulario(18);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+
+    public void cargarDatosE3() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("a");
+        condicional.setOperacion("true");
+        condicional.setValor(-1);
+        condicional.setIdFormulario(18);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+
+    public void cargarDatosF3() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("subsana");
+        condicional.setOperacion("==");
+        condicional.setValor(0);
+        condicional.setIdFormulario(19);
+        condicionales.add(condicional);
+
+        condicional = new Condicionale();
+        condicional.setNombre("subsana");
+        condicional.setOperacion("==");
+        condicional.setValor(1);
+        condicional.setIdFormulario(14);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
     }
 
     public List<Condicionale> getCondicionales() {

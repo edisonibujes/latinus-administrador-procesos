@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.001" errors="0" skipped="6" tests="6" name="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest">
+<testsuite failures="0" time="0" errors="0" skipped="6" tests="6" name="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_79\jre\bin"/>
@@ -63,22 +63,22 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase time="0.024" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="updateProceso">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="updateProceso">
     <skipped/>
   </testcase>
-  <testcase time="0.024" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="obtenerProcesoPorNombre">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="obtenerProcesoPorNombre">
     <skipped/>
   </testcase>
-  <testcase time="0.024" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="obtenerProcesos">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="obtenerProcesos">
     <skipped/>
   </testcase>
-  <testcase time="0.024" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="deleteProceso">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="deleteProceso">
     <skipped/>
   </testcase>
-  <testcase time="0.024" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="getProcesoById">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="getProcesoById">
     <skipped/>
   </testcase>
-  <testcase time="0.024" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="saveProceso">
+  <testcase time="0.019" classname="net.latinus.admin.process.comun.persistencia.jpa.test.ProcesoImplTest" name="saveProceso">
     <skipped/>
   </testcase>
 </testsuite>

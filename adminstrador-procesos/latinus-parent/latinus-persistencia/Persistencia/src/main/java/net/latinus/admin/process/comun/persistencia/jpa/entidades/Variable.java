@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Variable.findByValor", query = "SELECT v FROM Variable v WHERE v.valor = :valor")})
 public class Variable implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_variable")
     private Long idVariable;    
     @Column(name = "nombre")

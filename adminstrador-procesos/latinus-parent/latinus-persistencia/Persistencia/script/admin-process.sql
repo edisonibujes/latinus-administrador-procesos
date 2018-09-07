@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS "seguimiento_solicitud";
 DROP TABLE IF EXISTS "solicitud";
 DROP TABLE IF EXISTS "evento";
 DROP TABLE IF EXISTS "log";
@@ -368,6 +369,25 @@ CONSTRAINT estado_solicitud_fkey FOREIGN KEY (estado_solicitud)
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
               
+CREATE TABLE "seguimiento_solicitud"
+(
+  "id_seguimiento_solicitud" bigserial Primary Key,
+  "id_solicitud" int8,
+  numero_tramite bigint NOT NULL,
+  fecha_inicio timestamp without time zone,
+  fecha_fin timestamp without time zone,
+  estado int8,
+  usuario character varying(50),
+  variables character varying(2000),
+  funcion_transferencia character varying(2000),
+  CONSTRAINT fk_id_solicitud FOREIGN KEY (id_solicitud)
+      REFERENCES public.solicitud (id_solicitud) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE CASCADE,
+  CONSTRAINT fk_estado FOREIGN KEY (estado)
+      REFERENCES public.catalogo (id_catalogo) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
 ALTER SEQUENCE "evento_id_evento_seq" OWNED BY "evento"."id_evento";
 ALTER SEQUENCE "formulario_id_formulario_seq" OWNED BY "formulario"."id_formulario";
 ALTER SEQUENCE "grilla_id_grilla_seq" OWNED BY "grilla"."id_grilla";

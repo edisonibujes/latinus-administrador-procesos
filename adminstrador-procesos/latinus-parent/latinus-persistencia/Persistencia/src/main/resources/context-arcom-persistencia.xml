@@ -97,6 +97,7 @@
     <bean id="secuenciaDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.SecuenciaDAOImpl"/>
     <bean id="solicitudDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.SolicitudDAOImpl"/>
     <bean id="catalogoDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.CatalogoDAOImpl"/>
+    <bean id="seguimientoSolicitudDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.SeguimientoSolicitudDAOImpl"/>
     <bean id="operacionesDAO" class="net.latinus.admin.process.comun.persistencia.jpa.dao.impl.OperacionesDAOImpl">
         <property name="secuenciaDAO" ref="secuenciaDAO"/>
         <property name="grillaDAO" ref="grillaDAO"/>

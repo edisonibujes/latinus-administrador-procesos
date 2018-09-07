@@ -43,7 +43,7 @@ public class FuncionTransferencia {
 
     public FuncionTransferencia() {
         cargarEstados();
-        //cargarDatosF3();
+        //cargarDatosN4();
     }
 
     public static void main(String[] args) {
@@ -58,6 +58,7 @@ public class FuncionTransferencia {
         if (evaluarCondicional) {
             Solicitud solicitud = solicitudes.get(0);
             for (Variable var : variables) {
+                System.out.println("Var:" + var);
                 for (Condicionale condicionalDto : condicionales) {
                     if (condicionalDto.getNombre().equals(var.getNombre())) {
                         boolean b = compararValor(var.getValor(), condicionalDto);
@@ -67,6 +68,7 @@ public class FuncionTransferencia {
                             solicitud.setIdFormulario(formulario);
                             respuestaFuncionDto.getSolicitudes().add(solicitud);
                             respuestaFuncionDto.setVariables(variables);
+                            System.out.println("respuestaFuncionDto: " + respuestaFuncionDto);
                         }
                     }
                 }
@@ -144,6 +146,10 @@ public class FuncionTransferencia {
             return valorComparar == condicional.getValor();
         }
 
+        if (operacion.equals("=")) {
+            return valorComparar == condicional.getValor();
+        }
+        
         if (operacion.equals("!=")) {
             return valorComparar != condicional.getValor();
         }
@@ -362,6 +368,190 @@ public class FuncionTransferencia {
         evaluarCondicional = true;
     }
 
+    public void cargarDatosA4() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("a");
+        condicional.setOperacion("true");
+        condicional.setValor(-1);
+        condicional.setIdFormulario(21);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+
+    public void cargarDatosB4() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("c");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(22);
+        condicionales.add(condicional);
+
+        condicional = new Condicionale();
+        condicional.setNombre("n");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(28);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n1");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(24);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n2");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(25);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n3");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(26);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n4");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(27);
+        condicionales.add(condicional);
+        
+        evaluarCondicional = true;
+    }
+    
+    public void cargarDatosC4() {
+         condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("d");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(23);
+        condicionales.add(condicional);
+
+        condicional = new Condicionale();
+        condicional.setNombre("b");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(21);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+    
+    public void cargarDatosN1() {
+         condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("b");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(21);
+        condicionales.add(condicional);
+
+        condicional = new Condicionale();
+        condicional.setNombre("n2");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(25);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(28);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+    
+    public void cargarDatosN2() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("b");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(21);
+        condicionales.add(condicional);
+
+        condicional = new Condicionale();
+        condicional.setNombre("n1");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(24);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n3");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(26);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(28);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+    
+    public void cargarDatosN3() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("b");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(21);
+        condicionales.add(condicional);
+
+        condicional = new Condicionale();
+        condicional.setNombre("n2");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(25);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n4");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(27);
+        condicionales.add(condicional);
+        
+        condicional = new Condicionale();
+        condicional.setNombre("n");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(28);
+        condicionales.add(condicional);
+        evaluarCondicional = true;
+    }
+    
+    public void cargarDatosN4() {
+        condicionales = new ArrayList();
+        Condicionale condicional = new Condicionale();
+        condicional.setNombre("b");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(21);
+        condicionales.add(condicional);
+
+        condicional = new Condicionale();
+        condicional.setNombre("n3");
+        condicional.setOperacion("=");
+        condicional.setValor(1);
+        condicional.setIdFormulario(26);
+        condicionales.add(condicional);
+        
+        evaluarCondicional = true;
+    }
+    
     public List<Condicionale> getCondicionales() {
         return condicionales;
     }

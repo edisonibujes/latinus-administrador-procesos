@@ -28,6 +28,9 @@ INSERT INTO public.proceso(nombre, descripcion)
 INSERT INTO public.proceso(nombre, descripcion)
     VALUES ('Certificado de Concesión Minera', 'El documento valida la propiedad de una concesión minera');
     	
+INSERT INTO public.proceso(nombre, descripcion)
+    VALUES ('PQSF', 'PQSF');
+
 CREATE TABLE "variable" (
 "id_variable" bigserial Primary Key,
 "id_proceso" int8,
@@ -144,6 +147,33 @@ INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
 
 INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
     VALUES (3, 'G', 'Notificacion', 4);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'A', 'A', 2);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'B', 'B', 3);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'C', 'C', 3);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'D', 'D', 4);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'N1', 'N1', 3);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'N2', 'N2', 3);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'N3', 'N3', 3);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'N4', 'N4', 3);
+
+INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
+    VALUES (4, 'N', 'N', 4);
                                     
 CREATE TABLE "usuario" (
 "id_usuario" bigserial Primary Key,
@@ -252,7 +282,28 @@ INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
     VALUES (18, '{"condicionales":[{"nombre":"subsana","valor":0,"operacion":"\u003d\u003d","idFormulario":19},{"nombre":"subsana","valor":1,"operacion":"\u003d\u003d","idFormulario":14}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
-                                               
+
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (20, '', 4);
+
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (21, '', 4);
+
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (22, '', 4);
+
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (24, '', 4);
+
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (25, '', 4);
+
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (26, '', 4);
+
+INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
+    VALUES (27, '', 4);                                               
+
 CREATE TABLE "evento" (
 "id_evento" bigserial Primary Key,
 "id_tipo" int8,
@@ -288,6 +339,9 @@ INSERT INTO public.secuencia(id_proceso, valor)
 
 INSERT INTO public.secuencia(id_proceso, valor)
     VALUES (3, 1);
+
+INSERT INTO public.secuencia(id_proceso, valor)
+    VALUES (4, 1);
 
 CREATE TABLE "solicitud" (
 "id_solicitud" bigserial Primary Key,

@@ -57,6 +57,48 @@ public class CertificadoCiudadaniaBean implements Serializable {
             variables.add(var2);
         }
 
+        if (procesoSeleccionado.getIdProceso() == 4) {
+            Variable var2 = new Variable();
+            var2.setNombre("b");
+            var2.setValor(0);
+            variables.add(var2);
+
+            Variable var3 = new Variable();
+            var3.setNombre("c");
+            var3.setValor(0);
+            variables.add(var3);
+
+            Variable var4 = new Variable();
+            var4.setNombre("d");
+            var4.setValor(0);
+            variables.add(var4);
+
+            Variable var5 = new Variable();
+            var5.setNombre("n1");
+            var5.setValor(0);
+            variables.add(var5);
+
+            Variable var6 = new Variable();
+            var6.setNombre("n2");
+            var6.setValor(0);
+            variables.add(var6);
+
+            Variable var7 = new Variable();
+            var7.setNombre("n3");
+            var7.setValor(0);
+            variables.add(var7);
+
+            Variable var8 = new Variable();
+            var8.setNombre("n4");
+            var8.setValor(0);
+            variables.add(var8);
+
+            Variable var9 = new Variable();
+            var9.setNombre("n");
+            var9.setValor(0);
+            variables.add(var9);
+        }
+
         System.out.println("UsuarioLogeado:-" + usuarioLogeado + "-");
         numeroTramite = controladorBase.getArcomServiciosData().crearSolicitud(procesoSeleccionado.getNombre(), variables, usuarioLogeado.trim());
         System.out.println("Numero de Tramite" + numeroTramite);

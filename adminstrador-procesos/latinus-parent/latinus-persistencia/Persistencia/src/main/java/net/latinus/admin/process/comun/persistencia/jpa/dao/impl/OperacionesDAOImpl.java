@@ -1,7 +1,10 @@
 package net.latinus.admin.process.comun.persistencia.jpa.dao.impl;
 
 import com.google.gson.Gson;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+
 import java.util.List;
 import javax.persistence.Query;
 import javax.script.ScriptEngine;
@@ -13,14 +16,17 @@ import net.latinus.admin.process.comun.persistencia.jpa.dao.GrillaDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.OperacionesDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SecuenciaDAO;
+import net.latinus.admin.process.comun.persistencia.jpa.dao.SeguimientoSolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.UsuarioDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.VariableDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dto.RespuestaFuncionDto;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.Catalogo;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Grilla;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Secuencia;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.SeguimientoSolicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Usuario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
@@ -41,8 +47,17 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
     UsuarioDAO usuarioDAO;
     FormularioDAO formularioDAO;
     CatalogoDAO catalogoDAO;
+    SeguimientoSolicitudDAO seguimientoSolicitudDAO;
 
     // Getters y Setters de los DAOs
+    public SeguimientoSolicitudDAO getSeguimientoSolicitudDAO() {
+        return seguimientoSolicitudDAO;
+    }
+
+    public void setSeguimientoSolicitudDAO(SeguimientoSolicitudDAO seguimientoSolicitudDAO) {
+        this.seguimientoSolicitudDAO = seguimientoSolicitudDAO;
+    }
+
     public CatalogoDAO getCatalogoDAO() {
         return catalogoDAO;
     }
@@ -140,6 +155,21 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                 solicitudDAO.update(solUpdate);
             }
 
+            // Seguimiento
+            List<SeguimientoSolicitud> listaSeguimiento = seguimientoSolicitudDAO.obtenerSeguimientoPorProcesoTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite());
+            SeguimientoSolicitud seguimiento = new SeguimientoSolicitud();
+            seguimiento.setIdProceso(solicitud.getIdProceso());
+            seguimiento.setNumeroTramite(solicitud.getNumeroTramite());
+            seguimiento.setFechaInicio(listaSeguimiento.get(listaSeguimiento.size()-1).getFechaInicio());
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            seguimiento.setFechaFin(timestamp);
+            Catalogo completado = catalogoDAO.obtenerCatalogoPorNemonico("SOLCOM");
+            seguimiento.setEstado(completado);
+            seguimiento.setUsuario(solicitud.getUsuarioCreacion().getIdentificacion());
+            seguimiento.setVariables(variables.toString());
+            seguimiento.setFuncionTransferencia(ft.toString());
+            seguimientoSolicitudDAO.create(seguimiento);
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -179,9 +209,12 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         numeroTramite = obtenerSecuenciaPorIdProceso(proceso.getIdProceso()).intValue();
         solicitud.setNumeroTramite(numeroTramite);
         solicitud.setIdFormulario(formularioDAO.obtenerFormulariosPorIdProceso(proceso.getIdProceso()).get(0));
-        solicitud.setUsuarioCreacion(usuarioDAO.obtenerUsuarioPorIdentificacion(usuarioCreacion));
+        Usuario usuario = usuarioDAO.obtenerUsuarioPorIdentificacion(usuarioCreacion);
+        solicitud.setUsuarioCreacion(usuario);
         solicitud.setEstadoSolicitud(catalogoDAO.obtenerCatalogoPorNemonico("SOLACT"));
         solicitudDAO.create(solicitud);
+        
+        // Variables
         if (variables != null && variables.size() > 0) {
             for (Variable var : variables) {
                 var.setNumeroTramite(numeroTramite);
@@ -189,6 +222,34 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                 variableDAO.create(var);
             }
         }
+
+        // Seguimiento
+        System.out.println("Solicitud: " + solicitud.getIdSolicitud());
+        SeguimientoSolicitud seguimiento = new SeguimientoSolicitud();
+        seguimiento.setIdProceso(proceso);
+        seguimiento.setNumeroTramite(numeroTramite);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        seguimiento.setFechaInicio(timestamp);
+        Catalogo inicio = catalogoDAO.obtenerCatalogoPorNemonico("SOLINI");
+        seguimiento.setEstado(inicio);
+        seguimiento.setUsuario(usuarioCreacion);
+        seguimiento.setVariables("");
+        seguimiento.setFuncionTransferencia("");
+        seguimiento.setIdSolicitud(solicitud);
+        seguimientoSolicitudDAO.create(seguimiento);
+        
+        SeguimientoSolicitud seguimientoD = new SeguimientoSolicitud();
+        seguimientoD.setIdProceso(proceso);
+        seguimientoD.setNumeroTramite(numeroTramite);
+        seguimientoD.setFechaInicio(timestamp);
+        Catalogo creado = catalogoDAO.obtenerCatalogoPorNemonico("SOLCRE");
+        seguimientoD.setEstado(creado);
+        seguimientoD.setUsuario("");
+        seguimientoD.setVariables("");
+        seguimientoD.setFuncionTransferencia("");
+        seguimientoD.setIdSolicitud(solicitud);
+        seguimientoSolicitudDAO.create(seguimientoD);
+        
         return numeroTramite;
     }
 

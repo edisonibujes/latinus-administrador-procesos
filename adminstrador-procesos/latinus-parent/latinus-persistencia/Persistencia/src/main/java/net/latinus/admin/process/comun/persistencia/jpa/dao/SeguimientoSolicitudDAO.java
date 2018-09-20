@@ -1,5 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.dao;
 
+import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.SeguimientoSolicitud;
 
 /**
@@ -8,4 +9,6 @@ import net.latinus.admin.process.comun.persistencia.jpa.entidades.SeguimientoSol
 public interface SeguimientoSolicitudDAO extends GenericoDAO<SeguimientoSolicitud,Integer>{
     public static String BEAN_NAME = "seguimientoSolicitudDAO";
      
+    public List<SeguimientoSolicitud> obtenerSeguimientoPorProcesoTramite(Integer idProceso, Integer numeroTramite);
+    
 }

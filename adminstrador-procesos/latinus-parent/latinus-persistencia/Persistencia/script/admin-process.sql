@@ -78,6 +78,18 @@ VALUES('Pendiente', 'Pendiente', 'SOLPEN', 5);
 INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
 VALUES('Atendido', 'Atendido', 'SOLATE', 5);
 
+INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
+VALUES('Inicio', 'Inicio', 'SOLINI', 5);
+
+INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
+VALUES('Creado', 'Creado', 'SOLCRE', 5);
+
+INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
+VALUES('Completado', 'Completado', 'SOLCOM', 5);
+
+INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
+VALUES('Finalizado', 'Finalizado', 'SOLFIN', 5);
+
 CREATE TABLE "formulario" (
 "id_formulario" bigserial Primary Key,
 "id_proceso" int8,
@@ -285,25 +297,25 @@ INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
     VALUES (18, '{"condicionales":[{"nombre":"subsana","valor":0,"operacion":"\u003d\u003d","idFormulario":19},{"nombre":"subsana","valor":1,"operacion":"\u003d\u003d","idFormulario":14}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (20, '', 4);
+    VALUES (20, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":21}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 4);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (21, '', 4);
+    VALUES (21, '{"condicionales":[{"nombre":"c","valor":1,"operacion":"\u003d","idFormulario":22},{"nombre":"n","valor":1,"operacion":"\u003d","idFormulario":28},{"nombre":"n1","valor":1,"operacion":"\u003d","idFormulario":24},{"nombre":"n2","valor":1,"operacion":"\u003d","idFormulario":25},{"nombre":"n3","valor":1,"operacion":"\u003d","idFormulario":26},{"nombre":"n4","valor":1,"operacion":"\u003d","idFormulario":27}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 4);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (22, '', 4);
+    VALUES (22, '{"condicionales":[{"nombre":"d","valor":1,"operacion":"\u003d","idFormulario":23},{"nombre":"b","valor":1,"operacion":"\u003d","idFormulario":21}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 4);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (24, '', 4);
+    VALUES (24, '{"condicionales":[{"nombre":"b","valor":1,"operacion":"\u003d","idFormulario":21},{"nombre":"n2","valor":1,"operacion":"\u003d","idFormulario":25},{"nombre":"n","valor":1,"operacion":"\u003d","idFormulario":28}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 4);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (25, '', 4);
+    VALUES (25, '{"condicionales":[{"nombre":"b","valor":1,"operacion":"\u003d","idFormulario":21},{"nombre":"n1","valor":1,"operacion":"\u003d","idFormulario":24},{"nombre":"n3","valor":1,"operacion":"\u003d","idFormulario":26},{"nombre":"n","valor":1,"operacion":"\u003d","idFormulario":28}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 4);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (26, '', 4);
+    VALUES (26, '{"condicionales":[{"nombre":"b","valor":1,"operacion":"\u003d","idFormulario":21},{"nombre":"n2","valor":1,"operacion":"\u003d","idFormulario":25},{"nombre":"n4","valor":1,"operacion":"\u003d","idFormulario":27},{"nombre":"n","valor":1,"operacion":"\u003d","idFormulario":28}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 4);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (27, '', 4);                                               
+    VALUES (27, '{"condicionales":[{"nombre":"b","valor":1,"operacion":"\u003d","idFormulario":21},{"nombre":"n3","valor":1,"operacion":"\u003d","idFormulario":26}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 4);                                               
 
 CREATE TABLE "evento" (
 "id_evento" bigserial Primary Key,
@@ -373,6 +385,7 @@ CREATE TABLE "seguimiento_solicitud"
 (
   "id_seguimiento_solicitud" bigserial Primary Key,
   "id_solicitud" int8,
+  "id_proceso" int8,
   numero_tramite bigint NOT NULL,
   fecha_inicio timestamp without time zone,
   fecha_fin timestamp without time zone,
@@ -382,6 +395,9 @@ CREATE TABLE "seguimiento_solicitud"
   funcion_transferencia character varying(2000),
   CONSTRAINT fk_id_solicitud FOREIGN KEY (id_solicitud)
       REFERENCES public.solicitud (id_solicitud) MATCH SIMPLE
+    ON UPDATE NO ACTION ON DELETE CASCADE,
+  CONSTRAINT fk_id_proceso FOREIGN KEY (id_proceso)
+      REFERENCES public.proceso (id_proceso) MATCH SIMPLE
     ON UPDATE NO ACTION ON DELETE CASCADE,
   CONSTRAINT fk_estado FOREIGN KEY (estado)
       REFERENCES public.catalogo (id_catalogo) MATCH SIMPLE

@@ -107,6 +107,7 @@
         <property name="usuarioDAO" ref="usuarioDAO"/>
         <property name="formularioDAO" ref="formularioDAO"/>
         <property name="catalogoDAO" ref="catalogoDAO"/>
+        <property name="seguimientoSolicitudDAO" ref="seguimientoSolicitudDAO"/>
     </bean>
     
 </beans>

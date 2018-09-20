@@ -26,22 +26,25 @@ public class Catalogo implements Serializable {
     @Id
     @Column(name = "id_catalogo")
     private Long idCatalogo;
-    
+
     @Column(name = "nombre")
     private String nombre;
-    
+
     @Column(name = "descripcion")
     private String descripcion;
-    
+
     @Column(name = "nemonico")
     private String nemonico;
-    
+
     @JoinColumn(name = "catalogo_padre", referencedColumnName = "id_catalogo")
     @ManyToOne
     private Catalogo catalogoPadre;
 
-
     public Catalogo() {
+    }
+
+    public Catalogo(Long idCatalogo) {
+        this.idCatalogo = idCatalogo;
     }
 
     public Long getIdCatalogo() {
@@ -88,5 +91,5 @@ public class Catalogo implements Serializable {
     public String toString() {
         return "Catalogo{" + "idCatalogo=" + idCatalogo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", nemonico=" + nemonico + ", catalogoPadre=" + catalogoPadre + '}';
     }
-    
+
 }

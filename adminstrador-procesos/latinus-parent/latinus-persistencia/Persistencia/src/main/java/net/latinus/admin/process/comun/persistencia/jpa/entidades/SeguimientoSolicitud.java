@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package net.latinus.admin.process.comun.persistencia.jpa.entidades;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,41 +24,47 @@ import javax.persistence.TemporalType;
 @Table(name = "seguimiento_solicitud", schema = "public")
 @NamedQueries({
     @NamedQuery(name = "SeguimientoSolicitud.findAll", query = "SELECT s FROM SeguimientoSolicitud s")})
-public class SeguimientoSolicitud implements Serializable {    
-    @Id    
+public class SeguimientoSolicitud implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_seguimiento_solicitud")
     private Integer idSeguimientoSolicitud;
-    
+
     @JoinColumn(name = "id_solicitud", referencedColumnName = "id_solicitud")
     @ManyToOne
     private Solicitud idSolicitud;
     
+    @JoinColumn(name = "id_proceso", referencedColumnName = "id_proceso")
+    @ManyToOne
+    private Proceso idProceso;
+
     @Column(name = "numero_tramite")
     private Integer numeroTramite;
-    
+
     @Column(name = "fecha_inicio")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaInicio;
-    
+    private Timestamp fechaInicio;
+
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaFin;
-    
+    private Timestamp fechaFin;
+
     @JoinColumn(name = "estado", referencedColumnName = "id_catalogo")
     @ManyToOne
     private Catalogo estado;
-    
+
     @Column(name = "usuario")
     private String usuario;
-    
+
     @Column(name = "variables")
     private String variables;
-    
+
     @Column(name = "funcion_transferencia")
     private String funcionTransferencia;
-    
+
     public SeguimientoSolicitud() {
-        
+
     }
 
     public Integer getIdSeguimientoSolicitud() {
@@ -68,12 +75,12 @@ public class SeguimientoSolicitud implements Serializable {
         this.idSeguimientoSolicitud = idSeguimientoSolicitud;
     }
 
-    public Solicitud getIdSolicitud() {
-        return idSolicitud;
+    public Proceso getIdProceso() {
+        return idProceso;
     }
 
-    public void setIdSolicitud(Solicitud idSolicitud) {
-        this.idSolicitud = idSolicitud;
+    public void setIdProceso(Proceso idProceso) {
+        this.idProceso = idProceso;
     }
 
     public Integer getNumeroTramite() {
@@ -84,19 +91,19 @@ public class SeguimientoSolicitud implements Serializable {
         this.numeroTramite = numeroTramite;
     }
 
-    public Date getFechaInicio() {
+    public Timestamp getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(Timestamp fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFin() {
+    public Timestamp getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(Date fechaFin) {
+    public void setFechaFin(Timestamp fechaFin) {
         this.fechaFin = fechaFin;
     }
 
@@ -132,9 +139,17 @@ public class SeguimientoSolicitud implements Serializable {
         this.funcionTransferencia = funcionTransferencia;
     }
 
+    public Solicitud getIdSolicitud() {
+        return idSolicitud;
+    }
+
+    public void setIdSolicitud(Solicitud idSolicitud) {
+        this.idSolicitud = idSolicitud;
+    }
+
     @Override
     public String toString() {
-        return "SeguimientoSolicitud{" + "idSeguimientoSolicitud=" + idSeguimientoSolicitud + ", idSolicitud=" + idSolicitud + ", numeroTramite=" + numeroTramite + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", usuario=" + usuario + ", variables=" + variables + ", funcionTransferencia=" + funcionTransferencia + '}';
+        return "SeguimientoSolicitud{" + "idSeguimientoSolicitud=" + idSeguimientoSolicitud + ", idProceso=" + idProceso + ", numeroTramite=" + numeroTramite + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", usuario=" + usuario + ", variables=" + variables + ", funcionTransferencia=" + funcionTransferencia + '}';
     }
 
 }

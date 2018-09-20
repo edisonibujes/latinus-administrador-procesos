@@ -32,7 +32,11 @@ public class Proceso implements Serializable {
     public Proceso() {
         
     }
-
+    
+    public Proceso(Integer idProceso) {
+        this.idProceso = idProceso;
+    }
+    
     public Integer getIdProceso() {
         return idProceso;
     }

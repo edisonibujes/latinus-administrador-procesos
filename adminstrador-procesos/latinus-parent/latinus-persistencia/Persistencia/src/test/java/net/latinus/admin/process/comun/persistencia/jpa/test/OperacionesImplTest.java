@@ -46,11 +46,11 @@ public class OperacionesImplTest {
     @Test
     @Ignore
     public void obtenerEstadoSiguiente() {
-        Solicitud solicitud = solicitudDAO.read(1);
+        Solicitud solicitud = solicitudDAO.read(9);
         List<Variable> variables = variableDAO.obtenerVariablesPorIdProcesoNumeroTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite());
         
         for (Variable var: variables){
-            if (var.getNombre().equals("n")){
+            if (var.getNombre().equals("a")){
                 var.setValor(1);
             }else{
                 var.setValor(0);
@@ -68,48 +68,8 @@ public class OperacionesImplTest {
         var.setNombre("a");
         var.setValor(0);
         variables.add(var);
-        
-        Variable var2 = new Variable();
-        var2.setNombre("b");
-        var2.setValor(0);
-        variables.add(var2);
-        
-        Variable var3 = new Variable();
-        var3.setNombre("c");
-        var3.setValor(0);
-        variables.add(var3);
-        
-        Variable var4 = new Variable();
-        var4.setNombre("d");
-        var4.setValor(0);
-        variables.add(var4);
-        
-        Variable var5 = new Variable();
-        var5.setNombre("n1");
-        var5.setValor(0);
-        variables.add(var5);
-        
-        Variable var6 = new Variable();
-        var6.setNombre("n2");
-        var6.setValor(0);
-        variables.add(var6);
-        
-        Variable var7 = new Variable();
-        var7.setNombre("n3");
-        var7.setValor(0);
-        variables.add(var7);
-        
-        Variable var8 = new Variable();
-        var8.setNombre("n4");
-        var8.setValor(0);
-        variables.add(var8);
-        
-        Variable var9 = new Variable();
-        var9.setNombre("n");
-        var9.setValor(0);
-        variables.add(var9);
-        
-        Integer numTramite = operacionesDAO.crearSolicitud("PQSF", variables, "1721889515");
+  
+        Integer numTramite = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
         System.out.println(numTramite);
     }
 

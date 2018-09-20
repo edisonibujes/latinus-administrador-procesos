@@ -42,8 +42,8 @@ public class FuncionTransferencia {
     private Union union;
 
     public FuncionTransferencia() {
-        cargarEstados();
-        //cargarDatosN4();
+        //cargarEstados();
+        cargarDatosN4();
     }
 
     public static void main(String[] args) {

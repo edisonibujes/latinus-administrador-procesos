@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 
 import java.util.List;
 import javax.persistence.Query;
@@ -151,24 +152,166 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                 variableDAO.update(var);
             }
 
-            for (Solicitud solUpdate : respuesta.getSolicitudes()) {
-                solicitudDAO.update(solUpdate);
+            for (int i = 0; i < respuesta.getSolicitudes().size(); i++) {
+                if (i == 0) {
+                    solicitudDAO.update(respuesta.getSolicitudes().get(i));
+                } else {
+                    solicitudDAO.create(respuesta.getSolicitudes().get(i));
+                }
+            }
+            // Seguimiento
+            if (ft.getEvaluarCondicional()) {
+                Solicitud solicitudActual = respuesta.getSolicitudes().get(0);
+                if (respuesta.getSolicitudes().get(0).getEstadoSolicitud().getNemonico().equals("SOLFIN")) {
+                    List<SeguimientoSolicitud> listaSeguimiento = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(solicitud.getIdSolicitud());
+                    SeguimientoSolicitud seguimiento = listaSeguimiento.get(listaSeguimiento.size() - 1);
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    seguimiento.setFechaFin(timestamp);
+                    Catalogo completado = catalogoDAO.obtenerCatalogoPorNemonico("SOLFIN");
+                    seguimiento.setEstado(completado);
+                    seguimiento.setUsuario(solicitud.getUsuarioCreacion().getIdentificacion());
+                    seguimiento.setVariables(variables.toString());
+                    seguimiento.setFuncionTransferencia(ft.toString());
+                    seguimiento.setFormularioSiguiente(solicitudActual.getIdFormulario());
+                    seguimientoSolicitudDAO.update(seguimiento);
+                } else {
+                    List<SeguimientoSolicitud> listaSeguimiento = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(solicitud.getIdSolicitud());
+                    SeguimientoSolicitud seguimiento = listaSeguimiento.get(listaSeguimiento.size() - 1);
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    seguimiento.setFechaFin(timestamp);
+                    Catalogo completado = catalogoDAO.obtenerCatalogoPorNemonico("SOLATE");
+                    seguimiento.setEstado(completado);
+                    seguimiento.setUsuario(solicitud.getUsuarioCreacion().getIdentificacion());
+                    seguimiento.setVariables(variables.toString());
+                    seguimiento.setFuncionTransferencia(ft.toString());
+                    seguimiento.setFormularioSiguiente(solicitudActual.getIdFormulario());
+                    seguimientoSolicitudDAO.update(seguimiento);
+
+                    SeguimientoSolicitud seguimientoD = new SeguimientoSolicitud();
+                    seguimientoD.setIdProceso(solicitud.getIdProceso());
+                    seguimientoD.setNumeroTramite(solicitud.getNumeroTramite());
+                    seguimientoD.setFechaInicio(timestamp);
+                    Catalogo creado = catalogoDAO.obtenerCatalogoPorNemonico("SOLPEN");
+                    seguimientoD.setEstado(creado);
+                    seguimientoD.setUsuario("");
+                    seguimientoD.setVariables("");
+                    seguimientoD.setFuncionTransferencia("");
+                    seguimientoD.setIdSolicitud(solicitud);
+                    seguimientoD.setFormularioActual(solicitudActual.getIdFormulario());
+                    seguimientoSolicitudDAO.create(seguimientoD);
+                }
             }
 
-            // Seguimiento
-            List<SeguimientoSolicitud> listaSeguimiento = seguimientoSolicitudDAO.obtenerSeguimientoPorProcesoTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite());
-            SeguimientoSolicitud seguimiento = new SeguimientoSolicitud();
-            seguimiento.setIdProceso(solicitud.getIdProceso());
-            seguimiento.setNumeroTramite(solicitud.getNumeroTramite());
-            seguimiento.setFechaInicio(listaSeguimiento.get(listaSeguimiento.size()-1).getFechaInicio());
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-            seguimiento.setFechaFin(timestamp);
-            Catalogo completado = catalogoDAO.obtenerCatalogoPorNemonico("SOLCOM");
-            seguimiento.setEstado(completado);
-            seguimiento.setUsuario(solicitud.getUsuarioCreacion().getIdentificacion());
-            seguimiento.setVariables(variables.toString());
-            seguimiento.setFuncionTransferencia(ft.toString());
-            seguimientoSolicitudDAO.create(seguimiento);
+            if (ft.getEvaluarParalelo()) {
+                Solicitud solicitudPrimaria = respuesta.getSolicitudes().get(0);
+                List<SeguimientoSolicitud> listaSeguimiento = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(solicitudPrimaria.getIdSolicitud());
+                SeguimientoSolicitud seguimiento = listaSeguimiento.get(listaSeguimiento.size() - 1);
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                seguimiento.setFechaFin(timestamp);
+                Catalogo completado = catalogoDAO.obtenerCatalogoPorNemonico("SOLATE");
+                seguimiento.setEstado(completado);
+                seguimiento.setUsuario(solicitudPrimaria.getUsuarioCreacion().getIdentificacion());
+                seguimiento.setVariables(variables.toString());
+                seguimiento.setFuncionTransferencia(ft.toString());
+                seguimiento.setFormularioSiguiente(solicitudPrimaria.getIdFormulario());
+                seguimientoSolicitudDAO.update(seguimiento);
+
+                SeguimientoSolicitud seguimientoD = new SeguimientoSolicitud();
+                seguimientoD.setIdProceso(solicitudPrimaria.getIdProceso());
+                seguimientoD.setNumeroTramite(solicitudPrimaria.getNumeroTramite());
+                seguimientoD.setFechaInicio(timestamp);
+                Catalogo creado = catalogoDAO.obtenerCatalogoPorNemonico("SOLPEN");
+                seguimientoD.setEstado(creado);
+                seguimientoD.setUsuario("");
+                seguimientoD.setVariables("");
+                seguimientoD.setFuncionTransferencia("");
+                seguimientoD.setIdSolicitud(seguimiento.getIdSolicitud());
+                seguimientoD.setFormularioActual(solicitudPrimaria.getIdFormulario());
+                seguimientoSolicitudDAO.create(seguimientoD);
+
+                for (int i = 1; i < respuesta.getSolicitudes().size(); i++) {
+                    Solicitud solicitudHija = respuesta.getSolicitudes().get(i);
+                    SeguimientoSolicitud seguimientoNueva = new SeguimientoSolicitud();
+                    seguimientoNueva.setIdProceso(solicitudHija.getIdProceso());
+                    seguimientoNueva.setNumeroTramite(solicitudHija.getNumeroTramite());
+                    seguimientoNueva.setFechaInicio(timestamp);
+                    Catalogo inicio = catalogoDAO.obtenerCatalogoPorNemonico("SOLINI");
+                    seguimientoNueva.setEstado(inicio);
+                    seguimientoNueva.setUsuario(solicitudHija.getUsuarioCreacion().getIdentificacion());
+                    seguimientoNueva.setVariables("");
+                    seguimientoNueva.setFuncionTransferencia("");
+                    seguimientoNueva.setIdSolicitud(solicitudHija);
+                    seguimientoSolicitudDAO.create(seguimientoNueva);
+
+                    SeguimientoSolicitud seguimientoD2 = new SeguimientoSolicitud();
+                    seguimientoD2.setIdProceso(solicitudHija.getIdProceso());
+                    seguimientoD2.setNumeroTramite(solicitudHija.getNumeroTramite());
+                    seguimientoD2.setFechaInicio(timestamp);
+                    seguimientoD2.setEstado(creado);
+                    seguimientoD2.setUsuario("");
+                    seguimientoD2.setVariables("");
+                    seguimientoD2.setFuncionTransferencia("");
+                    seguimientoD2.setIdSolicitud(solicitudHija);
+                    seguimientoD2.setFormularioActual(solicitudHija.getIdFormulario());
+                    seguimientoSolicitudDAO.create(seguimientoD2);
+                }
+            }
+
+            if (ft.getEvaluarUnion()) {
+                Solicitud solicitudActual = respuesta.getSolicitudes().get(0);
+                if (solicitudActual.getEstadoSolicitud().getNemonico().equals("SOLATE")) {
+                    List<SeguimientoSolicitud> listaSeguimiento = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(solicitudActual.getIdSolicitud());
+                    SeguimientoSolicitud seguimientoActual = listaSeguimiento.get(listaSeguimiento.size()-1);
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    seguimientoActual.setFechaFin(timestamp);
+                    Catalogo atentido = catalogoDAO.obtenerCatalogoPorNemonico("SOLATE");
+                    seguimientoActual.setEstado(atentido);
+                    seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
+                    seguimientoActual.setVariables(variables.toString());
+                    seguimientoActual.setFuncionTransferencia(ft.toString());
+                    seguimientoSolicitudDAO.update(seguimientoActual);
+                }
+
+                if (solicitudActual.getEstadoSolicitud().getNemonico().equals("SOLFIN")) {
+                    List<SeguimientoSolicitud> listaSeguimiento = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(solicitudActual.getIdSolicitud());
+                    SeguimientoSolicitud seguimientoActual = listaSeguimiento.get(listaSeguimiento.size()-1);
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    seguimientoActual.setFechaFin(timestamp);
+                    Catalogo atentido = catalogoDAO.obtenerCatalogoPorNemonico("SOLFIN");
+                    seguimientoActual.setEstado(atentido);
+                    seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
+                    seguimientoActual.setVariables(variables.toString());
+                    seguimientoActual.setFuncionTransferencia(ft.toString());
+                    seguimientoSolicitudDAO.update(seguimientoActual);
+                }
+
+                if (solicitudActual.getEstadoSolicitud().getNemonico().equals("SOLPEN")) {
+                    List<SeguimientoSolicitud> listaSeguimiento = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(solicitudActual.getIdSolicitud());
+                    SeguimientoSolicitud seguimientoActual = listaSeguimiento.get(listaSeguimiento.size()-1);
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    seguimientoActual.setFechaFin(timestamp);
+                    Catalogo atentido = catalogoDAO.obtenerCatalogoPorNemonico("SOLATE");
+                    seguimientoActual.setEstado(atentido);
+                    seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
+                    seguimientoActual.setVariables(variables.toString());
+                    seguimientoActual.setFuncionTransferencia(ft.toString());
+                    seguimientoActual.setFormularioSiguiente(solicitudActual.getIdFormulario());
+                    seguimientoSolicitudDAO.update(seguimientoActual);
+
+                    SeguimientoSolicitud seguimientoD = new SeguimientoSolicitud();
+                    seguimientoD.setIdProceso(solicitudActual.getIdProceso());
+                    seguimientoD.setNumeroTramite(solicitudActual.getNumeroTramite());
+                    seguimientoD.setFechaInicio(timestamp);
+                    Catalogo pendiente = catalogoDAO.obtenerCatalogoPorNemonico("SOLPEN");
+                    seguimientoD.setEstado(pendiente);
+                    seguimientoD.setUsuario("");
+                    seguimientoD.setVariables("");
+                    seguimientoD.setFuncionTransferencia("");
+                    seguimientoD.setIdSolicitud(solicitudActual);
+                    seguimientoD.setFormularioActual(solicitudActual.getIdFormulario());
+                    seguimientoSolicitudDAO.create(seguimientoD);
+                }
+            }
 
             return true;
         } catch (Exception e) {
@@ -211,9 +354,9 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         solicitud.setIdFormulario(formularioDAO.obtenerFormulariosPorIdProceso(proceso.getIdProceso()).get(0));
         Usuario usuario = usuarioDAO.obtenerUsuarioPorIdentificacion(usuarioCreacion);
         solicitud.setUsuarioCreacion(usuario);
-        solicitud.setEstadoSolicitud(catalogoDAO.obtenerCatalogoPorNemonico("SOLACT"));
+        solicitud.setEstadoSolicitud(catalogoDAO.obtenerCatalogoPorNemonico("SOLPEN"));
         solicitudDAO.create(solicitud);
-        
+
         // Variables
         if (variables != null && variables.size() > 0) {
             for (Variable var : variables) {
@@ -224,7 +367,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         }
 
         // Seguimiento
-        System.out.println("Solicitud: " + solicitud.getIdSolicitud());
+        System.out.println("solicitud: " + solicitud.getIdSolicitud());
         SeguimientoSolicitud seguimiento = new SeguimientoSolicitud();
         seguimiento.setIdProceso(proceso);
         seguimiento.setNumeroTramite(numeroTramite);
@@ -237,19 +380,20 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         seguimiento.setFuncionTransferencia("");
         seguimiento.setIdSolicitud(solicitud);
         seguimientoSolicitudDAO.create(seguimiento);
-        
+
         SeguimientoSolicitud seguimientoD = new SeguimientoSolicitud();
         seguimientoD.setIdProceso(proceso);
         seguimientoD.setNumeroTramite(numeroTramite);
         seguimientoD.setFechaInicio(timestamp);
-        Catalogo creado = catalogoDAO.obtenerCatalogoPorNemonico("SOLCRE");
+        Catalogo creado = catalogoDAO.obtenerCatalogoPorNemonico("SOLPEN");
         seguimientoD.setEstado(creado);
         seguimientoD.setUsuario("");
         seguimientoD.setVariables("");
         seguimientoD.setFuncionTransferencia("");
         seguimientoD.setIdSolicitud(solicitud);
+        seguimientoD.setFormularioActual(solicitud.getIdFormulario());
         seguimientoSolicitudDAO.create(seguimientoD);
-        
+
         return numeroTramite;
     }
 

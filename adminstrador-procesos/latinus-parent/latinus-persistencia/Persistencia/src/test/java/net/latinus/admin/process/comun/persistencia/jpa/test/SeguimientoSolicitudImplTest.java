@@ -73,4 +73,11 @@ public class SeguimientoSolicitudImplTest {
         System.out.println("--> " + listaSeguimientoSolicitud.size());
     }
     
+    @Test
+    @Ignore
+    public void obtenerSeguimientoPorSolicitud() {
+        List<SeguimientoSolicitud> listaSeguimientoSolicitud = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(6);
+        System.out.println("--> " + listaSeguimientoSolicitud.size());
+    }
+    
 }

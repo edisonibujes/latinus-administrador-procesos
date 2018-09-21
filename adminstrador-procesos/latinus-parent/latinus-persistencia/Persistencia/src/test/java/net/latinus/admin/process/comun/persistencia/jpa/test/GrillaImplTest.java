@@ -35,9 +35,7 @@ public class GrillaImplTest {
     public void crearGrilla() {
         Grilla grilla = new Grilla();
         grilla.setEstadoActual(formularioDAO.read(4));
-        grilla.setEstadoAnterior(formularioDAO.read(3));
         grilla.setFuncionTransferencia("(Sin condicion X)");
-        grilla.setEstadoSiguiente(formularioDAO.read(6));
         grillaDAO.create(grilla);
     }
 

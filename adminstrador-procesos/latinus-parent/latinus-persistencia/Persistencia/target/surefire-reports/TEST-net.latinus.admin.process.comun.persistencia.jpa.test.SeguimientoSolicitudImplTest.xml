@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" time="2.236" errors="0" skipped="4">
+<testsuite tests="6" failures="0" name="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" time="0.032" errors="0" skipped="6">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>
@@ -67,14 +67,19 @@
   <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="eliminarSeguimientoSolicitud" time="0">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="crearSeguimientoSolicitud" time="0.003">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="crearSeguimientoSolicitud" time="0">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="leerSeguimientoSolicitud" time="0.003">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="leerSeguimientoSolicitud" time="0">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="actualizarSeguimientoSolicitud" time="0.003">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="actualizarSeguimientoSolicitud" time="0">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="obtenerSeguimientoPorProcesoTramite" time="2.112"/>
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="obtenerSeguimientoPorProcesoTramite" time="0">
+    <skipped/>
+  </testcase>
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.SeguimientoSolicitudImplTest" name="obtenerSeguimientoPorSolicitud" time="0">
+    <skipped/>
+  </testcase>
 </testsuite>

@@ -46,14 +46,12 @@ public class OperacionesImplTest {
     @Test
     @Ignore
     public void obtenerEstadoSiguiente() {
-        Solicitud solicitud = solicitudDAO.read(9);
+        Solicitud solicitud = solicitudDAO.read(33);
         List<Variable> variables = variableDAO.obtenerVariablesPorIdProcesoNumeroTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite());
         
         for (Variable var: variables){
             if (var.getNombre().equals("a")){
-                var.setValor(1);
-            }else{
-                var.setValor(0);
+                var.setValor(100);
             }
         }
         
@@ -69,7 +67,7 @@ public class OperacionesImplTest {
         var.setValor(0);
         variables.add(var);
   
-        Integer numTramite = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
+        Integer numTramite = operacionesDAO.crearSolicitud("Certificado bancario", variables, "1721889515");
         System.out.println(numTramite);
     }
 

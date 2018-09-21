@@ -62,7 +62,15 @@ public class SeguimientoSolicitud implements Serializable {
 
     @Column(name = "funcion_transferencia")
     private String funcionTransferencia;
-
+    
+    @JoinColumn(name = "formulario_actual", referencedColumnName = "id_formulario")
+    @ManyToOne
+    private Formulario formularioActual;
+    
+    @JoinColumn(name = "formulario_siguiente", referencedColumnName = "id_formulario")
+    @ManyToOne
+    private Formulario formularioSiguiente;
+    
     public SeguimientoSolicitud() {
 
     }
@@ -147,9 +155,25 @@ public class SeguimientoSolicitud implements Serializable {
         this.idSolicitud = idSolicitud;
     }
 
-    @Override
-    public String toString() {
-        return "SeguimientoSolicitud{" + "idSeguimientoSolicitud=" + idSeguimientoSolicitud + ", idProceso=" + idProceso + ", numeroTramite=" + numeroTramite + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", usuario=" + usuario + ", variables=" + variables + ", funcionTransferencia=" + funcionTransferencia + '}';
+    public Formulario getFormularioActual() {
+        return formularioActual;
     }
 
+    public void setFormularioActual(Formulario formularioActual) {
+        this.formularioActual = formularioActual;
+    }
+
+    public Formulario getFormularioSiguiente() {
+        return formularioSiguiente;
+    }
+
+    public void setFormularioSiguiente(Formulario formularioSiguiente) {
+        this.formularioSiguiente = formularioSiguiente;
+    }
+
+    @Override
+    public String toString() {
+        return "SeguimientoSolicitud{" + "idSeguimientoSolicitud=" + idSeguimientoSolicitud + ", idSolicitud=" + idSolicitud + ", idProceso=" + idProceso + ", numeroTramite=" + numeroTramite + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", usuario=" + usuario + ", variables=" + variables + ", funcionTransferencia=" + funcionTransferencia + ", formularioActual=" + formularioActual + ", formularioSiguiente=" + formularioSiguiente + '}';
+    }
+    
 }

@@ -19,7 +19,10 @@ public class Condicionale {
     @SerializedName("idFormulario")
     @Expose
     private Integer idFormulario;
-
+    @SerializedName("estadoSolicitud")
+    @Expose
+    private String estadoSolicitud;
+    
     public String getNombre() {
         return nombre;
     }
@@ -52,9 +55,17 @@ public class Condicionale {
         this.idFormulario = idFormulario;
     }
 
+    public String getEstadoSolicitud() {
+        return estadoSolicitud;
+    }
+
+    public void setEstadoSolicitud(String estadoSolicitud) {
+        this.estadoSolicitud = estadoSolicitud;
+    }
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("nombre", nombre).append("valor", valor).append("operacion", operacion).append("idFormulario", idFormulario).toString();
+        return "Condicionale{" + "nombre=" + nombre + ", valor=" + valor + ", operacion=" + operacion + ", idFormulario=" + idFormulario + ", estadoSolicitud=" + estadoSolicitud + '}';
     }
 
 }

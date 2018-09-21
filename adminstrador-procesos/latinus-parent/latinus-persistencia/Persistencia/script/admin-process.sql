@@ -55,138 +55,113 @@ CONSTRAINT catalogo_padre_fkey FOREIGN KEY (catalogo_padre)
 );
 
 INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Estado Formulario', 'Indican el estado del formulario', 'ESTFOR', NULL);
+VALUES('Estado Solicitud', 'Indican el estado de la solicitud', 'ESTSOL', NULL);
 
 INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Creado', 'Creado', 'CRE', 1);
+VALUES('Inicio', 'Inicio', 'SOLINI', 1);
 
 INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Tramite', 'Tramite', 'TRA', 1);
-    
-INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Finalizado', 'Finalizado', 'FIN', 1);
+VALUES('Pendiente', 'Pendiente', 'SOLPEN', 1);
 
 INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Estado Solicitud', 'Indican el estado del formulario', 'ESTSOL', NULL);
+VALUES('Atendido', 'Atendido', 'SOLATE', 1);
 
 INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Activo', 'Activo', 'SOLACT', 5);
-
-INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Pendiente', 'Pendiente', 'SOLPEN', 5);
-
-INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Atendido', 'Atendido', 'SOLATE', 5);
-
-INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Inicio', 'Inicio', 'SOLINI', 5);
-
-INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Creado', 'Creado', 'SOLCRE', 5);
-
-INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Completado', 'Completado', 'SOLCOM', 5);
-
-INSERT INTO public.catalogo(nombre, descripcion, nemonico, catalogo_padre)
-VALUES('Finalizado', 'Finalizado', 'SOLFIN', 5);
+VALUES('Finalizado', 'Finalizado', 'SOLFIN', 1);
 
 CREATE TABLE "formulario" (
 "id_formulario" bigserial Primary Key,
 "id_proceso" int8,
 "nombre" varchar(250) COLLATE "default",
 "descripcion" varchar(500) COLLATE "default",
-"estado_solicitud" int8,
 CONSTRAINT id_proceso_fkey FOREIGN KEY (id_proceso)
       REFERENCES public.proceso (id_proceso) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE CASCADE,
-CONSTRAINT estado_solicitud_fkey FOREIGN KEY (estado_solicitud)
-      REFERENCES public.catalogo (id_catalogo) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (1, 'A', 'Solicitud', 2);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'A', 'Solicitud');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (1, 'B', 'Entrega de documentos', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'B', 'Entrega de documentos');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (1, 'C', 'Validacion de documentos', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'C', 'Validacion de documentos');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (1, 'D', 'Pago del trámite', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'D', 'Pago del trámite');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (1, 'E', 'Entrega de la certificación ', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'E', 'Entrega de la certificación ');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (1, 'F', 'Notificacion', 4);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (1, 'F', 'Notificacion');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (2, 'A', 'Solicitud', 2);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (2, 'A', 'Solicitud');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (2, 'B', 'Entrega de documentos', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (2, 'B', 'Entrega de documentos');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (2, 'C', 'Validacion de documentos', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (2, 'C', 'Validacion de documentos');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (2, 'D', 'Pago del trámite', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (2, 'D', 'Pago del trámite');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (2, 'E', 'Entrega de la certificación', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (2, 'E', 'Entrega de la certificación');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (2, 'F', 'Notificacion', 4);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (2, 'F', 'Notificacion');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (3, 'A', 'Solicitud', 2);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (3, 'A', 'Solicitud');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (3, 'B', 'Entrega de documentos', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (3, 'B', 'Entrega de documentos');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (3, 'C', 'Validacion de documentos', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (3, 'C', 'Validacion de documentos');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (3, 'D', 'Pago del trámite', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (3, 'D', 'Pago del trámite');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (3, 'E', 'Revisión Economico', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (3, 'E', 'Revisión Economico');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (3, 'F', 'Entrega de la certificación', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (3, 'F', 'Entrega de la certificación');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (3, 'G', 'Notificacion', 4);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (3, 'G', 'Notificacion');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'A', 'A', 2);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'A', 'A');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'B', 'B', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'B', 'B');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'C', 'C', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'C', 'C');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'D', 'D', 4);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'D', 'D');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'N1', 'N1', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'N1', 'N1');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'N2', 'N2', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'N2', 'N2');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'N3', 'N3', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'N3', 'N3');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'N4', 'N4', 3);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'N4', 'N4');
 
-INSERT INTO public.formulario(id_proceso, nombre, descripcion, estado_solicitud)
-    VALUES (4, 'N', 'N', 4);
+INSERT INTO public.formulario(id_proceso, nombre, descripcion)
+    VALUES (4, 'N', 'N');
                                     
 CREATE TABLE "usuario" (
 "id_usuario" bigserial Primary Key,
@@ -231,52 +206,44 @@ CREATE TABLE "grilla" (
 "id_grilla" bigserial Primary Key,
 "id_proceso" int8,
 "estado_actual" int8,
-"estado_anterior" int8,
 "funcion_transferencia" varchar(3000) COLLATE "default",
-"estado_siguiente" int8,
 CONSTRAINT id_proces_fkey FOREIGN KEY (id_proceso)
       REFERENCES public.proceso (id_proceso) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE,
 CONSTRAINT estado_actual_fkey FOREIGN KEY (estado_actual)
       REFERENCES public.formulario (id_formulario) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE CASCADE,
-CONSTRAINT estado_anterior_fkey FOREIGN KEY (estado_anterior)
-      REFERENCES public.formulario (id_formulario) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE CASCADE,
-CONSTRAINT estado_siguiente_fkey FOREIGN KEY (estado_siguiente)
-      REFERENCES public.formulario (id_formulario) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (1, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":2}],"evaluarCondicional":true}', 1);
+    VALUES (1, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":2,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (2, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":3}],"evaluarCondicional":true}', 1);
+    VALUES (2, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":3,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (3, '{"condicionales":[{"nombre":"a","valor":30,"operacion":"\u003e","idFormulario":4},{"nombre":"a","valor":31,"operacion":"\u003c","idFormulario":5}],"evaluarCondicional":true}', 1);
+    VALUES (3, '{"condicionales":[{"nombre":"a","valor":30,"operacion":"\u003e","idFormulario":4,"estadoSolicitud":"SOLPEN"},{"nombre":"a","valor":31,"operacion":"\u003c","idFormulario":5,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (4, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":6}],"evaluarCondicional":true}', 1);
+    VALUES (4, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":6,"estadoSolicitud":"SOLFIN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (5, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":6}],"evaluarCondicional":true}', 1);
+    VALUES (5, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":6,"estadoSolicitud":"SOLFIN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (7, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":8}],"evaluarCondicional":true}', 2);
+    VALUES (7, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":8,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 2);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (8, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":9}],"evaluarCondicional":true}', 2);
+    VALUES (8, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":9,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 2);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (9, '{"evaluarParalelo":true,"paralelo":{"idFormularioSiguiente":10,"hijosDto":[{"idFormulario":11}]}}', 2);
+    VALUES (9, '{"evaluarCondicional":false,"evaluarParalelo":true,"paralelo":{"idFormularioSiguiente":10,"hijosDto":[{"idFormulario":11}]},"evaluarUnion":false}', 2);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (10, '{"evaluarUnion":true,"union":{"formulariosUnidos":[10,11],"idFormularioSiguiente":12}}', 2);
+    VALUES (10, '{"evaluarCondicional":false,"evaluarParalelo":false,"evaluarUnion":true,"union":{"formulariosUnidos":[10,11],"idFormularioSiguiente":12,"estadoSolicitud":"SOLFIN"}}', 2);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (11, '{"evaluarUnion":true,"union":{"formulariosUnidos":[10,11],"idFormularioSiguiente":12}}', 2);
+    VALUES (11, '{"evaluarCondicional":false,"evaluarParalelo":false,"evaluarUnion":true,"union":{"formulariosUnidos":[10,11],"idFormularioSiguiente":12,"estadoSolicitud":"SOLFIN"}}', 2);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
     VALUES (13, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":14}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
@@ -393,6 +360,8 @@ CREATE TABLE "seguimiento_solicitud"
   usuario character varying(50),
   variables character varying(2000),
   funcion_transferencia character varying(2000),
+  formulario_actual int8,
+  formulario_siguiente int8,
   CONSTRAINT fk_id_solicitud FOREIGN KEY (id_solicitud)
       REFERENCES public.solicitud (id_solicitud) MATCH SIMPLE
     ON UPDATE NO ACTION ON DELETE CASCADE,
@@ -401,7 +370,13 @@ CREATE TABLE "seguimiento_solicitud"
     ON UPDATE NO ACTION ON DELETE CASCADE,
   CONSTRAINT fk_estado FOREIGN KEY (estado)
       REFERENCES public.catalogo (id_catalogo) MATCH SIMPLE
-    ON UPDATE NO ACTION ON DELETE CASCADE
+    ON UPDATE NO ACTION ON DELETE CASCADE,
+  CONSTRAINT formulario_actual_fkey FOREIGN KEY (formulario_actual)
+      REFERENCES public.formulario (id_formulario) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE,
+  CONSTRAINT formulario_siguiente_fkey FOREIGN KEY (formulario_siguiente)
+      REFERENCES public.formulario (id_formulario) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
 ALTER SEQUENCE "evento_id_evento_seq" OWNED BY "evento"."id_evento";

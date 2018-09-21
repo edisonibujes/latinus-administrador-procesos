@@ -43,23 +43,11 @@ public class Formulario implements Serializable {
     @ManyToOne
     private Proceso idProceso;
 
-    @JoinColumn(name = "estado_solicitud", referencedColumnName = "id_catalogo")
-    @ManyToOne
-    private Catalogo estadoSolicitud;
-    
     public Formulario() {
     }
 
     public Formulario(Long idFormulario) {
         this.idFormulario = idFormulario;
-    }
-
-    public Catalogo getEstadoSolicitud() {
-        return estadoSolicitud;
-    }
-
-    public void setEstadoSolicitud(Catalogo estadoSolicitud) {
-        this.estadoSolicitud = estadoSolicitud;
     }
 
     public Long getIdFormulario() {
@@ -96,7 +84,7 @@ public class Formulario implements Serializable {
 
     @Override
     public String toString() {
-        return "Formulario{" + "idFormulario=" + idFormulario + ", nombre=" + nombre + ", descripcion=" + descripcion + ", idProceso=" + idProceso + ", estadoSolicitud=" + estadoSolicitud + '}';
+        return "Formulario{" + "idFormulario=" + idFormulario + ", nombre=" + nombre + ", descripcion=" + descripcion + ", idProceso=" + idProceso + '}';
     }
 
 }

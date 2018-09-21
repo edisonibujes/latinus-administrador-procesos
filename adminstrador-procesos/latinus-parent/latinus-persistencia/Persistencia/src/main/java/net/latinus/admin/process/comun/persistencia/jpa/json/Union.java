@@ -17,6 +17,10 @@ public class Union {
     @Expose
     private Integer idFormularioSiguiente;
 
+    @SerializedName("estadoSolicitud")
+    @Expose
+    private String estadoSolicitud;
+    
     public Integer getIdFormularioSiguiente() {
         return idFormularioSiguiente;
     }
@@ -33,9 +37,17 @@ public class Union {
         this.formulariosUnidos = formulariosUnidos;
     }
 
+    public String getEstadoSolicitud() {
+        return estadoSolicitud;
+    }
+
+    public void setEstadoSolicitud(String estadoSolicitud) {
+        this.estadoSolicitud = estadoSolicitud;
+    }
+
     @Override
     public String toString() {
-        return "Union{" + "formulariosUnidos=" + formulariosUnidos + ", idFormularioSiguiente=" + idFormularioSiguiente + '}';
+        return "Union{" + "formulariosUnidos=" + formulariosUnidos + ", idFormularioSiguiente=" + idFormularioSiguiente + ", estadoSolicitud=" + estadoSolicitud + '}';
     }
     
 }

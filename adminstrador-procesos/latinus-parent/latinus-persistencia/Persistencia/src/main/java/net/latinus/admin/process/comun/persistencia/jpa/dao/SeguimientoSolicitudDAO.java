@@ -11,4 +11,6 @@ public interface SeguimientoSolicitudDAO extends GenericoDAO<SeguimientoSolicitu
      
     public List<SeguimientoSolicitud> obtenerSeguimientoPorProcesoTramite(Integer idProceso, Integer numeroTramite);
     
+    public List<SeguimientoSolicitud> obtenerSeguimientoPorSolicitud(Integer idSolicitud);
+    
 }

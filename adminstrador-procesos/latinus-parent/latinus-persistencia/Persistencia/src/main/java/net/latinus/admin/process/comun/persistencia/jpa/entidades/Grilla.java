@@ -45,14 +45,6 @@ public class Grilla implements Serializable {
     @ManyToOne
     private Proceso idProceso;
     
-    @JoinColumn(name = "estado_anterior", referencedColumnName = "id_formulario")
-    @ManyToOne
-    private Formulario estadoAnterior;
-    
-    @JoinColumn(name = "estado_siguiente", referencedColumnName = "id_formulario")
-    @ManyToOne
-    private Formulario estadoSiguiente;
-
     public Grilla() {
     }
 
@@ -80,22 +72,6 @@ public class Grilla implements Serializable {
         this.estadoActual = estadoActual;
     }
 
-    public Formulario getEstadoAnterior() {
-        return estadoAnterior;
-    }
-
-    public void setEstadoAnterior(Formulario estadoAnterior) {
-        this.estadoAnterior = estadoAnterior;
-    }
-
-    public Formulario getEstadoSiguiente() {
-        return estadoSiguiente;
-    }
-
-    public void setEstadoSiguiente(Formulario estadoSiguiente) {
-        this.estadoSiguiente = estadoSiguiente;
-    }
-
     public Proceso getIdProceso() {
         return idProceso;
     }
@@ -106,7 +82,7 @@ public class Grilla implements Serializable {
 
     @Override
     public String toString() {
-        return "Grilla{" + "idGrilla=" + idGrilla + ", funcionTransferencia=" + funcionTransferencia + ", estadoActual=" + estadoActual + ", estadoAnterior=" + estadoAnterior + ", estadoSiguiente=" + estadoSiguiente + '}';
+        return "Grilla{" + "idGrilla=" + idGrilla + ", funcionTransferencia=" + funcionTransferencia + ", estadoActual=" + estadoActual + ", idProceso=" + idProceso + '}';
     }
 
 }

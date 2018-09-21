@@ -10,12 +10,14 @@ import net.latinus.admin.process.comun.persistencia.jpa.entidades.Catalogo;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
-import org.apache.commons.lang.builder.ToStringBuilder;
+
 
 public class FuncionTransferencia {
 
-    private Catalogo SolicitudActiva;
-    private Catalogo SolicitudAtentidad;
+    private Catalogo SolicitudInicio;
+    private Catalogo SolicitudPendiente;
+    private Catalogo SolicitudAtendido;
+    private Catalogo SolicitudFinalizado;
 
     @SerializedName("condicionales")
     @Expose
@@ -40,10 +42,10 @@ public class FuncionTransferencia {
     @SerializedName("union")
     @Expose
     private Union union;
-
+    
     public FuncionTransferencia() {
-        //cargarEstados();
-        cargarDatosN4();
+        cargarEstados();
+        //cargarDatosE2();
     }
 
     public static void main(String[] args) {
@@ -57,8 +59,7 @@ public class FuncionTransferencia {
         RespuestaFuncionDto respuestaFuncionDto = new RespuestaFuncionDto();
         if (evaluarCondicional) {
             Solicitud solicitud = solicitudes.get(0);
-            for (Variable var : variables) {
-                System.out.println("Var:" + var);
+            for (Variable var : variables) {                
                 for (Condicionale condicionalDto : condicionales) {
                     if (condicionalDto.getNombre().equals(var.getNombre())) {
                         boolean b = compararValor(var.getValor(), condicionalDto);
@@ -66,6 +67,7 @@ public class FuncionTransferencia {
                             Formulario formulario = new Formulario();
                             formulario.setIdFormulario(condicionalDto.getIdFormulario().longValue());
                             solicitud.setIdFormulario(formulario);
+                            solicitud.setEstadoSolicitud(obtenerSolicitudNemonico(condicionalDto.getEstadoSolicitud()));
                             respuestaFuncionDto.getSolicitudes().add(solicitud);
                             respuestaFuncionDto.setVariables(variables);
                             System.out.println("respuestaFuncionDto: " + respuestaFuncionDto);
@@ -94,15 +96,16 @@ public class FuncionTransferencia {
 
         if (evaluarUnion) {
             Boolean continuar = true;
-            solicitudes.get(0).setEstadoSolicitud(SolicitudAtentidad);
+            solicitudes.get(0).setEstadoSolicitud(SolicitudAtendido);
             for (Solicitud sol : solicitudes) {
                 if (sol.getEstadoSolicitud().getNemonico().equals("SOLATE") && solicitudContenidaLista(sol, union.getFormulariosUnidos())) {
                 } else {
                     continuar = false;
                 }
             }
+            
             if (continuar) {
-                solicitudes.get(0).setEstadoSolicitud(SolicitudActiva);
+                solicitudes.get(0).setEstadoSolicitud(obtenerSolicitudNemonico(union.getEstadoSolicitud()));
                 solicitudes.get(0).setIdFormulario(new Formulario(union.getIdFormularioSiguiente().longValue()));
                 respuestaFuncionDto.getSolicitudes().add(solicitudes.get(0));
             } else {
@@ -113,6 +116,16 @@ public class FuncionTransferencia {
         return respuestaFuncionDto;
     }
 
+    private Catalogo obtenerSolicitudNemonico(String nemonico){
+        if (SolicitudPendiente.getNemonico().equals(nemonico)){
+            return SolicitudPendiente;
+        }
+        if (SolicitudFinalizado.getNemonico().equals(nemonico)){
+            return SolicitudFinalizado;
+        }
+        return null;
+    }
+    
     private boolean solicitudContenidaLista(Solicitud solicitud, List<Integer> idFormularios) {
         Boolean pertenece = false;
         for (Integer id : idFormularios) {
@@ -166,17 +179,29 @@ public class FuncionTransferencia {
     }
 
     public void cargarEstados() {
-        SolicitudActiva = new Catalogo();
-        SolicitudActiva.setIdCatalogo(6L);
-        SolicitudActiva.setNombre("Activo");
-        SolicitudActiva.setDescripcion("Activo");
-        SolicitudActiva.setNemonico("SOLACT");
-
-        SolicitudAtentidad = new Catalogo();
-        SolicitudAtentidad.setIdCatalogo(8L);
-        SolicitudAtentidad.setNombre("Atendido");
-        SolicitudAtentidad.setDescripcion("Atendido");
-        SolicitudAtentidad.setNemonico("SOLATE");
+        SolicitudInicio = new Catalogo();
+        SolicitudInicio.setIdCatalogo(2L);
+        SolicitudInicio.setNombre("Inicio");
+        SolicitudInicio.setDescripcion("Inicio");
+        SolicitudInicio.setNemonico("SOLINI");
+        
+        SolicitudPendiente = new Catalogo();
+        SolicitudPendiente.setIdCatalogo(3L);
+        SolicitudPendiente.setNombre("Pendiente");
+        SolicitudPendiente.setDescripcion("Pendiente");
+        SolicitudPendiente.setNemonico("SOLPEN");
+        
+        SolicitudAtendido = new Catalogo();
+        SolicitudAtendido.setIdCatalogo(4L);
+        SolicitudAtendido.setNombre("Atendido");
+        SolicitudAtendido.setDescripcion("Atendido");
+        SolicitudAtendido.setNemonico("SOLATE");
+        
+        SolicitudFinalizado = new Catalogo();
+        SolicitudFinalizado.setIdCatalogo(5L);
+        SolicitudFinalizado.setNombre("Finalizado");
+        SolicitudFinalizado.setDescripcion("Finalizado");
+        SolicitudFinalizado.setNemonico("SOLFIN");
     }
 
     public void cargarDatosA() {
@@ -186,6 +211,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("true");
         condicional.setValor(-1);
         condicional.setIdFormulario(2);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -197,6 +223,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("true");
         condicional.setValor(-1);
         condicional.setIdFormulario(3);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -208,6 +235,7 @@ public class FuncionTransferencia {
         condicional.setOperacion(">");
         condicional.setValor(30);
         condicional.setIdFormulario(4);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
 
         condicional = new Condicionale();
@@ -215,6 +243,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("<");
         condicional.setValor(31);
         condicional.setIdFormulario(5);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -226,6 +255,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("true");
         condicional.setValor(-1);
         condicional.setIdFormulario(6);
+        condicional.setEstadoSolicitud("SOLFIN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -237,6 +267,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("true");
         condicional.setValor(-1);
         condicional.setIdFormulario(6);
+        condicional.setEstadoSolicitud("SOLFIN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -248,6 +279,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("true");
         condicional.setValor(-1);
         condicional.setIdFormulario(8);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -259,6 +291,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("true");
         condicional.setValor(-1);
         condicional.setIdFormulario(9);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -277,6 +310,7 @@ public class FuncionTransferencia {
         union.setIdFormularioSiguiente(12);
         union.getFormulariosUnidos().add(10);
         union.getFormulariosUnidos().add(11);
+        union.setEstadoSolicitud("SOLFIN");
         evaluarUnion = true;
     }
 
@@ -285,6 +319,7 @@ public class FuncionTransferencia {
         union.setIdFormularioSiguiente(12);
         union.getFormulariosUnidos().add(10);
         union.getFormulariosUnidos().add(11);
+        union.setEstadoSolicitud("SOLFIN");
         evaluarUnion = true;
     }
 
@@ -598,22 +633,6 @@ public class FuncionTransferencia {
 
     public void setUnion(Union union) {
         this.union = union;
-    }
-
-    public Catalogo getSolicitudActiva() {
-        return SolicitudActiva;
-    }
-
-    public void setSolicitudActiva(Catalogo SolicitudActiva) {
-        this.SolicitudActiva = SolicitudActiva;
-    }
-
-    public Catalogo getSolicitudAtentidad() {
-        return SolicitudAtentidad;
-    }
-
-    public void setSolicitudAtentidad(Catalogo SolicitudAtentidad) {
-        this.SolicitudAtentidad = SolicitudAtentidad;
     }
 
     @Override

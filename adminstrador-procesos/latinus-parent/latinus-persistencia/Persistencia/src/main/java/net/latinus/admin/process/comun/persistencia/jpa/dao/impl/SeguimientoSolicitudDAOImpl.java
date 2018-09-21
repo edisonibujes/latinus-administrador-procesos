@@ -26,4 +26,16 @@ public class SeguimientoSolicitudDAOImpl extends GenericoDAOImpl<SeguimientoSoli
         return listaSeguimientoSolicitud;
     }
 
+    public List<SeguimientoSolicitud> obtenerSeguimientoPorSolicitud(Integer idSolicitud) {
+        List<SeguimientoSolicitud> listaSeguimientoSolicitud;
+        try {
+            Query query = this.em.createQuery("SELECT ss FROM SeguimientoSolicitud ss WHERE ss.idSolicitud.idSolicitud = :idSolicitud");
+            query.setParameter("idSolicitud", idSolicitud);
+            listaSeguimientoSolicitud = query.getResultList();
+        } catch (Exception e) {
+            e.printStackTrace();
+            listaSeguimientoSolicitud = null;
+        }
+        return listaSeguimientoSolicitud;
+    }
 }

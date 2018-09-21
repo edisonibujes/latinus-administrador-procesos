@@ -246,22 +246,22 @@ INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
     VALUES (11, '{"evaluarCondicional":false,"evaluarParalelo":false,"evaluarUnion":true,"union":{"formulariosUnidos":[10,11],"idFormularioSiguiente":12,"estadoSolicitud":"SOLFIN"}}', 2);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (13, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":14}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
+    VALUES (13, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":14,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (14, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":15}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
+    VALUES (14, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":15,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (15, '{"condicionales":[{"nombre":"a","valor":30,"operacion":"\u003e","idFormulario":16},{"nombre":"a","valor":31,"operacion":"\u003c","idFormulario":17}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
+    VALUES (15, '{"condicionales":[{"nombre":"a","valor":30,"operacion":"\u003e","idFormulario":16,"estadoSolicitud":"SOLPEN"},{"nombre":"a","valor":31,"operacion":"\u003c","idFormulario":17,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (16, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":18}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
+    VALUES (16, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":18,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (17, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":18}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
+    VALUES (17, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":18,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (18, '{"condicionales":[{"nombre":"subsana","valor":0,"operacion":"\u003d\u003d","idFormulario":19},{"nombre":"subsana","valor":1,"operacion":"\u003d\u003d","idFormulario":14}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
+    VALUES (18, '{"condicionales":[{"nombre":"subsana","valor":0,"operacion":"\u003d\u003d","idFormulario":19,"estadoSolicitud":"SOLFIN"},{"nombre":"subsana","valor":1,"operacion":"\u003d\u003d","idFormulario":14,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 3);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
     VALUES (20, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":21}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 4);

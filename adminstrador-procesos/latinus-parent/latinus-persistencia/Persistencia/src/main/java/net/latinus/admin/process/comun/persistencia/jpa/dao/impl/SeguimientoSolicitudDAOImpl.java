@@ -15,7 +15,7 @@ public class SeguimientoSolicitudDAOImpl extends GenericoDAOImpl<SeguimientoSoli
     public List<SeguimientoSolicitud> obtenerSeguimientoPorProcesoTramite(Integer idProceso, Integer numeroTramite) {
         List<SeguimientoSolicitud> listaSeguimientoSolicitud;
         try {
-            Query query = this.em.createQuery("SELECT ss FROM SeguimientoSolicitud ss WHERE ss.idProceso.idProceso = :idProceso and ss.numeroTramite = :numeroTramite");
+            Query query = this.em.createQuery("SELECT ss FROM SeguimientoSolicitud ss WHERE ss.idProceso.idProceso = :idProceso and ss.numeroTramite = :numeroTramite ORDER BY ss.idSeguimientoSolicitud ASC" );
             query.setParameter("idProceso", idProceso);
             query.setParameter("numeroTramite", numeroTramite);
             listaSeguimientoSolicitud = query.getResultList();
@@ -29,7 +29,7 @@ public class SeguimientoSolicitudDAOImpl extends GenericoDAOImpl<SeguimientoSoli
     public List<SeguimientoSolicitud> obtenerSeguimientoPorSolicitud(Integer idSolicitud) {
         List<SeguimientoSolicitud> listaSeguimientoSolicitud;
         try {
-            Query query = this.em.createQuery("SELECT ss FROM SeguimientoSolicitud ss WHERE ss.idSolicitud.idSolicitud = :idSolicitud");
+            Query query = this.em.createQuery("SELECT ss FROM SeguimientoSolicitud ss WHERE ss.idSolicitud.idSolicitud = :idSolicitud ORDER BY ss.idSeguimientoSolicitud ASC");
             query.setParameter("idSolicitud", idSolicitud);
             listaSeguimientoSolicitud = query.getResultList();
         } catch (Exception e) {

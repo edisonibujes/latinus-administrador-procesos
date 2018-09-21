@@ -27,7 +27,7 @@ public class OperacionesImplTest {
     private OperacionesDAO operacionesDAO;
     private VariableDAO variableDAO;
     private SolicitudDAO solicitudDAO;
-    
+
     @Before
     public void setUp() {
         appContext = (ApplicationContext) new ClassPathXmlApplicationContext(APP_CONTEXT_DEV);
@@ -46,15 +46,15 @@ public class OperacionesImplTest {
     @Test
     @Ignore
     public void obtenerEstadoSiguiente() {
-        Solicitud solicitud = solicitudDAO.read(33);
+        Solicitud solicitud = solicitudDAO.read(37);
         List<Variable> variables = variableDAO.obtenerVariablesPorIdProcesoNumeroTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite());
-        
-        for (Variable var: variables){
-            if (var.getNombre().equals("a")){
-                var.setValor(100);
+
+        for (Variable var : variables) {
+            if (var.getNombre().equals("subsana")) {
+                var.setValor(0);
             }
         }
-        
+
         System.out.println(operacionesDAO.enviarSolicitud(variables, solicitud));
     }
 
@@ -66,8 +66,13 @@ public class OperacionesImplTest {
         var.setNombre("a");
         var.setValor(0);
         variables.add(var);
-  
-        Integer numTramite = operacionesDAO.crearSolicitud("Certificado bancario", variables, "1721889515");
+
+        Variable var2 = new Variable();
+        var2.setNombre("subsana");
+        var2.setValor(0);
+        variables.add(var2);
+        
+        Integer numTramite = operacionesDAO.crearSolicitud("Certificado de Concesión Minera", variables, "1721889515");
         System.out.println(numTramite);
     }
 

@@ -19,6 +19,7 @@
         <property name="operacionesDAO" ref="operacionesDAO"/>
         <property name="procesoDAO" ref="procesoDAO"/>
         <property name="solicitudDAO" ref="solicitudDAO"/>
+        <property name="seguimientoSolicitudDAO" ref="seguimientoSolicitudDAO"/>
         
     </bean>      
     

@@ -7,6 +7,9 @@ package net.latinus.admin.process.comun.persistencia.jpa.entidades;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +22,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "seguimiento_solicitud", schema = "public")
@@ -34,7 +38,7 @@ public class SeguimientoSolicitud implements Serializable {
     @JoinColumn(name = "id_solicitud", referencedColumnName = "id_solicitud")
     @ManyToOne
     private Solicitud idSolicitud;
-    
+
     @JoinColumn(name = "id_proceso", referencedColumnName = "id_proceso")
     @ManyToOne
     private Proceso idProceso;
@@ -45,6 +49,12 @@ public class SeguimientoSolicitud implements Serializable {
     @Column(name = "fecha_inicio")
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp fechaInicio;
+
+    @Transient
+    private String fechaInicioString;
+
+    @Transient
+    private String fechaFinString;
 
     @Column(name = "fecha_fin")
     @Temporal(TemporalType.TIMESTAMP)
@@ -62,15 +72,15 @@ public class SeguimientoSolicitud implements Serializable {
 
     @Column(name = "funcion_transferencia")
     private String funcionTransferencia;
-    
+
     @JoinColumn(name = "formulario_actual", referencedColumnName = "id_formulario")
     @ManyToOne
     private Formulario formularioActual;
-    
+
     @JoinColumn(name = "formulario_siguiente", referencedColumnName = "id_formulario")
     @ManyToOne
     private Formulario formularioSiguiente;
-    
+
     public SeguimientoSolicitud() {
 
     }
@@ -171,9 +181,35 @@ public class SeguimientoSolicitud implements Serializable {
         this.formularioSiguiente = formularioSiguiente;
     }
 
+    public String getFechaInicioString() {
+        if (fechaInicio != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = format.format(new Date(fechaInicio.getTime()));
+            return dateString;
+        }
+        return "";
+    }
+
+    public void setFechaInicioString(String fechaInicioString) {
+        this.fechaInicioString = fechaInicioString;
+    }
+
+    public String getFechaFinString() throws ParseException {
+        if (fechaFin != null) {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String dateString = format.format(new Date(fechaFin.getTime()));
+            return dateString;
+        }
+        return "";
+    }
+
+    public void setFechaFinString(String fechaFinString) {
+        this.fechaFinString = fechaFinString;
+    }
+
     @Override
     public String toString() {
         return "SeguimientoSolicitud{" + "idSeguimientoSolicitud=" + idSeguimientoSolicitud + ", idSolicitud=" + idSolicitud + ", idProceso=" + idProceso + ", numeroTramite=" + numeroTramite + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", estado=" + estado + ", usuario=" + usuario + ", variables=" + variables + ", funcionTransferencia=" + funcionTransferencia + ", formularioActual=" + formularioActual + ", formularioSiguiente=" + formularioSiguiente + '}';
     }
-    
+
 }

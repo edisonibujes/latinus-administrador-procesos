@@ -2,6 +2,7 @@ package net.latinus.arcom.ws.data.arcom.ws.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.SeguimientoSolicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
 
 /**
@@ -17,8 +18,8 @@ public class App {
 
         ClienteWsData clienteWsData = new ClienteWsData();
         ArcomServiciosData arcomServiciosData = clienteWsData.getArcomServiciosData();
-        TipoEvento te = arcomServiciosData.obtenerTipoEventoPorId(1);
-        System.out.println("---->" + te.getDescripcion());
+        List<SeguimientoSolicitud> ss = arcomServiciosData.obtenerSeguimientoSolicitudPorIdSolicitud(4);
+        System.out.println("---->" + ss.get(0).getUsuario());
     }
 
 }

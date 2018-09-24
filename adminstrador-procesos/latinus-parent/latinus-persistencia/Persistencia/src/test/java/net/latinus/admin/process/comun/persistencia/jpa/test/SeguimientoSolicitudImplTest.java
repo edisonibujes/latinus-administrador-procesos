@@ -1,5 +1,6 @@
 package net.latinus.admin.process.comun.persistencia.jpa.test;
 
+import java.text.ParseException;
 import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SecuenciaDAO;
@@ -75,9 +76,10 @@ public class SeguimientoSolicitudImplTest {
     
     @Test
     @Ignore
-    public void obtenerSeguimientoPorSolicitud() {
-        List<SeguimientoSolicitud> listaSeguimientoSolicitud = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(6);
-        System.out.println("--> " + listaSeguimientoSolicitud.size());
+    public void obtenerSeguimientoPorSolicitud() throws ParseException {
+        List<SeguimientoSolicitud> listaSeguimientoSolicitud = seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(40);
+        //System.out.println("--> " + listaSeguimientoSolicitud.get(0).getFechaInicioDate().getHours());
+        System.out.println("--> " + listaSeguimientoSolicitud.get(0).getFechaInicioString());
     }
     
 }

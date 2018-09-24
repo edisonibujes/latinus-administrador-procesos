@@ -45,7 +45,7 @@ public class FuncionTransferencia {
     
     public FuncionTransferencia() {
         cargarEstados();
-        //cargarDatosF3();
+        //cargarDatosN4();
     }
 
     public static void main(String[] args) {
@@ -418,6 +418,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("true");
         condicional.setValor(-1);
         condicional.setIdFormulario(21);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -429,6 +430,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(22);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
 
         condicional = new Condicionale();
@@ -436,6 +438,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(28);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -443,6 +446,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(24);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -450,6 +454,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(25);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -457,6 +462,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(26);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -464,6 +470,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(27);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         evaluarCondicional = true;
@@ -476,6 +483,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(23);
+        condicional.setEstadoSolicitud("SOLFIN");
         condicionales.add(condicional);
 
         condicional = new Condicionale();
@@ -483,17 +491,19 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(21);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
     
     public void cargarDatosN1() {
-         condicionales = new ArrayList();
+        condicionales = new ArrayList();
         Condicionale condicional = new Condicionale();
         condicional.setNombre("b");
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(21);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
 
         condicional = new Condicionale();
@@ -501,6 +511,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(25);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -508,6 +519,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(28);
+        condicional.setEstadoSolicitud("SOLFIN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -519,6 +531,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(21);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
 
         condicional = new Condicionale();
@@ -526,6 +539,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(24);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -533,6 +547,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(26);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -540,6 +555,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(28);
+        condicional.setEstadoSolicitud("SOLFIN");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -551,6 +567,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(21);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
 
         condicional = new Condicionale();
@@ -558,6 +575,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(25);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -565,6 +583,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(27);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();
@@ -573,6 +592,7 @@ public class FuncionTransferencia {
         condicional.setValor(1);
         condicional.setIdFormulario(28);
         condicionales.add(condicional);
+        condicional.setEstadoSolicitud("SOLFIN");
         evaluarCondicional = true;
     }
     
@@ -583,6 +603,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(21);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
 
         condicional = new Condicionale();
@@ -590,6 +611,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(26);
+        condicional.setEstadoSolicitud("SOLPEN");
         condicionales.add(condicional);
         
         evaluarCondicional = true;

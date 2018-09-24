@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_181\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 --also-make --projects latinus-persistencia/Persistencia install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 --also-make --projects latinus-webservices/latinus-ws-data install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="es"/>
     <property name="user.language.format" value="en"/>
@@ -63,19 +63,19 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="crearVariable" time="2.019">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="crearVariable" time="0.027">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="leerVariableById" time="2.019">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="leerVariableById" time="0.027">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="eliminarVariableById" time="2.019">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="eliminarVariableById" time="0.027">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="obtenerVariablesPorIdProcesoNumeroTramite" time="2.019">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="obtenerVariablesPorIdProcesoNumeroTramite" time="0.027">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="actualizarVariableById" time="2.019">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.VaribaleImplTest" name="actualizarVariableById" time="0.027">
     <skipped/>
   </testcase>
 </testsuite>

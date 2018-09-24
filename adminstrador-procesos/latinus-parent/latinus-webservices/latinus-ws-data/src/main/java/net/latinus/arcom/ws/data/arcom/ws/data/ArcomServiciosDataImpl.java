@@ -5,11 +5,13 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.OperacionesDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
+import net.latinus.admin.process.comun.persistencia.jpa.dao.SeguimientoSolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.TipoEventoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.VariableDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.SeguimientoSolicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
@@ -26,8 +28,17 @@ public class ArcomServiciosDataImpl implements ArcomServiciosData {
     private VariableDAO variableDAO;
     private ProcesoDAO procesoDAO;
     private SolicitudDAO solicitudDAO;
+    private SeguimientoSolicitudDAO seguimientoSolicitudDAO;
     
     // Getters Setters DAOs
+
+    public SeguimientoSolicitudDAO getSeguimientoSolicitudDAO() {
+        return seguimientoSolicitudDAO;
+    }
+
+    public void setSeguimientoSolicitudDAO(SeguimientoSolicitudDAO seguimientoSolicitudDAO) {
+        this.seguimientoSolicitudDAO = seguimientoSolicitudDAO;
+    }
 
     public SolicitudDAO getSolicitudDAO() {
         return solicitudDAO;
@@ -99,6 +110,11 @@ public class ArcomServiciosDataImpl implements ArcomServiciosData {
     @Override
     public List<Solicitud> obtenerSolicitudesPorUsuarioNemonico(String identificacion, String nemonico) {
         return solicitudDAO.obtenerSolicitudesPorUsuarioNemonico(identificacion, nemonico);
+    }
+
+    @Override
+    public List<SeguimientoSolicitud> obtenerSeguimientoSolicitudPorIdSolicitud(Integer idSolicitud) {
+        return seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(idSolicitud);
     }
     
 }

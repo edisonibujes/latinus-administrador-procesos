@@ -5,6 +5,7 @@ import javax.jws.WebParam;
 import javax.jws.WebService;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Formulario;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Proceso;
+import net.latinus.admin.process.comun.persistencia.jpa.entidades.SeguimientoSolicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.TipoEvento;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Variable;
@@ -35,4 +36,8 @@ public interface ArcomServiciosData {
             @WebParam(name = "nemonico") String nemonico
     );
 
+    public List<SeguimientoSolicitud> obtenerSeguimientoSolicitudPorIdSolicitud(
+            @WebParam(name = "idSolicitud") Integer idSolicitud
+    );
+    
 }

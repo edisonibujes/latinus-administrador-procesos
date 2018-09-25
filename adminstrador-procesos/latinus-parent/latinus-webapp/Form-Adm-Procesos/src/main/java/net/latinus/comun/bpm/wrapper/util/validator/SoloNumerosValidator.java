@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.latinus.arcom.comun.intalio.wrapper.util.validator;
+package net.latinus.comun.bpm.wrapper.util.validator;
 
 import java.io.Serializable;
 import java.util.regex.Matcher;

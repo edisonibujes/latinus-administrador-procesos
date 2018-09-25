@@ -1,5 +1,5 @@
 
-package net.latinus.arcom.comun.intalio.wrapper.util;
+package net.latinus.comun.bpm.wrapper.util;
 
 import java.io.Serializable;
 

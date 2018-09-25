@@ -1,4 +1,4 @@
-package net.latinus.arcom.comun.intalio.wrapper.controller.base;
+package net.latinus.comun.bpm.wrapper.controller.base;
 
 import java.util.List;
 import net.latinus.arcom.ws.data.api.Proceso;

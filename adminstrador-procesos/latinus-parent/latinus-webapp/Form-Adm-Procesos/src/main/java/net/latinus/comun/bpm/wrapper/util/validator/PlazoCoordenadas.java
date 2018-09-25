@@ -7,10 +7,9 @@
  * -----------------------------------------------------------------------------
  * -----------------------------------------------------------------------------
  */
-package net.latinus.arcom.comun.intalio.wrapper.util.validator;
+package net.latinus.comun.bpm.wrapper.util.validator;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.Serializable;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -22,24 +21,18 @@ import javax.faces.validator.ValidatorException;
  *
  * @author David Paucar Gonzalez <david_gem1@hotmail.com>.
  */
-@FacesValidator("alfaNumericoValidate")
-public class AlfaNumericoValidate implements Validator {
-
-    private static final String CAMPO_PATTERN = "^[a-zàáâãäåèéêëìíîïòóôõöùúûüñÿA-ZÀÁÂÃÄÅÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÑŸ0-9\\s;#'´]*$";
-    private Pattern pattern;
-    private Matcher matcher;
-
-    public AlfaNumericoValidate() {
-        pattern = Pattern.compile(CAMPO_PATTERN);
-    }
+@FacesValidator("plazoCoordenadas")
+public class PlazoCoordenadas implements Validator, Serializable {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        matcher = pattern.matcher(value.toString());
-        if (!matcher.matches()) {
+        int plazo = Integer.parseInt(value.toString());
+        //Mayor a 0 y menor a 121 meses
+        if (plazo < 1 || plazo > 120) {
             throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                    "El campo " + component.getAttributes().get("label") + " no es válido, no se admiten caracteres especiales", null));
+                    "El campo " + component.getAttributes().get("label") + " no es válido, "
+                    + "debe se mayor a 0 y menor a 120 meses.", null));
         }
-
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -3,23 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.latinus.arcom.comun.intalio.wrapper.bean;
+package net.latinus.comun.bpm.wrapper.bean;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import net.latinus.arcom.comun.intalio.wrapper.controller.base.impl.ControladorBaseImpl;
+import net.latinus.comun.bpm.wrapper.controller.base.impl.ControladorBaseImpl;
 import net.latinus.arcom.ws.data.api.Formulario;
 import net.latinus.arcom.ws.data.api.Proceso;
+import net.latinus.arcom.ws.data.api.SeguimientoSolicitud;
 import net.latinus.arcom.ws.data.api.Solicitud;
 import net.latinus.arcom.ws.data.api.Variable;
 
 @ManagedBean
 @ViewScoped
-public class PQSFBean implements Serializable {
+public class ListadoSolicitudBean implements Serializable {
 
     ControladorBaseImpl controladorBase = new ControladorBaseImpl();
     private List<Proceso> procesos;
@@ -29,11 +31,13 @@ public class PQSFBean implements Serializable {
     private List<Solicitud> solicitudes;
     private List<Variable> variables;
     private Solicitud solicitudSeleccionado;
-
-    public PQSFBean() {
+    private List<SeguimientoSolicitud> listaSeguimiento;
+    
+    public ListadoSolicitudBean() {
         procesos = new ArrayList();
         solicitudes = new ArrayList();
         variables = new ArrayList();
+        listaSeguimiento = new ArrayList();
     }
 
     @PostConstruct
@@ -57,9 +61,15 @@ public class PQSFBean implements Serializable {
 
     public void listarSolicitudes() {
         solicitudes.clear();
-        solicitudes = controladorBase.getArcomServiciosData().obtenerSolicitudesPorUsuarioNemonico(identificacionUsuario, "SOLACT");
+        solicitudes.addAll(controladorBase.getArcomServiciosData().obtenerSolicitudesPorUsuarioNemonico(identificacionUsuario, "SOLPEN"));
+        solicitudes.addAll(controladorBase.getArcomServiciosData().obtenerSolicitudesPorUsuarioNemonico(identificacionUsuario, "SOLFIN"));
     }
-
+    
+    public void listarSeguimiento(){
+        listaSeguimiento.clear();
+        listaSeguimiento.addAll(controladorBase.getArcomServiciosData().obtenerSeguimientoPorProcesoTramite(solicitudSeleccionado.getIdProceso().getIdProceso(), solicitudSeleccionado.getNumeroTramite()));
+    }
+    
     public void siguiente() {
         System.out.println("variables: " + variables.get(0).getNombre() + " - "+ variables.get(0).getValor());
         controladorBase.getArcomServiciosData().enviarSolicitud(variables, solicitudSeleccionado);
@@ -122,6 +132,14 @@ public class PQSFBean implements Serializable {
 
     public void setVariables(List<Variable> variables) {
         this.variables = variables;
+    }
+
+    public List<SeguimientoSolicitud> getListaSeguimiento() {
+        return listaSeguimiento;
+    }
+
+    public void setListaSeguimiento(List<SeguimientoSolicitud> listaSeguimiento) {
+        this.listaSeguimiento = listaSeguimiento;
     }
 
 }

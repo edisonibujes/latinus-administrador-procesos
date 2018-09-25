@@ -1,4 +1,4 @@
-package net.latinus.arcom.comun.intalio.wrapper.dto;
+package net.latinus.comun.bpm.wrapper.dto;
 
 import java.io.Serializable;
 

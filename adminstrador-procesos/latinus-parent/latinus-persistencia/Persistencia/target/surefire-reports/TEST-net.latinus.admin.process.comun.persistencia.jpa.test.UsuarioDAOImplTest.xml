@@ -63,16 +63,16 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.UsuarioDAOImplTest" name="actualizarUsuario" time="0.188">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.UsuarioDAOImplTest" name="actualizarUsuario" time="0.041">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.UsuarioDAOImplTest" name="eliminarUsuario" time="0.188">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.UsuarioDAOImplTest" name="eliminarUsuario" time="0.041">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.UsuarioDAOImplTest" name="leerUsuario" time="0.188">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.UsuarioDAOImplTest" name="leerUsuario" time="0.041">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.UsuarioDAOImplTest" name="crearUsuario" time="0.188">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.UsuarioDAOImplTest" name="crearUsuario" time="0.041">
     <skipped/>
   </testcase>
 </testsuite>

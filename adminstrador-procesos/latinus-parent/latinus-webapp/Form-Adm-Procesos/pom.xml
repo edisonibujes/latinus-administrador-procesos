@@ -281,7 +281,7 @@
                         <configuration>                            
                             <wsdlOptions>
                                 <wsdlOption>
-                                    <wsdl>${basedir}/src/main/resources/arcom-ws-data.wsdl</wsdl>  
+                                    <wsdl>${basedir}/src/main/resources/latinus-ws-data.wsdl</wsdl>  
                                     <bindingFiles>
                                         <bindingFile>${basedir}/src/main/resources/binding.xml</bindingFile>
                                     </bindingFiles>                                  

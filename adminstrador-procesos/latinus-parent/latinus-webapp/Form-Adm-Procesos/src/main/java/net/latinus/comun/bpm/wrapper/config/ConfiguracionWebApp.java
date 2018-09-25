@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.latinus.arcom.comun.intalio.wrapper.config;
+package net.latinus.comun.bpm.wrapper.config;
 
 import java.io.File;
 import java.io.FileInputStream;

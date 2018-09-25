@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.latinus.arcom.comun.intalio.wrapper.bean;
+package net.latinus.comun.bpm.wrapper.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
-import net.latinus.arcom.comun.intalio.wrapper.controller.base.impl.ControladorBaseImpl;
+import net.latinus.comun.bpm.wrapper.controller.base.impl.ControladorBaseImpl;
 import net.latinus.arcom.ws.data.api.Proceso;
 import net.latinus.arcom.ws.data.api.Variable;
 

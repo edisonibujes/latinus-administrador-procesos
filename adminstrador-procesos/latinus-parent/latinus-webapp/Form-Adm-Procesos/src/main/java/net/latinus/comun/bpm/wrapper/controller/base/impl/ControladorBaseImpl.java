@@ -2,14 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.latinus.arcom.comun.intalio.wrapper.controller.base.impl;
+package net.latinus.comun.bpm.wrapper.controller.base.impl;
 
 import java.io.Serializable;
 import java.util.List;
 import net.latinus.arcom.comun.configuracion.Configuracion;
 import org.slf4j.LoggerFactory;
 import java.util.Properties;
-import net.latinus.arcom.comun.intalio.wrapper.controller.base.ControladorBase;
+import net.latinus.comun.bpm.wrapper.controller.base.ControladorBase;
 import net.latinus.arcom.ws.data.api.ArcomServiciosData;
 import net.latinus.arcom.ws.data.api.Proceso;
 

@@ -67,7 +67,7 @@ public class ListadoSolicitudBean implements Serializable {
     
     public void listarSeguimiento(){
         listaSeguimiento.clear();
-        listaSeguimiento.addAll(controladorBase.getArcomServiciosData().obtenerSeguimientoSolicitudPorIdSolicitud(solicitudSeleccionado.getIdSolicitud()));
+        listaSeguimiento.addAll(controladorBase.getArcomServiciosData().obtenerSeguimientoPorProcesoTramite(solicitudSeleccionado.getIdProceso().getIdProceso(), solicitudSeleccionado.getNumeroTramite()));
     }
     
     public void siguiente() {

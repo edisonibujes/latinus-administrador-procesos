@@ -40,4 +40,9 @@ public interface ArcomServiciosData {
             @WebParam(name = "idSolicitud") Integer idSolicitud
     );
     
+    public List<SeguimientoSolicitud> obtenerSeguimientoPorProcesoTramite(
+            @WebParam(name = "idProceso") Integer idProceso,
+            @WebParam(name = "numeroTramite") Integer numeroTramite
+    );
+    
 }

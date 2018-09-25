@@ -45,7 +45,7 @@ public class FuncionTransferencia {
     
     public FuncionTransferencia() {
         cargarEstados();
-        //cargarDatosN4();
+        //cargarDatosB4();
     }
 
     public static void main(String[] args) {
@@ -438,7 +438,7 @@ public class FuncionTransferencia {
         condicional.setOperacion("=");
         condicional.setValor(1);
         condicional.setIdFormulario(28);
-        condicional.setEstadoSolicitud("SOLPEN");
+        condicional.setEstadoSolicitud("SOLFIN");
         condicionales.add(condicional);
         
         condicional = new Condicionale();

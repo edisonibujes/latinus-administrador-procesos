@@ -116,5 +116,10 @@ public class ArcomServiciosDataImpl implements ArcomServiciosData {
     public List<SeguimientoSolicitud> obtenerSeguimientoSolicitudPorIdSolicitud(Integer idSolicitud) {
         return seguimientoSolicitudDAO.obtenerSeguimientoPorSolicitud(idSolicitud);
     }
+
+    @Override
+    public List<SeguimientoSolicitud> obtenerSeguimientoPorProcesoTramite(Integer idProceso, Integer numeroTramite) {
+        return seguimientoSolicitudDAO.obtenerSeguimientoPorProcesoTramite(idProceso, numeroTramite);
+    }
     
 }

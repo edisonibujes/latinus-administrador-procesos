@@ -24,6 +24,7 @@
         <module>latinus-persistencia</module>
         <module>latinus-webapp</module>
         <module>latinus-webservices</module>
+		<module>latinus-usuario</module>
     </modules>
     <properties>
         <alfresco-opencmis-extension.version>1.0</alfresco-opencmis-extension.version>

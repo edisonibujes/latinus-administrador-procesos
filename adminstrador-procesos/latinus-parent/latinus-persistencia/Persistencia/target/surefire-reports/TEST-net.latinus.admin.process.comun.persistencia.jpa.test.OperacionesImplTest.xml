@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" time="0.004" errors="0" skipped="3">
+<testsuite tests="3" failures="0" name="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" time="0.001" errors="0" skipped="3">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_181\jre\bin"/>
@@ -30,7 +30,7 @@
     <property name="maven.ext.class.path" value="C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar"/>
     <property name="classworlds.conf" value="C:\Program Files\NetBeans 8.1\java\maven\bin\m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Users\Edison\Documents\Programas\apache-maven-3.3.9\bin;C:\Program Files\Java\jre1.8.0_121\bin;C:\Program Files\PostgreSQL\pg96\bin;C:\Program Files\TortoiseSVN\bin;C:\Users\Edison\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\Sophos\Sophos SSL VPN Client\bin;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_181\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Users\Edison\Documents\Programas\apache-maven-3.3.9\bin;C:\Program Files\Java\jre1.8.0_121\bin;C:\Program Files\PostgreSQL\pg96\bin;C:\Program Files\TortoiseSVN\bin;C:\Program Files\nodejs\;C:\Users\Edison\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\Sophos\Sophos SSL VPN Client\bin;C:\Users\Edison\AppData\Roaming\npm;C:\Users\Edison\AppData\Local\Programs\Microsoft VS Code\bin;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -45,7 +45,7 @@
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_181\jre"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 --also-make --projects latinus-webservices/latinus-ws-data install"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dmaven.ext.class.path=C:\Program Files\NetBeans 8.1\java\maven-nblib\netbeans-eventspy.jar -Dfile.encoding=UTF-8 --also-make --projects latinus-webservices/latinus-ws-usuario install"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="es"/>
     <property name="user.language.format" value="en"/>
@@ -63,13 +63,13 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="obtenerEstadoSiguiente" time="0.023">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="obtenerEstadoSiguiente" time="0.015">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="crearSolicitud" time="0.023">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="crearSolicitud" time="0.016">
     <skipped/>
   </testcase>
-  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="obtenerSecuenciaPorIdProceso" time="0.023">
+  <testcase classname="net.latinus.admin.process.comun.persistencia.jpa.test.OperacionesImplTest" name="obtenerSecuenciaPorIdProceso" time="0.016">
     <skipped/>
   </testcase>
 </testsuite>

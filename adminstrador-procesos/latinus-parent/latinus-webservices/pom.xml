@@ -29,5 +29,6 @@
     </properties>
     <modules>
         <module>latinus-ws-data</module>
+		<module>latinus-ws-usuario</module>
     </modules>
 </project>

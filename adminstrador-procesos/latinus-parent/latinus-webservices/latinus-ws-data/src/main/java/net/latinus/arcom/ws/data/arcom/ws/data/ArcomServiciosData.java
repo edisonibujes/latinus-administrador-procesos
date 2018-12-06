@@ -29,7 +29,8 @@ public interface ArcomServiciosData {
 
     public Boolean enviarSolicitud(
             @WebParam(name = "variables") List<Variable> listaVariables,
-            @WebParam(name = "solicitud") Solicitud solicitud);
+            @WebParam(name = "solicitud") Solicitud solicitud, 
+            @WebParam(name = "usuarioAtencion") String usuarioAtencion);
 
     public List<Solicitud> obtenerSolicitudesPorUsuarioNemonico(
             @WebParam(name = "identificacion") String identificacion,

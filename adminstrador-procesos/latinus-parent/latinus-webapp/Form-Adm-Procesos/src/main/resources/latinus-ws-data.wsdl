@@ -58,6 +58,8 @@
                     <xs:element minOccurs="0" name="descripcion" type="xs:string"/>
                     <xs:element minOccurs="0" name="idProceso" type="xs:int"/>
                     <xs:element minOccurs="0" name="nombre" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rolActual" type="xs:string"/>
+                    <xs:element minOccurs="0" name="rolSiguiente" type="xs:string"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="crearSolicitudResponse">
@@ -94,8 +96,10 @@
                     <xs:element minOccurs="0" name="idProceso" type="tns:proceso"/>
                     <xs:element minOccurs="0" name="idSolicitud" type="xs:int"/>
                     <xs:element minOccurs="0" name="numeroTramite" type="xs:int"/>
-                    <xs:element minOccurs="0" name="usuarioCreacion" type="tns:usuario"/>
+                    <xs:element minOccurs="0" name="rolTarea" type="xs:string"/>
+                    <xs:element minOccurs="0" name="usuarioCreacion" type="xs:string"/>
                     <xs:element minOccurs="0" name="usuarioModificacion" type="tns:usuario"/>
+                    <xs:element minOccurs="0" name="usuarioTarea" type="xs:string"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="catalogo">
@@ -171,6 +175,7 @@
                 <xs:sequence>
                     <xs:element maxOccurs="unbounded" minOccurs="0" name="variables" type="tns:variable"/>
                     <xs:element minOccurs="0" name="solicitud" type="tns:solicitud"/>
+                    <xs:element minOccurs="0" name="usuarioAtencion" type="xs:string"/>
                 </xs:sequence>
             </xs:complexType>
             <xs:complexType name="enviarSolicitudResponse">

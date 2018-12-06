@@ -7,6 +7,8 @@ import net.latinus.admin.process.comun.persistencia.jpa.dao.ProcesoDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.SolicitudDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.dao.UsuarioDAO;
 import net.latinus.admin.process.comun.persistencia.jpa.entidades.Solicitud;
+import net.latinus.usuario.integracion.dto.Usuario;
+import net.latinus.usuario.integracion.ldap.OperacionesLdap;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -46,14 +48,14 @@ public class SolicitudImplTest {
         solicitud.setIdProceso(procesoDAO.read(1));
         solicitud.setNumeroTramite(operacionesDAO.obtenerSecuenciaPorIdProceso(1).intValue());
         solicitud.setIdFormulario(formularioDAO.read(1));
-        solicitud.setUsuarioCreacion(usuarioDAO.read(1));
+        //solicitud.setUsuarioCreacion(usuarioDAO.read(1));
         solicitudDAO.create(solicitud);
     }
     
     @Test
     @Ignore
     public void obtenerSolicitudesPorUsuario() {
-        List<Solicitud> solicitudes = solicitudDAO.obtenerSolicitudesPorUsuarioNemonico("1721889515", "SOLACT");
+        List<Solicitud> solicitudes = solicitudDAO.obtenerSolicitudesPorUsuarioNemonico("1718901281", "SOLPEN");
         System.out.println("Lista: " + solicitudes.size());
     }
     

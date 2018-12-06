@@ -43,14 +43,19 @@ public class Solicitud implements Serializable {
     @ManyToOne
     private Catalogo estadoSolicitud;
 
-    @JoinColumn(name = "usuario_creacion", referencedColumnName = "id_usuario")
-    @ManyToOne
-    private Usuario usuarioCreacion;
-
+    @Column(name = "usuario_creacion")
+    private String usuarioCreacion;
+   
     @JoinColumn(name = "usuario_modificacion", referencedColumnName = "id_usuario")
     @ManyToOne
     private Usuario usuarioModificacion;
-
+    
+    @Column(name = "rol_tarea")
+    private String rolTarea;
+    
+    @Column(name = "usuario_tarea")
+    private String usuarioTarea;
+    
     public Solicitud() {
 
     }
@@ -91,11 +96,11 @@ public class Solicitud implements Serializable {
         this.idFormulario = idFormulario;
     }
 
-    public Usuario getUsuarioCreacion() {
+    public String getUsuarioCreacion() {
         return usuarioCreacion;
     }
 
-    public void setUsuarioCreacion(Usuario usuarioCreacion) {
+    public void setUsuarioCreacion(String usuarioCreacion) {
         this.usuarioCreacion = usuarioCreacion;
     }
 
@@ -113,6 +118,22 @@ public class Solicitud implements Serializable {
 
     public void setEstadoSolicitud(Catalogo estadoSolicitud) {
         this.estadoSolicitud = estadoSolicitud;
+    }
+
+    public String getRolTarea() {
+        return rolTarea;
+    }
+
+    public void setRolTarea(String rolTarea) {
+        this.rolTarea = rolTarea;
+    }
+
+    public String getUsuarioTarea() {
+        return usuarioTarea;
+    }
+
+    public void setUsuarioTarea(String usuarioTarea) {
+        this.usuarioTarea = usuarioTarea;
     }
 
     @Override

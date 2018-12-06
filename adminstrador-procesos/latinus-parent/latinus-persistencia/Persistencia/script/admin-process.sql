@@ -17,20 +17,22 @@ DROP TABLE IF EXISTS "catalogo";
 CREATE TABLE "proceso" (
 "id_proceso" bigserial Primary Key,
 "nombre" varchar(250) COLLATE "default",
-"descripcion" varchar(250) COLLATE "default"
+"descripcion" varchar(250) COLLATE "default",
+"rol_actual" varchar(250) COLLATE "default",
+"rol_siguiente" varchar(250) COLLATE "default"
 );
 
-INSERT INTO public.proceso(nombre, descripcion)
-    VALUES ('Certificado de ciudadanía', 'El documento valida la nacionalidad del individuo');
+INSERT INTO public.proceso(nombre, descripcion, rol_actual, rol_siguiente)
+    VALUES ('Certificado de ciudadanía', 'El documento valida la nacionalidad del individuo', '-','Administrador Registro Civil');
 
-INSERT INTO public.proceso(nombre, descripcion)
-    VALUES ('Certificado bancario', 'El documento valida la cuenta activa de un banco');
+INSERT INTO public.proceso(nombre, descripcion, rol_actual, rol_siguiente)
+    VALUES ('Certificado bancario', 'El documento valida la cuenta activa de un banco', '-','-');
 
-INSERT INTO public.proceso(nombre, descripcion)
-    VALUES ('Certificado de Concesión Minera', 'El documento valida la propiedad de una concesión minera');
+INSERT INTO public.proceso(nombre, descripcion, rol_actual, rol_siguiente)
+    VALUES ('Certificado de Concesión Minera', 'El documento valida la propiedad de una concesión minera', '-','-');
     	
-INSERT INTO public.proceso(nombre, descripcion)
-    VALUES ('PQSF', 'PQSF');
+INSERT INTO public.proceso(nombre, descripcion, rol_actual, rol_siguiente)
+    VALUES ('PQSF', 'PQSF', '-','-');
 
 CREATE TABLE "variable" (
 "id_variable" bigserial Primary Key,
@@ -216,19 +218,19 @@ CONSTRAINT estado_actual_fkey FOREIGN KEY (estado_actual)
 );
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (1, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":2,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
+    VALUES (1, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":2,"estadoSolicitud":"SOLPEN","rolTarea":"Administrador"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (2, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":3,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
+    VALUES (2, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":3,"estadoSolicitud":"SOLPEN","rolTarea":"Juridico"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (3, '{"condicionales":[{"nombre":"a","valor":30,"operacion":"\u003e","idFormulario":4,"estadoSolicitud":"SOLPEN"},{"nombre":"a","valor":31,"operacion":"\u003c","idFormulario":5,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
+    VALUES (3, '{"condicionales":[{"nombre":"a","valor":30,"operacion":"\u003e","idFormulario":4,"estadoSolicitud":"SOLPEN","rolTarea":"Administrador Registro Civil"},{"nombre":"a","valor":31,"operacion":"\u003c","idFormulario":5,"estadoSolicitud":"SOLPEN","rolTarea":"Administrador"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (4, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":6,"estadoSolicitud":"SOLFIN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
+    VALUES (4, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":6,"estadoSolicitud":"SOLFIN","rolTarea":"Administrador"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
-    VALUES (5, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":6,"estadoSolicitud":"SOLFIN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
+    VALUES (5, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":6,"estadoSolicitud":"SOLFIN","rolTarea":"Administrador"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 1);
 
 INSERT INTO public.grilla(estado_actual, funcion_transferencia, id_proceso)
     VALUES (7, '{"condicionales":[{"nombre":"a","valor":-1,"operacion":"true","idFormulario":8,"estadoSolicitud":"SOLPEN"}],"evaluarCondicional":true,"evaluarParalelo":false,"evaluarUnion":false}', 2);
@@ -329,16 +331,16 @@ CREATE TABLE "solicitud" (
 "numero_tramite" int8,
 "id_formulario" int8,
 "estado_solicitud" int8,
-"usuario_creacion" int8,
+"usuario_creacion" character varying(2000),
 "usuario_modificacion" int8,
+"rol_tarea" character varying(2000),
+"usuario_tarea" character varying(2000),
+
 CONSTRAINT id_proceso_fkey FOREIGN KEY (id_proceso)
       REFERENCES public.proceso (id_proceso) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE,
 CONSTRAINT id_formulario_fkey FOREIGN KEY (id_formulario)
       REFERENCES public.formulario (id_formulario) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE CASCADE,
-CONSTRAINT usuario_creacion_fkey FOREIGN KEY (usuario_creacion)
-      REFERENCES public.usuario (id_usuario) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE CASCADE,
 CONSTRAINT usuario_modificacion_fkey FOREIGN KEY (usuario_modificacion)
       REFERENCES public.usuario (id_usuario) MATCH SIMPLE

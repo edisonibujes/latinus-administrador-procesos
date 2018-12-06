@@ -22,6 +22,9 @@ public class Condicionale {
     @SerializedName("estadoSolicitud")
     @Expose
     private String estadoSolicitud;
+    @SerializedName("rolTarea")
+    @Expose
+    private String rolTarea;
     
     public String getNombre() {
         return nombre;
@@ -61,6 +64,14 @@ public class Condicionale {
 
     public void setEstadoSolicitud(String estadoSolicitud) {
         this.estadoSolicitud = estadoSolicitud;
+    }
+
+    public String getRolTarea() {
+        return rolTarea;
+    }
+
+    public void setRolTarea(String rolTarea) {
+        this.rolTarea = rolTarea;
     }
 
     @Override

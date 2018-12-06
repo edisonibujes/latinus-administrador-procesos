@@ -29,8 +29,30 @@ public class Proceso implements Serializable {
     @Column(name = "descripcion")
     private String descripcion;
     
+    @Column(name = "rol_actual")
+    private String rolActual;
+    
+    @Column(name = "rol_siguiente")
+    private String rolSiguiente;
+    
     public Proceso() {
         
+    }
+
+    public String getRolActual() {
+        return rolActual;
+    }
+
+    public void setRolActual(String rolActual) {
+        this.rolActual = rolActual;
+    }
+
+    public String getRolSiguiente() {
+        return rolSiguiente;
+    }
+
+    public void setRolSiguiente(String rolSiguiente) {
+        this.rolSiguiente = rolSiguiente;
     }
     
     public Proceso(Integer idProceso) {

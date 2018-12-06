@@ -133,7 +133,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         return valor;
     }
 
-    public Boolean enviarSolicitud(List<Variable> variables, Solicitud solicitud) {
+    public Boolean enviarSolicitud(List<Variable> variables, Solicitud solicitud, String usuarioAtencion) {
         try {
             Grilla grilla = grillaDAO.obtenerGrillaPorEstadoActualIdProceso(solicitud.getIdFormulario().getIdFormulario().intValue(), solicitud.getIdProceso().getIdProceso());
             String funcionTransferencia = grilla.getFuncionTransferencia();
@@ -169,7 +169,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                     seguimiento.setFechaFin(timestamp);
                     Catalogo completado = catalogoDAO.obtenerCatalogoPorNemonico("SOLFIN");
                     seguimiento.setEstado(completado);
-                    seguimiento.setUsuario(solicitud.getUsuarioCreacion().getIdentificacion());
+                    seguimiento.setUsuario(usuarioAtencion);
                     seguimiento.setVariables(variables.toString());
                     seguimiento.setFuncionTransferencia(ft.toString());
                     seguimiento.setFormularioSiguiente(solicitudActual.getIdFormulario());
@@ -181,7 +181,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                     seguimiento.setFechaFin(timestamp);
                     Catalogo completado = catalogoDAO.obtenerCatalogoPorNemonico("SOLATE");
                     seguimiento.setEstado(completado);
-                    seguimiento.setUsuario(solicitud.getUsuarioCreacion().getIdentificacion());
+                    seguimiento.setUsuario(usuarioAtencion);
                     seguimiento.setVariables(variables.toString());
                     seguimiento.setFuncionTransferencia(ft.toString());
                     seguimiento.setFormularioSiguiente(solicitudActual.getIdFormulario());
@@ -210,7 +210,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                 seguimiento.setFechaFin(timestamp);
                 Catalogo completado = catalogoDAO.obtenerCatalogoPorNemonico("SOLATE");
                 seguimiento.setEstado(completado);
-                seguimiento.setUsuario(solicitudPrimaria.getUsuarioCreacion().getIdentificacion());
+                //seguimiento.setUsuario(solicitudPrimaria.getUsuarioCreacion().getIdentificacion());
                 seguimiento.setVariables(variables.toString());
                 seguimiento.setFuncionTransferencia(ft.toString());
                 seguimiento.setFormularioSiguiente(solicitudPrimaria.getIdFormulario());
@@ -237,7 +237,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                     seguimientoNueva.setFechaInicio(timestamp);
                     Catalogo inicio = catalogoDAO.obtenerCatalogoPorNemonico("SOLINI");
                     seguimientoNueva.setEstado(inicio);
-                    seguimientoNueva.setUsuario(solicitudHija.getUsuarioCreacion().getIdentificacion());
+                    //seguimientoNueva.setUsuario(solicitudHija.getUsuarioCreacion().getIdentificacion());
                     seguimientoNueva.setVariables("");
                     seguimientoNueva.setFuncionTransferencia("");
                     seguimientoNueva.setIdSolicitud(solicitudHija);
@@ -266,7 +266,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                     seguimientoActual.setFechaFin(timestamp);
                     Catalogo atentido = catalogoDAO.obtenerCatalogoPorNemonico("SOLATE");
                     seguimientoActual.setEstado(atentido);
-                    seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
+                    //seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
                     seguimientoActual.setVariables(variables.toString());
                     seguimientoActual.setFuncionTransferencia(ft.toString());
                     seguimientoSolicitudDAO.update(seguimientoActual);
@@ -279,7 +279,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                     seguimientoActual.setFechaFin(timestamp);
                     Catalogo atentido = catalogoDAO.obtenerCatalogoPorNemonico("SOLFIN");
                     seguimientoActual.setEstado(atentido);
-                    seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
+                    //seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
                     seguimientoActual.setVariables(variables.toString());
                     seguimientoActual.setFuncionTransferencia(ft.toString());
                     seguimientoSolicitudDAO.update(seguimientoActual);
@@ -292,7 +292,7 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
                     seguimientoActual.setFechaFin(timestamp);
                     Catalogo atentido = catalogoDAO.obtenerCatalogoPorNemonico("SOLATE");
                     seguimientoActual.setEstado(atentido);
-                    seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
+                    //seguimientoActual.setUsuario(solicitudActual.getUsuarioCreacion().getIdentificacion());
                     seguimientoActual.setVariables(variables.toString());
                     seguimientoActual.setFuncionTransferencia(ft.toString());
                     seguimientoActual.setFormularioSiguiente(solicitudActual.getIdFormulario());
@@ -348,12 +348,12 @@ public class OperacionesDAOImpl extends AbstractJPADAO implements OperacionesDAO
         Integer numeroTramite = -1;
         Solicitud solicitud = new Solicitud();
         Proceso proceso = procesoDAO.obtenerProcesoPorNombre(nombreProceso);
+        solicitud.setRolTarea(proceso.getRolSiguiente());
         solicitud.setIdProceso(proceso);
         numeroTramite = obtenerSecuenciaPorIdProceso(proceso.getIdProceso()).intValue();
         solicitud.setNumeroTramite(numeroTramite);
         solicitud.setIdFormulario(formularioDAO.obtenerFormulariosPorIdProceso(proceso.getIdProceso()).get(0));
-        Usuario usuario = usuarioDAO.obtenerUsuarioPorIdentificacion(usuarioCreacion);
-        solicitud.setUsuarioCreacion(usuario);
+        solicitud.setUsuarioCreacion(usuarioCreacion);
         solicitud.setEstadoSolicitud(catalogoDAO.obtenerCatalogoPorNemonico("SOLPEN"));
         solicitudDAO.create(solicitud);
 

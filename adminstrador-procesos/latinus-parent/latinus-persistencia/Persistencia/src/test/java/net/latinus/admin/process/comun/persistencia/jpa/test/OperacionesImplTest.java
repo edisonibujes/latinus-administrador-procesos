@@ -46,37 +46,16 @@ public class OperacionesImplTest {
     @Test
     @Ignore
     public void obtenerEstadoSiguiente() {
-        Solicitud solicitud = solicitudDAO.read(38);
+        Solicitud solicitud = solicitudDAO.read(1);
         List<Variable> variables = variableDAO.obtenerVariablesPorIdProcesoNumeroTramite(solicitud.getIdProceso().getIdProceso(), solicitud.getNumeroTramite());
 
         for (Variable var : variables) {
-            if (var.getNombre().equals("b")) {
-                var.setValor(0);
-            }
-            if (var.getNombre().equals("c")) {
-                var.setValor(0);
-            }
-            if (var.getNombre().equals("d")) {
-                var.setValor(0);
-            }
-            if (var.getNombre().equals("n")) {
-                var.setValor(1);
-            }
-            if (var.getNombre().equals("n1")) {
-                var.setValor(0);
-            }
-            if (var.getNombre().equals("n2")) {
-                var.setValor(0);
-            }
-            if (var.getNombre().equals("n3")) {
-                var.setValor(0);
-            }
-            if (var.getNombre().equals("n4")) {
-                var.setValor(0);
+            if (var.getNombre().equals("a")) {
+                var.setValor(100);
             }
         }
 
-        System.out.println(operacionesDAO.enviarSolicitud(variables, solicitud));
+        System.out.println(operacionesDAO.enviarSolicitud(variables, solicitud, "1718901281"));
     }
 
     @Test
@@ -88,47 +67,7 @@ public class OperacionesImplTest {
         var.setValor(0);
         variables.add(var);
 
-        Variable var2 = new Variable();
-        var2.setNombre("b");
-        var2.setValor(0);
-        variables.add(var2);
-        
-        Variable var3 = new Variable();
-        var3.setNombre("c");
-        var3.setValor(0);
-        variables.add(var3);
-        
-        Variable var4 = new Variable();
-        var4.setNombre("d");
-        var4.setValor(0);
-        variables.add(var4);
-        
-        Variable var5 = new Variable();
-        var5.setNombre("n");
-        var5.setValor(0);
-        variables.add(var5);
-        
-        Variable var6 = new Variable();
-        var6.setNombre("n1");
-        var6.setValor(0);
-        variables.add(var6);
-        
-        Variable var7 = new Variable();
-        var7.setNombre("n2");
-        var7.setValor(0);
-        variables.add(var7);
-        
-        Variable var8 = new Variable();
-        var8.setNombre("n3");
-        var8.setValor(0);
-        variables.add(var8);
-        
-        Variable var9 = new Variable();
-        var9.setNombre("n4");
-        var9.setValor(0);
-        variables.add(var9);
-        
-        Integer numTramite = operacionesDAO.crearSolicitud("PQSF", variables, "1721889515");
+        Integer numTramite = operacionesDAO.crearSolicitud("Certificado de ciudadanía", variables, "1721889515");
         System.out.println(numTramite);
     }
 

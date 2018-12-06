@@ -45,7 +45,7 @@ public class FuncionTransferencia {
     
     public FuncionTransferencia() {
         cargarEstados();
-        //cargarDatosB4();
+        //cargarDatosE();
     }
 
     public static void main(String[] args) {
@@ -68,6 +68,7 @@ public class FuncionTransferencia {
                             formulario.setIdFormulario(condicionalDto.getIdFormulario().longValue());
                             solicitud.setIdFormulario(formulario);
                             solicitud.setEstadoSolicitud(obtenerSolicitudNemonico(condicionalDto.getEstadoSolicitud()));
+                            solicitud.setRolTarea(condicionalDto.getRolTarea());
                             respuestaFuncionDto.getSolicitudes().add(solicitud);
                             respuestaFuncionDto.setVariables(variables);
                             System.out.println("respuestaFuncionDto: " + respuestaFuncionDto);
@@ -212,6 +213,7 @@ public class FuncionTransferencia {
         condicional.setValor(-1);
         condicional.setIdFormulario(2);
         condicional.setEstadoSolicitud("SOLPEN");
+        condicional.setRolTarea("Administrador");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -224,6 +226,7 @@ public class FuncionTransferencia {
         condicional.setValor(-1);
         condicional.setIdFormulario(3);
         condicional.setEstadoSolicitud("SOLPEN");
+        condicional.setRolTarea("Juridico");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -236,6 +239,7 @@ public class FuncionTransferencia {
         condicional.setValor(30);
         condicional.setIdFormulario(4);
         condicional.setEstadoSolicitud("SOLPEN");
+        condicional.setRolTarea("Juridico");
         condicionales.add(condicional);
 
         condicional = new Condicionale();
@@ -244,6 +248,7 @@ public class FuncionTransferencia {
         condicional.setValor(31);
         condicional.setIdFormulario(5);
         condicional.setEstadoSolicitud("SOLPEN");
+        condicional.setRolTarea("Administrador");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -256,6 +261,7 @@ public class FuncionTransferencia {
         condicional.setValor(-1);
         condicional.setIdFormulario(6);
         condicional.setEstadoSolicitud("SOLFIN");
+        condicional.setRolTarea("Administrador");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }
@@ -268,6 +274,7 @@ public class FuncionTransferencia {
         condicional.setValor(-1);
         condicional.setIdFormulario(6);
         condicional.setEstadoSolicitud("SOLFIN");
+        condicional.setRolTarea("Administrador");
         condicionales.add(condicional);
         evaluarCondicional = true;
     }

@@ -103,8 +103,8 @@ public class ArcomServiciosDataImpl implements ArcomServiciosData {
     }
 
     @Override
-    public Boolean enviarSolicitud(List<Variable> listaVariables, Solicitud solicitud) {
-        return operacionesDAO.enviarSolicitud(listaVariables, solicitud);
+    public Boolean enviarSolicitud(List<Variable> listaVariables, Solicitud solicitud, String usuarioAtencion) {
+        return operacionesDAO.enviarSolicitud(listaVariables, solicitud, usuarioAtencion);
     }
 
     @Override

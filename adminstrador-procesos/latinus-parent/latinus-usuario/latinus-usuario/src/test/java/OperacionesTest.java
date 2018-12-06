@@ -5,13 +5,13 @@ import net.latinus.usuario.integracion.ldap.OperacionesLdap;
 public class OperacionesTest {
 
     public static void main(String[] args) {
-        List<String> usuarios = buscarUsuarioPorRol();
-        System.out.println("usuarios: " + usuarios);
+        Usuario us = BuscarUsuarioPorDocumento();
+        System.out.println("usuarios: " + us);
     }
 
-    public static List<String> buscarUsuarioPorRol() {
+    public static Usuario BuscarUsuarioPorDocumento() {
         OperacionesLdap c = new OperacionesLdap();
-        return c.BuscarUsuariosPorRol("Administrador Registro Civil");
+        return c.BuscarUsuarioPorDocumento("1308930801");
     }
     
 }
